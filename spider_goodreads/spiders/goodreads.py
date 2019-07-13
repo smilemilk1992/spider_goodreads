@@ -48,7 +48,7 @@ class MangoSpider(scrapy.Spider):
 
         details=response.xpath(XpathRule.details).extract()
         a=etree.fromstring(details[1]).xpath("./text()")[0]
-        aa=a.split("\n")[1]
+        aa=" ".join(x for x in a.split("\n"))
         b=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0].strip()
         print "------a="+aa
         print "------b="+b
