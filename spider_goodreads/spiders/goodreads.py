@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from lxml import etree
+import re
 class XpathRule(object):
     bookDataBox = "//div[@class='clearFloats']/div[@class='infoBoxRowItem']"
     details="//div[@id='details']/div[@class='row']"
