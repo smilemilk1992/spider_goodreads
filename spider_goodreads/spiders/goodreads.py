@@ -22,7 +22,7 @@ class MangoSpider(scrapy.Spider):
     }
 
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/book/show/15159113']
+    start_urls = ['https://www.goodreads.com/book/show/1733202']
 
     def parse(self, response):
 
