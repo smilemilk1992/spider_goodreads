@@ -142,7 +142,7 @@ class MangoSpider(scrapy.Spider):
             print "   description    :" + description
             print "--------------------图书字段信息-------------------\n"
         except Exception,e:
-            logging.error("error url="+response.url+" e="+e)
+            logging.error("error url="+response.url)
 
 
 
