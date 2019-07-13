@@ -45,6 +45,7 @@ class MangoSpider(scrapy.Spider):
             pages="None"
 
         bookDataBox=response.xpath(XpathRule.bookDataBox).extract()
+        print bookDataBox
         if len(bookDataBox)>=2:
             Original_title=etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
             ISBN=etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
