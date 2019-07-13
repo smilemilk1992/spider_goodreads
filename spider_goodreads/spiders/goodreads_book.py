@@ -44,7 +44,7 @@ class MangoSpider(scrapy.Spider):
 
 
     def parse(self, response):
-        try:
+
             bookUrl = response.url
             title=response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()
             authorNameUrl=",".join(x.strip() for x in response.xpath("//a[@class='authorName']/@href").extract())
@@ -98,27 +98,27 @@ class MangoSpider(scrapy.Spider):
             Rating_details=response.xpath("//span[@id='rating_graph']/script/text()").extract()[0].strip()
             renderRatingGraph=re.search("renderRatingGraph\(\[(.*?)\]\);",Rating_details).group(1)
 
-            item={}
-            item["bookUrl"]=bookUrl
-            item["title"]=title
-            item["authorName"]=authorName
-            item["authorNameUrl"]=authorNameUrl
-            item["coverPic"]=coverPic
-            item["Rating_details"]=renderRatingGraph
-            item["score"]=score
-            item["ratings"]=ratings
-            item["reviews"]=reviews
-            item["bookFormat"]=bookFormat
-            item["Published_Time"]=aa
-            item["First_Published_Time"]=bb
-            item["pages"]=pages
-            item["Original_title"]=Original_title
-            item["ISBN"]=ISBN
-            item["ISBN13"]=ISBN13
-            item["Edition_Language"]=Edition_Language
-            item["description"]=description
-            logger.info("item="+item)
-            logging.info(item)
+            # item={}
+            # item["bookUrl"]=bookUrl
+            # item["title"]=title
+            # item["authorName"]=authorName
+            # item["authorNameUrl"]=authorNameUrl
+            # item["coverPic"]=coverPic
+            # item["Rating_details"]=renderRatingGraph
+            # item["score"]=score
+            # item["ratings"]=ratings
+            # item["reviews"]=reviews
+            # item["bookFormat"]=bookFormat
+            # item["Published_Time"]=aa
+            # item["First_Published_Time"]=bb
+            # item["pages"]=pages
+            # item["Original_title"]=Original_title
+            # item["ISBN"]=ISBN
+            # item["ISBN13"]=ISBN13
+            # item["Edition_Language"]=Edition_Language
+            # item["description"]=description
+            # logger.info("item="+item)
+            # logging.info(item)
 
 
             print "\n--------------------图书字段信息-------------------"
@@ -141,9 +141,7 @@ class MangoSpider(scrapy.Spider):
             print "   Edition_Language    :" + Edition_Language
             print "   description    :" + description
             print "--------------------图书字段信息-------------------\n"
-        except Exception,e:
 
-            logging.error("error url="+response.url)
 
 
 
