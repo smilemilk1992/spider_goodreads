@@ -15,7 +15,7 @@ class MangoSpider(scrapy.Spider):
     custom_settings = {
         'CONCURRENT_REQUESTS': 64,  #允许的线程数
         'RETRY_TIMES': 3,  #重试机制
-        'DOWNLOAD_DELAY':0.5,   #延时（秒）
+        'DOWNLOAD_DELAY':2,   #延时（秒）
         # 'ITEM_PIPELINES': {
         #     "spider_goodreads.pipelines.SpiderPipeline": 200,
         # },
@@ -28,6 +28,12 @@ class MangoSpider(scrapy.Spider):
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
     start_urls = ['https://www.goodreads.com/book/show/10219910']
+
+    def start_requests(self):
+        with open('url.txt', "r") as f:
+            url = f.read()
+            yield scrapy.Request(url, callback=self.parse)
+
 
     def parse(self, response):
         bookUrl = response.url
