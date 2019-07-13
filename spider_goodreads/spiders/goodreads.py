@@ -24,7 +24,7 @@ class MangoSpider(scrapy.Spider):
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/book/show/948']
+    start_urls = ['https://www.goodreads.com/book/show/38256483']
 
     def parse(self, response):
 
@@ -55,7 +55,7 @@ class MangoSpider(scrapy.Spider):
 
         Rating_details=response.xpath("//span[@id='rating_graph']/script/text()").extract()[0].strip()
         renderRatingGraph=re.search("renderRatingGraph\(\[(.*?)\]\);",Rating_details).group(1)
-        print renderRatingGraph
+
         print "\n--------------------图书字段信息-------------------"
         print "   title    :"+title
         print "   authorName    :"+authorName
