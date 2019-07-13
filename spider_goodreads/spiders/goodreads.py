@@ -49,9 +49,7 @@ class MangoSpider(scrapy.Spider):
         details=response.xpath(XpathRule.details).extract()
         a=etree.fromstring(details[1]).xpath("./text()")[0]
         aa="".join(x.strip()+" " for x in a.split("\n") if x)
-        b=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(")").lstrip("(")
-        print "------a="+aa
-        print "------b="+b
+        bb=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(")").lstrip("(")
         print "--------------------图书字段信息-------------------\n"
         print "   title    :"+title
         print "   authorName    :"+authorName
@@ -61,6 +59,8 @@ class MangoSpider(scrapy.Spider):
         print "   ratings    :" + ratings
         print "   reviews    :" + reviews
         print "   bookFormat    :" + bookFormat
+        print "   Published_Time    :" + aa
+        print "   First_Published_Time    :" + bb
         print "   pages    :" + pages
         print "   Original_itle    :" + Original_itle
         print "   ISBN    :" + ISBN
