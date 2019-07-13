@@ -44,10 +44,16 @@ class MangoSpider(scrapy.Spider):
         else:
             pages="None"
         bookDataBox=response.xpath(XpathRule.bookDataBox).extract()
-        Original_itle=etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
-        ISBN=etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
-        ISBN13 = etree.fromstring(bookDataBox[1]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
-        Edition_Language=etree.fromstring(bookDataBox[2]).xpath("./text()")[0].strip()
+        if etree.fromstring(bookDataBox[0]).xpath("./text()"):
+            Original_itle=etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
+            ISBN=etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
+            ISBN13 = etree.fromstring(bookDataBox[1]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
+            Edition_Language=etree.fromstring(bookDataBox[2]).xpath("./text()")[0].strip()
+        else:
+            Original_itle = "None"
+            ISBN = etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
+            ISBN13 = etree.fromstring(bookDataBox[0]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
+            Edition_Language = etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
 
         details=response.xpath(XpathRule.details).extract()
         a=etree.fromstring(details[1]).xpath("./text()")[0]
