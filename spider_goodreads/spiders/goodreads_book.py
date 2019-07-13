@@ -33,14 +33,14 @@ class MangoSpider(scrapy.Spider):
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    # start_urls = ['https://www.goodreads.com/book/show/10219910']
+    start_urls = ['https://www.goodreads.com/book/show/12404771']
 
 
-    def start_requests(self):
-        with open('url.txt', "r") as f:
-            url = f.readlines()
-            for x in url:
-                yield scrapy.Request(x.strip(), callback=self.parse)
+    # def start_requests(self):
+    #     with open('url.txt', "r") as f:
+    #         url = f.readlines()
+    #         for x in url:
+    #             yield scrapy.Request(x.strip(), callback=self.parse)
 
 
     def parse(self, response):
@@ -74,19 +74,25 @@ class MangoSpider(scrapy.Spider):
             #     ISBN = etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
             #     ISBN13 = etree.fromstring(bookDataBox[0]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
             #     Edition_Language = etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
-            details1=etree.fromstring(infoBoxRowTitle[0]).xpath("./text()")[0].strip()
+            details1=etree.fromstring(infoBoxRowTitle[0]).xpath("./text()")
             # details2 = etree.fromstring(infoBoxRowTitle[1]).xpath("./text()")[0].strip()
             # details3 = etree.fromstring(infoBoxRowTitle[2]).xpath("./text()")[0].strip()
             if "Original Title" in details1:
-                Original_title = etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
-                ISBN = etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
-                ISBN13 = etree.fromstring(bookDataBox[1]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
-                Edition_Language = etree.fromstring(bookDataBox[2]).xpath("./text()")[0].strip()
+                Original_title = etree.fromstring(bookDataBox[details1.index("Original Title")]).xpath("./text()")[0].strip()
+            else:
+                Original_title = "None"
+
             if "ISBN" in details1:
-                Original_title="None"
-                ISBN = etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
-                ISBN13 = etree.fromstring(bookDataBox[0]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
-                Edition_Language = etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
+                ISBN = etree.fromstring(bookDataBox[details1.index("ISBN")]).xpath("./text()")[0].strip()
+                ISBN13 = etree.fromstring(bookDataBox[details1.index("ISBN")]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
+            else:
+                ISBN = "None"
+                ISBN13 = "None"
+            if "Edition Language" in details1:
+                Edition_Language = etree.fromstring(bookDataBox[details1.index("Edition Language")]).xpath("./text()")[0].strip()
+            else:
+
+                Edition_Language="None"
 
 
 
