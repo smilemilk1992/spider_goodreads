@@ -6,6 +6,7 @@ import scrapy
 from lxml import etree
 import re
 import logging
+import spider_goodreads.LogHelp as log;
 class XpathRule(object):
     bookDataBox = "//div[@class='clearFloats']/div[@class='infoBoxRowItem']"
     details="//div[@id='details']/div[@class='row']"
@@ -29,6 +30,7 @@ class MangoSpider(scrapy.Spider):
             # 'spider_goodreads.middlewares.random_http_proxy.IpMiddleware': 110, #添加代理ip逻辑
         }
     }
+    logger = log.getLog("goodreads_book.log")
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
@@ -117,10 +119,10 @@ class MangoSpider(scrapy.Spider):
             item["ISBN13"]=ISBN13
             item["Edition_Language"]=Edition_Language
             item["description"]=description
-            logging.info("item="+item)
+            logger.info("item="+item)
             print item
         except Exception,e:
-            logging.error("解析出现错误！url="+response.url+" e="+e)
+            logger.error("解析出现错误！url="+response.url+" e="+e)
 
         # print "\n--------------------图书字段信息-------------------"
         # print "   bookUrl    :" + bookUrl

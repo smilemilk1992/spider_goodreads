@@ -28,8 +28,6 @@ DNSCACHE_ENABLED=True
 DNS_TIMEOUT=360
 TELNETCONSOLE_ENABLED = False
 
-LOG_FILE = "mySpider.log"
-LOG_LEVEL = "DEBUG"
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
