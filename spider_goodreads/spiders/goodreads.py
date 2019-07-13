@@ -50,7 +50,10 @@ class MangoSpider(scrapy.Spider):
         a=etree.fromstring(details[1]).xpath("./text()")[0]
         aa="".join(x.strip()+" " for x in a.split("\n") if x)
         bb=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(")").lstrip("(") if etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()") else aa
-        print "--------------------图书字段信息-------------------\n"
+
+        renderRatingGraph=re.search("renderRatingGraph.*[(.*?)]&",response.body()).group(1)
+        print renderRatingGraph
+        print "\n--------------------图书字段信息-------------------"
         print "   title    :"+title
         print "   authorName    :"+authorName
         print "   authorNameUrl    :"+authorNameUrl
