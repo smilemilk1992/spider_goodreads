@@ -54,7 +54,7 @@ class MangoSpider(scrapy.Spider):
 
         Rating_details=response.xpath("//span[@id='rating_graph']/script/text()").extract()[0].strip()
         print "-----"+Rating_details
-        renderRatingGraph=re.compile('renderRatingGraph\(.*\[(.*)\];',re.S).search(Rating_details).group(1)
+        renderRatingGraph=re.search("renderRatingGraph\(\[(.*?)\]\);",Rating_details).group(1)
         print renderRatingGraph
         print "\n--------------------图书字段信息-------------------"
         print "   title    :"+title
