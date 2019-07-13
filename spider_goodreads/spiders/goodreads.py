@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-import simplejson as json
-import time
+from lxml import etree
 class XpathRule(object):
     bookDataBox = "//div[@id='bookDataBox']/div[@class='clearFloats']"
 
