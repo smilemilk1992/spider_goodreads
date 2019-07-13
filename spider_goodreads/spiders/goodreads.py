@@ -30,9 +30,10 @@ class MangoSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        title=response.xpath("//h1[@id='bookTitle']/text()").extract()
+        title=response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()
         authorNameUrl=response.xpath("//a[@class='authorName']/@href").extract()[0].strip()
         authorName = response.xpath("//a[@class='authorName']/span/text()").extract()[0].strip()
+        print "   title    :"+title
         print "   authorName    :"+authorName
         print "   authorNameUrl    :"+authorNameUrl
 
