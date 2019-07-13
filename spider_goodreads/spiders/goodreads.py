@@ -38,7 +38,7 @@ class MangoSpider(scrapy.Spider):
         Original_itle=etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
         ISBN=etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
         ISBN13 = etree.fromstring(bookDataBox[1]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
-
+        Edition_Language=etree.fromstring(bookDataBox[2]).xpath("./text()")[0].strip()
         print "   title    :"+title
         print "   authorName    :"+authorName
         print "   authorNameUrl    :"+authorNameUrl
@@ -49,6 +49,7 @@ class MangoSpider(scrapy.Spider):
         print "   Original_itle    :" + Original_itle
         print "   ISBN    :" + ISBN
         print "   ISBN13    :" + ISBN13
+        print "   Edition_Language    :" + Edition_Language
         print "   description    :" + description
 
 
