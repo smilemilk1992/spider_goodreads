@@ -48,7 +48,7 @@ class MangoSpider(scrapy.Spider):
 
         details=response.xpath(XpathRule.details).extract()
         a=etree.fromstring(details[1]).xpath("./text()")[0]
-        b=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0]
+        b=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0].strip()
         print "------a="+a
         print "------b="+b
         print "--------------------图书字段信息-------------------\n"
