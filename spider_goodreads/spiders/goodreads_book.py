@@ -100,24 +100,24 @@ class MangoSpider(scrapy.Spider):
         renderRatingGraph=re.search("renderRatingGraph\(\[(.*?)\]\);",Rating_details).group(1)
 
         item={}
-        item["bookUrl"]=bookUrl
-        item["title"]=title
-        item["authorName"]=authorName
-        item["authorNameUrl"]=authorNameUrl
-        item["coverPic"]=coverPic
-        item["Rating_details"]=renderRatingGraph
-        item["score"]=score
-        item["ratings"]=ratings
-        item["reviews"]=reviews
-        item["bookFormat"]=bookFormat
-        item["Published_Time"]=Published_Time
-        item["First_Published_Time"]=First_Published_Time
-        item["pages"]=pages
-        item["Original_title"]=Original_title
-        item["ISBN"]=ISBN
-        item["ISBN13"]=ISBN13
-        item["Edition_Language"]=Edition_Language
-        item["description"]=description
+        # item["bookUrl"]=bookUrl
+        # item["title"]=title
+        # item["authorName"]=authorName
+        # item["authorNameUrl"]=authorNameUrl
+        # item["coverPic"]=coverPic
+        # item["Rating_details"]=renderRatingGraph
+        # item["score"]=score
+        # item["ratings"]=ratings
+        # item["reviews"]=reviews
+        # item["bookFormat"]=bookFormat
+        # item["Published_Time"]=Published_Time
+        # item["First_Published_Time"]=First_Published_Time
+        # item["pages"]=pages
+        # item["Original_title"]=Original_title
+        # item["ISBN"]=ISBN
+        # item["ISBN13"]=ISBN13
+        # item["Edition_Language"]=Edition_Language
+        # item["description"]=description
         # logger.info("item="+item)
         # print item
 
