@@ -29,7 +29,7 @@ class MangoSpider(scrapy.Spider):
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
     # start_urls = ['https://www.goodreads.com/book/show/10219910']
-    name={"ISBN":"ISBN","Original Title":""}
+
 
     def start_requests(self):
         with open('url.txt', "r") as f:
