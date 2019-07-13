@@ -36,7 +36,8 @@ class MangoSpider(scrapy.Spider):
         bookFormat=response.xpath("//span[@itemprop='bookFormat']/text()").extract()[0].strip()
         bookDataBox=response.xpath(XpathRule.bookDataBox).extract()
         Original_itle=etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
-
+        ISBN=etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
+        ISBN13 = etree.fromstring(bookDataBox[1]).xpath("./span[@class='greyText']/text()")[0].strip()
 
         print "   title    :"+title
         print "   authorName    :"+authorName
@@ -46,6 +47,8 @@ class MangoSpider(scrapy.Spider):
         print "   reviews    :" + reviews
         print "   bookFormat    :" + bookFormat
         print "   Original_itle    :" + Original_itle
+        print "   ISBN    :" + ISBN
+        print "   ISBN13    :" + ISBN13
         print "   description    :" + description
 
 
