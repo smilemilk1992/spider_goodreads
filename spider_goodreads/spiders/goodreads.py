@@ -2,7 +2,7 @@
 import scrapy
 from lxml import etree
 class XpathRule(object):
-    bookDataBox = "//div[@class='clearFloats']/div[@class='infoBoxRowItem']/text()"
+    bookDataBox = "//div[@class='clearFloats']/div[@class='infoBoxRowItem']"
 
 
 
@@ -35,9 +35,7 @@ class MangoSpider(scrapy.Spider):
         description=response.xpath("//div[@id='description']/span/text()").extract()[0].strip()
         bookFormat=response.xpath("//span[@itemprop='bookFormat']/text()").extract()[0].strip()
         bookDataBox=response.xpath(XpathRule.bookDataBox).extract()
-        list=[]
-        for i in bookDataBox:
-            print i.strip()
+        Original_itle=etree.fromstring(bookDataBox[0]).xpath("/text()").strip()
 
 
         print "   title    :"+title
@@ -47,7 +45,7 @@ class MangoSpider(scrapy.Spider):
         print "   ratings    :" + ratings
         print "   reviews    :" + reviews
         print "   bookFormat    :" + bookFormat
-        # print "   Original_itle    :" + list
+        print "   Original_itle    :" + Original_itle
         print "   description    :" + description
 
 
