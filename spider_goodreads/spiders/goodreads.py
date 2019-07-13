@@ -3,11 +3,8 @@ import scrapy
 import simplejson as json
 import time
 class XpathRule(object):
-    classify = "//div[@class='leftContainer']"
-    editor="//span[@class='g-font-size-13 g-color-gray-dark-v4 g-mr-15']/text()"
-    peoples="//div[@class='district_box03 w1200 clearfix']//a[@class='forumName']|//div[@class='district_box04 clearfix w1200']//a"
-    content="//div[@class='liuyan_box03 w1200 clearfix']/p[@class='zoom']/text()"
-    answerContent="//div[@class='clearfix liuyan_box05 w1200']//p[@class='zoom']/text()"
+    bookDataBox = "//div[@id='bookDataBox']/div[@class='clearFloats']"
+
 
 
 class MangoSpider(scrapy.Spider):
@@ -36,12 +33,19 @@ class MangoSpider(scrapy.Spider):
         score=response.xpath("//span[@itemprop='ratingValue']/text()").extract()[0].strip()
         ratings=response.xpath("//meta[@itemprop='ratingCount']/@content").extract()[0].strip()
         reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
+        description=response.xpath("//div[@id='description']/span/text()").extract()[0].strip()
+        bookFormat=response.xpath("//span[@itemrop='bookFormat']/text()").extract()[0].strip()
+        bookDataBox=response.xpath(XpathRule.bookDataBox).extract()
+        Original_itle=bookDataBox[0].xpath("./div[@class='infoBoxRowItem']/text()").extract()[0].strip()
         print "   title    :"+title
         print "   authorName    :"+authorName
         print "   authorNameUrl    :"+authorNameUrl
         print "   score    :" + score
         print "   ratings    :" + ratings
         print "   reviews    :" + reviews
+        print "   bookFormat    :" + bookFormat
+        print "   Original_itle    :" + Original_itle
+        print "   description    :" + description
 
 
 
