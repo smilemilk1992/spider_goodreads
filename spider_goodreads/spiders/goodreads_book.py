@@ -5,6 +5,7 @@ import re
 class XpathRule(object):
     bookDataBox = "//div[@class='clearFloats']/div[@class='infoBoxRowItem']"
     details="//div[@id='details']/div[@class='row']"
+    infoBoxRowTitle="//div[@class='clearFloats']/div[@class='infoBoxRowTitle']"
 
 
 class MangoSpider(scrapy.Spider):
@@ -28,6 +29,7 @@ class MangoSpider(scrapy.Spider):
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
     # start_urls = ['https://www.goodreads.com/book/show/10219910']
+    name={"ISBN":"ISBN","Original Title":""}
 
     def start_requests(self):
         with open('url.txt', "r") as f:
@@ -55,17 +57,32 @@ class MangoSpider(scrapy.Spider):
             pages="None"
 
         bookDataBox=response.xpath(XpathRule.bookDataBox).extract()
-
-        if len(bookDataBox)>2:
-            Original_title=etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
-            ISBN=etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
+        infoBoxRowTitle=response.xpath(XpathRule.infoBoxRowTitle).extract()
+        # if len(bookDataBox)>2:
+        #     Original_title=etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
+        #     ISBN=etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
+        #     ISBN13 = etree.fromstring(bookDataBox[1]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
+        #     Edition_Language=etree.fromstring(bookDataBox[2]).xpath("./text()")[0].strip()
+        # else:
+        #     Original_title = "None"
+        #     ISBN = etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
+        #     ISBN13 = etree.fromstring(bookDataBox[0]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
+        #     Edition_Language = etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
+        details1=etree.fromstring(infoBoxRowTitle[0]).xpath("./text()")[0].strip()
+        # details2 = etree.fromstring(infoBoxRowTitle[1]).xpath("./text()")[0].strip()
+        # details3 = etree.fromstring(infoBoxRowTitle[2]).xpath("./text()")[0].strip()
+        if "Original Title" in details1:
+            Original_title = etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
+            ISBN = etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
             ISBN13 = etree.fromstring(bookDataBox[1]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
-            Edition_Language=etree.fromstring(bookDataBox[2]).xpath("./text()")[0].strip()
-        else:
-            Original_title = "None"
+            Edition_Language = etree.fromstring(bookDataBox[2]).xpath("./text()")[0].strip()
+        if "ISBN" in details1:
+            Original_title="None"
             ISBN = etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
             ISBN13 = etree.fromstring(bookDataBox[0]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
             Edition_Language = etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
+
+
 
         details=response.xpath(XpathRule.details).extract()
         a=etree.fromstring(details[1]).xpath("./text()")[0]
@@ -89,7 +106,7 @@ class MangoSpider(scrapy.Spider):
         print "   Published_Time    :" + aa
         print "   First_Published_Time    :" + bb
         print "   pages    :" + pages
-        print "   Original_itle    :" + Original_title
+        print "   Original_title    :" + Original_title
         print "   ISBN    :" + ISBN
         print "   ISBN13    :" + ISBN13
         print "   Edition_Language    :" + Edition_Language
