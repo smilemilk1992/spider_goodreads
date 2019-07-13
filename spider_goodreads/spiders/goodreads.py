@@ -27,7 +27,7 @@ class MangoSpider(scrapy.Spider):
     start_urls = ['https://www.goodreads.com/book/show/488908']
 
     def parse(self, response):
-
+        bookUrl = response.url
         title=response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()
         authorNameUrl=",".join(x.strip() for x in response.xpath("//a[@class='authorName']/@href").extract())
         authorName = ",".join(x.strip() for x in response.xpath("//a[@class='authorName']/span/text()").extract())
@@ -66,6 +66,7 @@ class MangoSpider(scrapy.Spider):
         renderRatingGraph=re.search("renderRatingGraph\(\[(.*?)\]\);",Rating_details).group(1)
 
         print "\n--------------------图书字段信息-------------------"
+        print "   bookUrl    :" + bookUrl
         print "   title    :"+title
         print "   authorName    :"+authorName
         print "   authorNameUrl    :"+authorNameUrl
