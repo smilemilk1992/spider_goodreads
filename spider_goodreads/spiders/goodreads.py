@@ -34,7 +34,7 @@ class MangoSpider(scrapy.Spider):
         ratings=response.xpath("//meta[@itemprop='ratingCount']/@content").extract()[0].strip()
         reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
         description=response.xpath("//div[@id='description']/span/text()").extract()[0].strip()
-        bookFormat=response.xpath("//span[@itemrop='bookFormat']/text()").extract()[0].strip()
+        bookFormat=response.xpath("//span[@itemprop='bookFormat']/text()").extract()[0].strip()
         bookDataBox=response.xpath(XpathRule.bookDataBox).extract()
         Original_itle=bookDataBox[0].xpath("./div[@class='infoBoxRowItem']/text()").extract()[0].strip()
         print "   title    :"+title
