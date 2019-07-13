@@ -29,7 +29,7 @@ class MangoSpider(scrapy.Spider):
             # 'spider_goodreads.middlewares.random_http_proxy.IpMiddleware': 110, #添加代理ip逻辑
         }
     }
-    logger = log.getLog("goodreads_book.log")
+
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
