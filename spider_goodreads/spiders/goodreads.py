@@ -43,14 +43,15 @@ class MangoSpider(scrapy.Spider):
             pages=response.xpath("//span[@itemprop='numberOfPages']/text()").extract()[0].strip().replace(" pages","")
         else:
             pages="None"
+
         bookDataBox=response.xpath(XpathRule.bookDataBox).extract()
-        if etree.fromstring(bookDataBox[0]).xpath("./text()"):
-            Original_itle=etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
+        if etree.fromstring(bookDataBox[0]).xpath("./text()").size()>=2:
+            Original_title=etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
             ISBN=etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
             ISBN13 = etree.fromstring(bookDataBox[1]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
             Edition_Language=etree.fromstring(bookDataBox[2]).xpath("./text()")[0].strip()
         else:
-            Original_itle = "None"
+            Original_title = "None"
             ISBN = etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
             ISBN13 = etree.fromstring(bookDataBox[0]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
             Edition_Language = etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
@@ -76,7 +77,7 @@ class MangoSpider(scrapy.Spider):
         print "   Published_Time    :" + aa
         print "   First_Published_Time    :" + bb
         print "   pages    :" + pages
-        print "   Original_itle    :" + Original_itle
+        print "   Original_itle    :" + Original_title
         print "   ISBN    :" + ISBN
         print "   ISBN13    :" + ISBN13
         print "   Edition_Language    :" + Edition_Language
