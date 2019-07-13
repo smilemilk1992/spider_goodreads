@@ -38,7 +38,7 @@ class MangoSpider(scrapy.Spider):
         list=[]
         for i in bookDataBox:
             i = etree.fromstring(i)
-            data = i.xpath("./div[@class='infoBoxRowItem']/text()").extract()[0].strip()
+            data = i.xpath("/div[@class='infoBoxRowItem']/text()").extract()[0].strip()
             list.append(data)
 
 
