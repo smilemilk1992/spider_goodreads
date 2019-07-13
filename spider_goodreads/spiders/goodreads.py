@@ -34,7 +34,11 @@ class MangoSpider(scrapy.Spider):
         reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
         description=response.xpath("//div[@id='description']/span/text()").extract()[0].strip()
         bookFormat=response.xpath("//span[@itemprop='bookFormat']/text()").extract()[0].strip()
-        pages=response.xpath("//span[@itemprop='numberOfPages']/text()").extract()[0].strip()
+        ispage=response.xpath("//span[@itemprop='numberOfPages']/text()").extract()
+        if ispage:
+            pages=response.xpath("//span[@itemprop='numberOfPages']/text()").extract()[0].strip().replace(" pages","")
+        else:
+            pages="None"
         bookDataBox=response.xpath(XpathRule.bookDataBox).extract()
         Original_itle=etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
         ISBN=etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
