@@ -119,8 +119,8 @@ class MangoSpider(scrapy.Spider):
             item["description"]=description
             logging.info("item="+item)
             print item
-        except:
-            logging.error("解析出现错误！url="+response.url)
+        except Exception,e:
+            logging.error("解析出现错误！url="+response.url+" e="+e)
 
         # print "\n--------------------图书字段信息-------------------"
         # print "   bookUrl    :" + bookUrl
