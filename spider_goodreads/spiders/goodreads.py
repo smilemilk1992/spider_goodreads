@@ -31,9 +31,9 @@ class MangoSpider(scrapy.Spider):
     def parse(self, response):
         classify=response.xpath(XpathRule.classify)
         for a in classify: #去掉台湾
-            title=a.xpath("./h1[@id='bookTitle']/text()").extract().strip()
-            authorNameUrl=a.xpath("./a[@class='authorName']/@href").extract().strip()
-            authorName = a.xpath("./a[@class='authorName']/span/text()").extract().strip()
+            title=a.xpath("./h1[@id='bookTitle']/text()").extract()
+            authorNameUrl=a.xpath("./a[@class='authorName']/@href").extract()
+            authorName = a.xpath("./a[@class='authorName']/span/text()").extract()
             print title,authorName,authorNameUrl
 
 
