@@ -47,7 +47,7 @@ class MangoSpider(scrapy.Spider):
         print "   ratings    :" + ratings
         print "   reviews    :" + reviews
         print "   bookFormat    :" + bookFormat
-        print "   Original_itle    :" + list
+        # print "   Original_itle    :" + list
         print "   description    :" + description
 
 
