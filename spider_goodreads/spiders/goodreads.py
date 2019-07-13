@@ -23,7 +23,7 @@ class MangoSpider(scrapy.Spider):
     }
 
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/book/show/1733202']
+    start_urls = ['https://www.goodreads.com/book/show/17401103']
 
     def parse(self, response):
 
@@ -53,7 +53,6 @@ class MangoSpider(scrapy.Spider):
         bb=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(")").lstrip("(") if etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()") else aa
 
         Rating_details=response.xpath("//span[@id='rating_graph']/script/text()").extract()[0].strip()
-        print "-----"+Rating_details
         renderRatingGraph=re.search("renderRatingGraph\(\[(.*?)\]\);",Rating_details).group(1)
         print renderRatingGraph
         print "\n--------------------图书字段信息-------------------"
