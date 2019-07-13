@@ -32,6 +32,7 @@ class MangoSpider(scrapy.Spider):
         score=response.xpath("//span[@itemprop='ratingValue']/text()").extract()[0].strip()
         ratings=response.xpath("//meta[@itemprop='ratingCount']/@content").extract()[0].strip()
         reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
+        coverPic=response.xpath("//div[@class='noCoverMediumContainer']/img/@src").extract()[0].strip()
         description=response.xpath("//div[@id='description']/span/text()").extract()[0].strip()
         bookFormat=response.xpath("//span[@itemprop='bookFormat']/text()").extract()[0].strip()
         ispage=response.xpath("//span[@itemprop='numberOfPages']/text()").extract()
@@ -48,7 +49,7 @@ class MangoSpider(scrapy.Spider):
         print "   title    :"+title
         print "   authorName    :"+authorName
         print "   authorNameUrl    :"+authorNameUrl
-
+        print "   coverPic    :" + coverPic
         print "   score    :" + score
         print "   ratings    :" + ratings
         print "   reviews    :" + reviews
