@@ -24,7 +24,7 @@ class MangoSpider(scrapy.Spider):
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/book/show/488908']
+    start_urls = ['https://www.goodreads.com/book/show/10219910']
 
     def parse(self, response):
         bookUrl = response.url
