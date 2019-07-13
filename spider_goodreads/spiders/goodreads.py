@@ -47,7 +47,7 @@ class MangoSpider(scrapy.Spider):
         Edition_Language=etree.fromstring(bookDataBox[2]).xpath("./text()")[0].strip()
 
         details=response.xpath(XpathRule.details).extract()
-        a=etree.fromstring(details[1]).xpath("./text()")[0].strip()
+        a=details[1].xpath("./text()")[0].strip()
         b=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']")[0].strip()
         print "------a="+a
         print "------b="+b
