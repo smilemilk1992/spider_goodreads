@@ -13,7 +13,7 @@ class MangoSpider(scrapy.Spider):
     '''
     name = "goodreads_book"
     custom_settings = {
-        'CONCURRENT_REQUESTS': 64,  #允许的线程数
+        'CONCURRENT_REQUESTS': 8,  #允许的线程数
         'RETRY_TIMES': 3,  #重试机制
         'DOWNLOAD_DELAY':2,   #延时（秒）
         # 'ITEM_PIPELINES': {
