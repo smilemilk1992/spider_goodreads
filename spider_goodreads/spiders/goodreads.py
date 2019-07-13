@@ -37,7 +37,7 @@ class MangoSpider(scrapy.Spider):
         bookDataBox=response.xpath(XpathRule.bookDataBox).extract()
         Original_itle=etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
         ISBN=etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
-        ISBN13 = etree.fromstring(bookDataBox[1]).xpath("./span[@class='greyText']/span/text()")[0].strip()
+        ISBN13 = etree.fromstring(bookDataBox[1]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
 
         print "   title    :"+title
         print "   authorName    :"+authorName
