@@ -3,7 +3,7 @@ import scrapy
 from lxml import etree
 class XpathRule(object):
     bookDataBox = "//div[@class='clearFloats']/div[@class='infoBoxRowItem']"
-
+    details="//div[@id='details']/div[@class='row']"
 
 
 class MangoSpider(scrapy.Spider):
@@ -22,7 +22,7 @@ class MangoSpider(scrapy.Spider):
     }
 
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/book/show/1733202']
+    start_urls = ['https://www.goodreads.com/book/show/15159113']
 
     def parse(self, response):
 
@@ -45,6 +45,12 @@ class MangoSpider(scrapy.Spider):
         ISBN=etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
         ISBN13 = etree.fromstring(bookDataBox[1]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
         Edition_Language=etree.fromstring(bookDataBox[2]).xpath("./text()")[0].strip()
+
+        details=response.xpath(XpathRule.details).extract()
+        a=etree.fromstring(details[1]).xpath("./text()")[0].strip()
+        b=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']")[0].strip()
+        print "------a="+a
+        print "------b="+b
         print "--------------------图书字段信息-------------------\n"
         print "   title    :"+title
         print "   authorName    :"+authorName
