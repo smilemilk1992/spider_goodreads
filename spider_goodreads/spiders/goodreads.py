@@ -29,7 +29,7 @@ class MangoSpider(scrapy.Spider):
 
         title=response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()
         authorNameUrl=response.xpath("//a[@class='authorName']/@href").extract()[0].strip()
-        authorName = response.xpath("//a[@class='authorName']/span/text()").extract()[0].strip()
+        authorName = ",".join(x.strip() for x in response.xpath("//a[@class='authorName']/span/text()").extract())
         score=response.xpath("//span[@itemprop='ratingValue']/text()").extract()[0].strip()
         ratings=response.xpath("//meta[@itemprop='ratingCount']/@content").extract()[0].strip()
         reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
