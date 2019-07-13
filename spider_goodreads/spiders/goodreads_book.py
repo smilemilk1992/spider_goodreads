@@ -27,12 +27,13 @@ class MangoSpider(scrapy.Spider):
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/book/show/10219910']
+    # start_urls = ['https://www.goodreads.com/book/show/10219910']
 
     def start_requests(self):
         with open('url.txt', "r") as f:
-            url = f.read()
-            yield scrapy.Request(url, callback=self.parse)
+            url = f.readlines()
+            for x in url:
+                yield scrapy.Request(x.strip(), callback=self.parse)
 
 
     def parse(self, response):
