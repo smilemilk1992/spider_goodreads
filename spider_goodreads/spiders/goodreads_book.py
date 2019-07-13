@@ -8,7 +8,10 @@ class XpathRule(object):
 
 
 class MangoSpider(scrapy.Spider):
-    name = "goodreads"
+    '''
+    图书信息
+    '''
+    name = "goodreads_book"
     custom_settings = {
         'CONCURRENT_REQUESTS': 64,  #允许的线程数
         'RETRY_TIMES': 3,  #重试机制
