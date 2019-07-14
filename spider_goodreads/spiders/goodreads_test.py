@@ -16,7 +16,7 @@ class MangoSpider(scrapy.Spider):
     '''
     图书信息
     '''
-    name = "goodreads_book"
+    name = "goodreads_test"
     custom_settings = {
         'CONCURRENT_REQUESTS': 4,  #允许的线程数
         'RETRY_TIMES': 3,  #重试机制
@@ -34,17 +34,15 @@ class MangoSpider(scrapy.Spider):
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/book/show/30008738-duck-goose']
+    start_urls = ['https://www.goodreads.com/list/show/43.Best_Young_Adult_Books']
 
 
-    def start_requests(self):
-        with open('url.txt', "r") as f:
-            url = f.readlines()
-            for x in url:
-                yield scrapy.Request(x.strip(), callback=self.parse)
+    def parse(self,response):
+        page=response.xpath("//div[@class='pagination']/a/@href").extract()[-2].strip()
+        print page
 
 
-    def parse(self, response):
+    def parse1(self, response):
 
             bookUrl = response.url
             title=response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()

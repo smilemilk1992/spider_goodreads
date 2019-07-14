@@ -1,4 +1,4 @@
 #encoding:utf-8
 import MySQLdb
 from scrapy.cmdline import execute
-execute("scrapy crawl goodreads_book".split())
+execute("scrapy crawl goodreads_test".split())
