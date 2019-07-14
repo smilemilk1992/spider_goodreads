@@ -63,4 +63,4 @@ class LibrarySpider(scrapy.Spider):
         if libsresults:
             page=response.meta["page"]+1
             url = self.start_url.format(6 * (page - 1) + 1)
-            yield scrapy.Request(url, callback=self.parse, cookies={'LAC-User-Location': 94404},meta={"page": 1})
+            yield scrapy.Request(url, callback=self.parse, cookies={'LAC-User-Location': 94404},meta={"page": page})
