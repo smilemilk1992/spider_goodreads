@@ -47,11 +47,13 @@ class MangoSpider(scrapy.Spider):
 
             bookUrl = response.url
             title=response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()
-            IllustratorUrl=",".join(x.strip() for x in response.xpath("//a[@class='authorName']/@href").extract() if "Illustrator" in response.xpath("//a[@class='authorName']/span[@class='authorName greyText smallText role']/text()"))
-            Illustrator = ",".join(x.strip() for x in response.xpath("//a[@class='authorName']/span/text()").extract() if "Illustrator" in response.xpath("//a[@class='authorName']/span[@class='authorName greyText smallText role']/text()"))
-
-            authorNameUrl=",".join(x.strip() for x in response.xpath("//a[@class='authorName']/@href").extract() if "Illustrator" not in response.xpath("//a[@class='authorName']/span[@class='authorName greyText smallText role']/text()"))
-            authorName=",".join(x.strip() for x in response.xpath("//a[@class='authorName']/span/text()").extract() if "Illustrator" not in response.xpath("//a[@class='authorName']/span[@class='authorName greyText smallText role']/text()"))
+            if "Illustrator" in response.xpath(
+                    "//a[@class='authorName']/span[@class='authorName greyText smallText role']/text()"):
+                IllustratorUrl=",".join(x.strip() for x in response.xpath("//a[@class='authorName']/@href").extract())
+                Illustrator = ",".join(x.strip() for x in response.xpath("//a[@class='authorName']/span/text()").extract())
+            else:
+                authorNameUrl=",".join(x.strip() for x in response.xpath("//a[@class='authorName']/@href").extract() )
+                authorName=",".join(x.strip() for x in response.xpath("//a[@class='authorName']/span/text()").extract())
 
             score=response.xpath("//span[@itemprop='ratingValue']/text()").extract()[0].strip()
 
