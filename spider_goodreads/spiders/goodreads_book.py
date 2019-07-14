@@ -21,9 +21,9 @@ class MangoSpider(scrapy.Spider):
         'CONCURRENT_REQUESTS': 4,  #允许的线程数
         'RETRY_TIMES': 3,  #重试机制
         'DOWNLOAD_DELAY':5,   #延时（秒）
-        # 'ITEM_PIPELINES': {
-        #     "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipeline": 200,
-        # },
+        'ITEM_PIPELINES': {
+            "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipeline": 200,
+        },
         'DOWNLOADER_MIDDLEWARES': {
             'spider_goodreads.middlewares.RandomUserAgent.RandomUserAgent': 300,
             # 'spider_goodreads.middlewares.random_http_proxy.IpMiddleware': 110, #添加代理ip逻辑
@@ -33,14 +33,14 @@ class MangoSpider(scrapy.Spider):
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/book/show/1733202']
+    # start_urls = ['https://www.goodreads.com/book/show/1733202']
 
 
-    # def start_requests(self):
-    #     with open('url.txt', "r") as f:
-    #         url = f.readlines()
-    #         for x in url:
-    #             yield scrapy.Request(x.strip(), callback=self.parse)
+    def start_requests(self):
+        with open('url.txt', "r") as f:
+            url = f.readlines()
+            for x in url:
+                yield scrapy.Request(x.strip(), callback=self.parse)
 
 
     def parse(self, response):
@@ -148,56 +148,56 @@ class MangoSpider(scrapy.Spider):
                     genres[a]=b.replace("users","").strip()
 
 
-            # item={}
-            # item["bookUrl"]=bookUrl
-            # item["title"]=title
-            # item["authorName"]=",".join(x for x in authorList)
-            # item["authorNameUrl"]=",".join(x for x in authorUrlList)
-            # item["Illustrator"]=",".join(x for x in Tlluser)
-            # item["IllustratorUrl"]=",".join(x for x in Tllist)
-            # item["coverPic"]=coverPic
-            # item["Rating_details"]=renderRatingGraph
-            # item["score"]=score
-            # item["ratings"]=ratings
-            # item["reviews"]=reviews
-            # item["Literary_Awards"]=Literary_Awards
-            # item["genres"]=str(genres)
-            # item["bookFormat"]=bookFormat
-            # item["Published_Time"]=aa
-            # item["First_Published_Time"]=bb
-            # item["pages"]=pages
-            # item["Original_title"]=Original_title
-            # item["ISBN"]=ISBN
-            # item["ISBN13"]=ISBN13
-            # item["Edition_Language"]=Edition_Language
-            # item["description"]=description
-            # yield item
+            item={}
+            item["bookUrl"]=bookUrl
+            item["title"]=title
+            item["authorName"]=",".join(x for x in authorList)
+            item["authorNameUrl"]=",".join(x for x in authorUrlList)
+            item["Illustrator"]=",".join(x for x in Tlluser)
+            item["IllustratorUrl"]=",".join(x for x in Tllist)
+            item["coverPic"]=coverPic
+            item["Rating_details"]=renderRatingGraph
+            item["score"]=score
+            item["ratings"]=ratings
+            item["reviews"]=reviews
+            item["Literary_Awards"]=Literary_Awards
+            item["genres"]=str(genres)
+            item["bookFormat"]=bookFormat
+            item["Published_Time"]=aa
+            item["First_Published_Time"]=bb
+            item["pages"]=pages
+            item["Original_title"]=Original_title
+            item["ISBN"]=ISBN
+            item["ISBN13"]=ISBN13
+            item["Edition_Language"]=Edition_Language
+            item["description"]=description
+            yield item
 
             #
-            print "\n--------------------图书字段信息-------------------"
-            print "   bookUrl    :" + bookUrl
-            print "   title    :"+title
-            print "   authorName    :"+",".join(x for x in authorList)
-            print "   authorNameUrl    :"+",".join(x for x in authorUrlList)
-            print "   Illustrator   :" + ",".join(x for x in Tlluser)
-            print "   IllustratorUrl   :"+",".join(x for x in Tllist)
-            print "   coverPic    :" + coverPic
-            print "   Rating details    :" + renderRatingGraph
-            print "   score    :" + score
-            print "   ratings    :" + ratings
-            print "   reviews    :" + reviews
-            print "   genres     :"+str(genres)
-            print "   bookFormat    :" + bookFormat
-            print "   Published_Time    :" + aa
-            print "   First_Published_Time    :" + bb
-            print "   pages    :" + pages
-            print "   Original_title    :" + Original_title
-            print "   Literary_Awards   :"+Literary_Awards
-            print "   ISBN    :" + ISBN
-            print "   ISBN13    :" + ISBN13
-            print "   Edition_Language    :" + Edition_Language
-            print "   description    :" + description
-            print "--------------------图书字段信息-------------------\n"
+            # print "\n--------------------图书字段信息-------------------"
+            # print "   bookUrl    :" + bookUrl
+            # print "   title    :"+title
+            # print "   authorName    :"+",".join(x for x in authorList)
+            # print "   authorNameUrl    :"+",".join(x for x in authorUrlList)
+            # print "   Illustrator   :" + ",".join(x for x in Tlluser)
+            # print "   IllustratorUrl   :"+",".join(x for x in Tllist)
+            # print "   coverPic    :" + coverPic
+            # print "   Rating details    :" + renderRatingGraph
+            # print "   score    :" + score
+            # print "   ratings    :" + ratings
+            # print "   reviews    :" + reviews
+            # print "   genres     :"+str(genres)
+            # print "   bookFormat    :" + bookFormat
+            # print "   Published_Time    :" + aa
+            # print "   First_Published_Time    :" + bb
+            # print "   pages    :" + pages
+            # print "   Original_title    :" + Original_title
+            # print "   Literary_Awards   :"+Literary_Awards
+            # print "   ISBN    :" + ISBN
+            # print "   ISBN13    :" + ISBN13
+            # print "   Edition_Language    :" + Edition_Language
+            # print "   description    :" + description
+            # print "--------------------图书字段信息-------------------\n"
 
 
 
