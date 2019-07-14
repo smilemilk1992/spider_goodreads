@@ -62,8 +62,6 @@ class MangoSpider(scrapy.Spider):
                     authorUrlList.append(x.xpath("./a[@class='authorName']/@href")[0].strip())
                     authorList.append(x.xpath("./a[@class='authorName']/span/text()")[0].strip())
 
-            print Tllist,Tlluser,authorUrlList,authorList
-
             score=response.xpath("//span[@itemprop='ratingValue']/text()").extract()[0].strip()
 
             ratings=response.xpath("//meta[@itemprop='ratingCount']/@content").extract()[0].strip()
@@ -145,10 +143,10 @@ class MangoSpider(scrapy.Spider):
             print "\n--------------------图书字段信息-------------------"
             print "   bookUrl    :" + bookUrl
             print "   title    :"+title
-            print "   authorName    :"+authorName
-            print "   authorNameUrl    :"+authorNameUrl
-            print "   Illustrator   :" + Illustrator
-            print "   IllustratorUrl   :"+IllustratorUrl
+            print "   authorName    :"+",".join(x for x in authorList)
+            print "   authorNameUrl    :"+",".join(x for x in authorUrlList)
+            print "   Illustrator   :" + ",".join(x for x in Tlluser)
+            print "   IllustratorUrl   :"+",".join(x for x in Tllist)
             print "   coverPic    :" + coverPic
             print "   Rating details    :" + renderRatingGraph
             print "   score    :" + score
