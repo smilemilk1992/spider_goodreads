@@ -16,7 +16,7 @@ class MangoSpider(scrapy.Spider):
     '''
     图书信息
     '''
-    name = "goodreads_test1"
+    name = "goodreads_test2"
     custom_settings = {
         'CONCURRENT_REQUESTS': 16,  #允许的线程数
         'RETRY_TIMES': 3,  #重试机制
@@ -32,33 +32,18 @@ class MangoSpider(scrapy.Spider):
 
 
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/list/recently_active_lists']
-
+    # start_urls = ['https://www.goodreads.com/list/recently_active_lists']
+    def start_requests(self):
+        lists=["https://www.goodreads.com/list/tag/middle-grade","https://www.goodreads.com/list/tag/Childrens","https://www.goodreads.com/list/tag/Pre-K","https://www.goodreads.com/list/tag/Picture-Books","https://www.goodreads.com/list/tag/Chapter-Books"]
+        for l in lists:
+            yield scrapy.Request(l, callback=self.parse,meta={"titleUrl":l,"page":1})
 
     def parse(self,response):
-        linkUrls=response.xpath("//ul[@class='listTagsTwoColumn']//a[@class='actionLinkLite']/@href").extract()
-        for url in linkUrls:
-            tagUrl = "https://www.goodreads.com"+url
-            yield scrapy.Request(tagUrl, callback=self.tagInfo,meta={"tagUrl":tagUrl,"page":1})
-
-    def tagInfo(self, response):
-        listTitleUrl = response.xpath("//a[@class='listTitle']/@href").extract()
-        for url in listTitleUrl:
-            titleUrl = "https://www.goodreads.com"+url
-            yield scrapy.Request(titleUrl, callback=self.pageUrl, meta={"titleUrl": titleUrl, "page": 1})
-
-        NoneFlag = response.xpath("//div[@class='mediumText']/text()").extract()
-        if not NoneFlag:
-            page = response.meta["page"]+1
-            tagurl=response.meta["tagUrl"]+"?page="+str(page)
-            yield scrapy.Request(tagurl, callback=self.tagInfo,meta={"tagUrl":response.meta["tagUrl"],"page":page})
-
-    def pageUrl(self,response):
         detailurls = response.xpath("//a[@class='bookTitle']/@href").extract()
         if detailurls:
             page=response.meta["page"]+1
             titleUrl = response.meta["titleUrl"]+"?page="+str(page)
-            yield scrapy.Request(titleUrl, callback=self.pageUrl, meta={"titleUrl": response.meta["titleUrl"], "page": page})
+            yield scrapy.Request(titleUrl, callback=self.parse, meta={"titleUrl": response.meta["titleUrl"], "page": page})
 
         for i in detailurls:
             detailUrl="https://www.goodreads.com" + i
