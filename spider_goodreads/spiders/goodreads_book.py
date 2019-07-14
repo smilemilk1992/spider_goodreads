@@ -125,7 +125,7 @@ class MangoSpider(scrapy.Spider):
                 "//span[@id='rating_graph']/script/text()|//span[@id='reviewControls__ratingDetailsMiniGraph']/script/text()").extract()[
                 0].strip()
             print Rating_details
-            renderRatingGraph=re.search("renderRatingGraph\(\[(.*?)\]\);",Rating_details).group(1)
+            renderRatingGraph=re.search("renderRatingGraph\(.*\[(.*?)\]\);",Rating_details).group(1)
 
             elementList=response.xpath("//div[@class='bigBoxContent containerWithHeaderContent']/div[contains(@class,'elementList ')]").extract()
 
