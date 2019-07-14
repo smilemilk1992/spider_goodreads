@@ -36,9 +36,21 @@ class MangoSpider(scrapy.Spider):
     def start_requests(self):
         lists=["https://www.goodreads.com/list/tag/middle-grade","https://www.goodreads.com/list/tag/Childrens","https://www.goodreads.com/list/tag/Pre-K","https://www.goodreads.com/list/tag/Picture-Books","https://www.goodreads.com/list/tag/Chapter-Books"]
         for l in lists:
-            yield scrapy.Request(l, callback=self.parse,meta={"titleUrl":l,"page":1})
+            yield scrapy.Request(l, callback=self.tagInfo,meta={"tagUrl":l,"page":1})
 
-    def parse(self,response):
+    def tagInfo(self, response):
+        listTitleUrl = response.xpath("//a[@class='listTitle']/@href").extract()
+        for url in listTitleUrl:
+            titleUrl = "https://www.goodreads.com"+url
+            yield scrapy.Request(titleUrl, callback=self.pageUrl, meta={"titleUrl": titleUrl, "page": 1})
+
+        NoneFlag = response.xpath("//div[@class='mediumText']/text()").extract()
+        if not NoneFlag:
+            page = response.meta["page"]+1
+            tagurl=response.meta["tagUrl"]+"?page="+str(page)
+            yield scrapy.Request(tagurl, callback=self.tagInfo,meta={"tagUrl":response.meta["tagUrl"],"page":page})
+
+    def pageUrl(self,response):
         detailurls = response.xpath("//a[@class='bookTitle']/@href").extract()
         if detailurls:
             page=response.meta["page"]+1
