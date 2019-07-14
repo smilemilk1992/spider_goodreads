@@ -46,6 +46,12 @@ class MangoSpider(scrapy.Spider):
         for url in listTitleUrl:
             titleUrl = "https://www.goodreads.com"+url
             print titleUrl
+        NoneFlag = response.xpath("//div[@class='mediumText']/text()").extract()
+        if not NoneFlag:
+            page = response.meta["page"]+1
+            tagurl=response.meta["tagUrl"]+"?page="+page
+            yield scrapy.Request(tagUrl, callback=self.tagInfo,meta={"tagUrl":tagUrl,"page":paage})
+
 
     def parse1(self, response):
 
