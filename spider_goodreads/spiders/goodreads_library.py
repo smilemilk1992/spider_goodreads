@@ -54,11 +54,16 @@ class LibrarySpider(scrapy.Spider):
         for lib in libsresults:
             url ="https://www.worldcat.org"+re.search('href="(.*?)"',str(lib)).group(1)
             name=re.search('">(.*?)</a>',str(lib)).group(1).replace("<a>","")
-            info = re.search('"geoloc">(.*?)<',str(lib)).group(1)
+            info = re.split(" |,",re.search('"geoloc">(.*?)<',str(lib)).group(1))
             print "\n--------------"
-            print url.replace("amp;","")
-            print name
-            print info
+            print "   originalurl  :"+response.url
+            print "   url  :"+url.replace("amp;","")
+            print "   name  :" + name
+            print "   city  :" + info[0]
+            print "   ca  :" + info[1]
+            print "   postal  :" + info[2]
+            print "   Country  :" + info[3]
+
             print "--------------\n"
 
 
