@@ -41,8 +41,8 @@ RETRY_HTTP_CODES = [403,500, 502, 503, 504, 522, 524, 408,302,301,307]
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
-# LOG_LEVEL="INFO"
-# LOG_FILE="goodreads"
+LOG_LEVEL="INFO"
+LOG_FILE="goodreads"
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {
   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
