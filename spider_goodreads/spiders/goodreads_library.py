@@ -27,8 +27,12 @@ class LibrarySpider(scrapy.Spider):
         'DOWNLOADER_MIDDLEWARES': {
             'spider_goodreads.middlewares.RandomUserAgent.RandomUserAgent': 300,
             # 'spider_goodreads.middlewares.random_http_proxy.IpMiddleware': 110, #添加代理ip逻辑
+        },
+        'DEFAULT_REQUEST_HEADERS' : {
+            'Referer':'https://www.worldcat.org/title/knuffle-bunny-a-cautionary-tale/oclc/1083732673?loc=94404'
         }
     }
+
 
 
 
