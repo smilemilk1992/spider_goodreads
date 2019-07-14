@@ -53,14 +53,15 @@ class MangoSpider(scrapy.Spider):
             authorList=[]
             for x in response.xpath("//div[@class='authorName__container']").extract():
                 x=etree.fromstring(x)
+                greyText=x.xpath("../span[contains(@class,'greyText')]/text()")
+                if greyText:
+                    if "Illustrator" in x.xpath("./span[contains(@class,'greyText')]/text()")[0].strip():
+                        Tllist.append(x.xpath("./a[@class='authorName']/@href")[0].strip())
+                        Tlluser.append(x.xpath("./a[@class='authorName']/span/text()")[0].strip())
+                    else:
+                        authorUrlList.append(x.xpath("./a[@class='authorName']/@href")[0].strip())
+                        authorList.append(x.xpath("./a[@class='authorName']/span/text()")[0].strip())
 
-                if "Illustrator" in x.xpath("./span[contains(@class,'greyText')]/text()")[0].strip():
-                    Tllist.append(x.xpath("./a[@class='authorName']/@href")[0].strip())
-                    Tlluser.append(x.xpath("./a[@class='authorName']/span/text()")[0].strip())
-                else:
-
-                    authorUrlList.append(x.xpath("./a[@class='authorName']/@href")[0].strip())
-                    authorList.append(x.xpath("./a[@class='authorName']/span/text()")[0].strip())
 
             score=response.xpath("//span[@itemprop='ratingValue']/text()").extract()[0].strip()
 
