@@ -38,11 +38,10 @@ class MangoSpider(scrapy.Spider):
 
 
     def parse(self,response):
-        url = response.url.split("?page=")
         page=response.xpath("//div[@class='pagination']/a/@href").extract()[-2].strip().split("page=")
         total_page=page[1]
         for p in range(1,int(total_page)+1):
-            url=url[0]+"?page="+str(p)
+            url="https://www.goodreads.com/list/show/43.Best_Young_Adult_Books?page="+str(p)
             print url
 
 
