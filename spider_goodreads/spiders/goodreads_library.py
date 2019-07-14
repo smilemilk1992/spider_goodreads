@@ -78,4 +78,4 @@ class LibrarySpider(scrapy.Spider):
     def info(self,response):
         item=response.meta["item"]
         item["libUrl"] = response.url
-        print item
+        yield item
