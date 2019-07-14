@@ -64,7 +64,7 @@ class LibrarySpider(scrapy.Spider):
                 item["city"]=info[0]
                 item["CA"]=info1[1]
                 item["postal"]=info1[2]
-                item["Country"]=info1[3]
+                item["Country"]=" ".join(x for x in info1[3:])
                 yield item
 
 
