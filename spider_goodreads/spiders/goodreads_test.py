@@ -87,19 +87,6 @@ class MangoSpider(scrapy.Spider):
 
             bookDataBox=response.xpath(XpathRule.bookDataBox).extract()
             infoBoxRowTitle=response.xpath(XpathRule.infoBoxRowTitle).extract()
-            # if len(bookDataBox)>2:
-            #     Original_title=etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
-            #     ISBN=etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
-            #     ISBN13 = etree.fromstring(bookDataBox[1]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
-            #     Edition_Language=etree.fromstring(bookDataBox[2]).xpath("./text()")[0].strip()
-            # else:
-            #     Original_title = "None"
-            #     ISBN = etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
-            #     ISBN13 = etree.fromstring(bookDataBox[0]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
-            #     Edition_Language = etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
-            # details1=etree.fromstring(infoBoxRowTitle).xpath("./text()")
-            # details2 = etree.fromstring(infoBoxRowTitle[1]).xpath("./text()")[0].strip()
-            # details3 = etree.fromstring(infoBoxRowTitle[2]).xpath("./text()")[0].strip()
             if "Original Title" in infoBoxRowTitle:
                 Original_title = etree.fromstring(bookDataBox[infoBoxRowTitle.index("Original Title")]).xpath("./text()")[0].strip()
             else:
@@ -184,31 +171,6 @@ class MangoSpider(scrapy.Spider):
             item["description"]=description
             yield item
 
-            #
-            # print "\n--------------------图书字段信息-------------------"
-            # print "   bookUrl    :" + bookUrl
-            # print "   title    :"+title
-            # print "   authorName    :"+",".join(x for x in authorList)
-            # print "   authorNameUrl    :"+",".join(x for x in authorUrlList)
-            # print "   Illustrator   :" + ",".join(x for x in Tlluser)
-            # print "   IllustratorUrl   :"+",".join(x for x in Tllist)
-            # print "   coverPic    :" + coverPic
-            # print "   Rating details    :" + renderRatingGraph
-            # print "   score    :" + score
-            # print "   ratings    :" + ratings
-            # print "   reviews    :" + reviews
-            # print "   genres     :"+str(genres)
-            # print "   bookFormat    :" + bookFormat
-            # print "   Published_Time    :" + aa
-            # print "   First_Published_Time    :" + bb
-            # print "   pages    :" + pages
-            # print "   Original_title    :" + Original_title
-            # print "   Literary_Awards   :"+Literary_Awards
-            # print "   ISBN    :" + ISBN
-            # print "   ISBN13    :" + ISBN13
-            # print "   Edition_Language    :" + Edition_Language
-            # print "   description    :" + description
-            # print "--------------------图书字段信息-------------------\n"
 
 
 

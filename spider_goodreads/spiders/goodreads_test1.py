@@ -50,7 +50,7 @@ class MangoSpider(scrapy.Spider):
         if not NoneFlag:
             page = response.meta["page"]+1
             tagurl=response.meta["tagUrl"]+"?page="+str(page)
-            yield scrapy.Request(tagUrl, callback=self.tagInfo,meta={"tagUrl":tagUrl,"page":paage})
+            yield scrapy.Request(tagurl, callback=self.tagInfo,meta={"tagUrl":tagUrl,"page":paage})
 
 
     def parse1(self, response):
