@@ -22,7 +22,7 @@ class LibrarySpider(scrapy.Spider):
         'RETRY_TIMES': 3,  #重试机制
         'DOWNLOAD_DELAY':1,   #延时（秒）
         'ITEM_PIPELINES': {
-            "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipeline": 200,
+            "spider_goodreads.pipelines.pipelines_library.SpiderGoodreadsPipeline": 200,
         },
         'DOWNLOADER_MIDDLEWARES': {
             'spider_goodreads.middlewares.RandomUserAgent.RandomUserAgent': 300,
@@ -57,16 +57,15 @@ class LibrarySpider(scrapy.Spider):
                 name=re.search('">(.*?)</a>',str(lib)).group(1).replace("<a>","")
                 info = re.search('"geoloc">(.*?)<',str(lib)).group(1).split(",")
                 info1=info[1].split(" ")
-                print "\n--------------"
-                print "   originalurl  :"+response.url
-                print "   url  :"+url.replace("amp;","")
-                print "   name  :" + name
-                print "   city  :" + info[0]
-                print "   ca  :" + info1[1]
-                print "   postal  :" + info1[2]
-                print "   Country  :" + info1[3]
-
-                print "--------------\n"
+                item={}
+                item["OriginalUrl"]=response.url
+                item["libUrl"]=url.replace("amp;","")
+                item["libName"]=name
+                item["city"]=info[0]
+                item["CA"]=info1[1]
+                item["postal"]=info1[2]
+                item["Country"]=info1[3]
+                yield item
 
 
         if libsresults:
