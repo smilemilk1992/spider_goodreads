@@ -74,7 +74,7 @@ class MangoSpider(scrapy.Spider):
             #     ISBN = etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
             #     ISBN13 = etree.fromstring(bookDataBox[0]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
             #     Edition_Language = etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
-            details1=etree.fromstring(infoBoxRowTitle[0]).xpath("./text()")
+            details1=etree.fromstring(infoBoxRowTitle).xpath("./text()")
             # details2 = etree.fromstring(infoBoxRowTitle[1]).xpath("./text()")[0].strip()
             # details3 = etree.fromstring(infoBoxRowTitle[2]).xpath("./text()")[0].strip()
             print details1
