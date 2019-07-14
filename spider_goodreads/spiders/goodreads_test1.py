@@ -218,7 +218,7 @@ class MangoSpider(scrapy.Spider):
                 item["ISBN13"]=ISBN13
                 item["Edition_Language"]=Edition_Language
                 item["description"]=description
-                print item
+                yield item
 
 
 
