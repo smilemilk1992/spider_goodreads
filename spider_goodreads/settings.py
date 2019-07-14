@@ -47,7 +47,8 @@ DEFAULT_REQUEST_HEADERS = {
   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
   'Accept-Encoding': 'gzip, deflate, br',
   'Accept-Language':'zh-CN,zh;q=0.9',
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36',
+    'Cookie':'csid=BAhJIhg5ODQtNDI1NzIwNi05MzI3NTA4BjoGRVQ%3D--22423b42a913370ac8cc7af728d2202b6ca25656; locale=zh; _session_id2=09e76bbd2be17e8439c0edb0eae3570b; __utmc=250562704; __utmz=250562704.1562980557.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __gads=ID=48455b7ec2b50b5d:T=1562980558:S=ALNI_MZlZ0i1R5h18YIh59tSPCIGfbx3Zw; __qca=P0-1661288274-1562980560171; csm-sid=502-7843117-3474024; never_show_interstitial=true; __utma=250562704.782759257.1562980557.1563068939.1563073825.11; __utmt=1; __utmb=250562704.1.10.1563073825'
 }
 
 # Enable or disable spider middlewares
