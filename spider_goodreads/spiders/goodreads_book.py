@@ -104,7 +104,10 @@ class MangoSpider(scrapy.Spider):
 
             if "ISBN" in infoBoxRowTitle:
                 ISBN = etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath("./text()")[0].strip()
-                ISBN13 = etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
+                ISBN13 = \
+                etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath(".//span[@itemprop='isbn']/text()")[
+                    0].strip() if etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath(
+                    ".//span[@itemprop='isbn']/text()") else "None"
             elif "ISBN13" in infoBoxRowTitle:
                 ISBN13 = etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN13")]).xpath("./text()")[0].strip()
                 ISBN = "None"
