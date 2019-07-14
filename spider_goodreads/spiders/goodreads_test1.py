@@ -49,7 +49,7 @@ class MangoSpider(scrapy.Spider):
         NoneFlag = response.xpath("//div[@class='mediumText']/text()").extract()
         if not NoneFlag:
             page = response.meta["page"]+1
-            tagurl=response.meta["tagUrl"]+"?page="+page
+            tagurl=response.meta["tagUrl"]+"?page="+str(page)
             yield scrapy.Request(tagUrl, callback=self.tagInfo,meta={"tagUrl":tagUrl,"page":paage})
 
 
