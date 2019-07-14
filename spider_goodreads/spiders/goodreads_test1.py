@@ -128,9 +128,15 @@ class MangoSpider(scrapy.Spider):
 
 
             details=response.xpath(XpathRule.details).extract()
-            a=etree.fromstring(details[1]).xpath("./text()")[0]
-            aa="".join(x.strip()+" " for x in a.split("\n") if x)
-            bb=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(")").lstrip("(") if etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()") else aa
+            if len(details)>=2:
+                a=etree.fromstring(details[1]).xpath("./text()")[0]
+                aa="".join(x.strip()+" " for x in a.split("\n") if x)
+                bb=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(")").lstrip("(") if etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()") else aa
+            else:
+                a = etree.fromstring(details[0]).xpath("./text()")[0]
+                aa = "".join(x.strip() + " " for x in a.split("\n") if x)
+                bb = etree.fromstring(details[0]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(
+                    ")").lstrip("(") if etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()") else aa
             Rating_details = response.xpath(
                 "//span[@id='rating_graph']/script/text()|//span[@id='reviewControls__ratingDetailsMiniGraph']/script/text()").extract()[
                 0].strip()
