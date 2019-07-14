@@ -94,7 +94,6 @@ class MangoSpider(scrapy.Spider):
             # details1=etree.fromstring(infoBoxRowTitle).xpath("./text()")
             # details2 = etree.fromstring(infoBoxRowTitle[1]).xpath("./text()")[0].strip()
             # details3 = etree.fromstring(infoBoxRowTitle[2]).xpath("./text()")[0].strip()
-            print infoBoxRowTitle
             if "Original Title" in infoBoxRowTitle:
                 Original_title = etree.fromstring(bookDataBox[infoBoxRowTitle.index("Original Title")]).xpath("./text()")[0].strip()
             else:
@@ -128,7 +127,6 @@ class MangoSpider(scrapy.Spider):
             elementList=response.xpath("//div[@class='bigBoxContent containerWithHeaderContent']/div[contains(@class,'elementList ')]").extract()
 
             genres={}
-            print elementList
             for x in elementList:
                 x=etree.fromstring(x)
                 actionLinkLite=x.xpath(".//a[@class='actionLinkLite bookPageGenreLink']/text()")

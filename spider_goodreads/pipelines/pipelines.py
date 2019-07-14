@@ -3,7 +3,7 @@ import traceback
 import MySQLdb
 
 class SpiderGoodreadsPipeline(object):
-    cc = '''INSERT IGNORE into soider1(title,bookUrl,authorName,authorNameUrl,Illustrator,IllustratorUrl,coverPic,Rating_details,score,ratings,reviews,bookFormat,Published_Time,genres,First_Published_Time,pages,Original_title,Literary_Awards,ISBN,ISBN13,Edition_Language,description)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
+    cc = '''INSERT IGNORE into soider1(title,bookUrl,authorName,authorNameUrl,Illustrator,IllustratorUrl,coverPic,Rating_details,score,ratings,reviews,bookFormat,Published_Time,genres,First_Published_Time,pages,Original_title,Literary_Awards,ISBN,ISBN13,Edition_Language,description)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
     conn = MySQLdb.connect(
         host='120.27.218.142',
         port=3306,
