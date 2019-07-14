@@ -65,7 +65,8 @@ class LibrarySpider(scrapy.Spider):
                 item["CA"]=info1[1]
                 item["postal"]=info1[2]
                 item["Country"]=" ".join(x for x in info1[3:])
-                yield scrapy.Request(response.url, callback=self.info, cookies={'LAC-User-Location': 94404}, meta={"item": item})
+                print item
+                # yield scrapy.Request(response.url, callback=self.info, cookies={'LAC-User-Location': 94404}, meta={"item": item})
 
 
         if libsresults:
