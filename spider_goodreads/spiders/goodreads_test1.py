@@ -61,13 +61,11 @@ class MangoSpider(scrapy.Spider):
             yield scrapy.Request(titleUrl, callback=self.pageUrl, meta={"titleUrl": titleUrl, "page": page})
 
         for i in detailurls:
-            detailUrl="https://www.goodreads.com" + i;
-            print detailUrl
-            # yield scrapy.Request(detailUrl, callback=self.detailUrl)
+            detailUrl="https://www.goodreads.com" + i
+            yield scrapy.Request(detailUrl, callback=self.detailInfo)
 
 
-    def detailUrl(self, response):
-
+    def detailInfo(self, response):
             bookUrl = response.url
             title=response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()
             Tllist=[]
@@ -162,31 +160,54 @@ class MangoSpider(scrapy.Spider):
                 if a:
                     genres[a]=b.replace("users","").strip()
 
-
-            item={}
-            item["bookUrl"]=bookUrl
-            item["title"]=title
-            item["authorName"]=",".join(x for x in authorList)
-            item["authorNameUrl"]=",".join(x for x in authorUrlList)
-            item["Illustrator"]=",".join(x for x in Tlluser)
-            item["IllustratorUrl"]=",".join(x for x in Tllist)
-            item["coverPic"]=coverPic
-            item["Rating_details"]=renderRatingGraph
-            item["score"]=score
-            item["ratings"]=ratings
-            item["reviews"]=reviews
-            item["Literary_Awards"]=Literary_Awards
-            item["genres"]=str(genres)
-            item["bookFormat"]=bookFormat
-            item["Published_Time"]=aa
-            item["First_Published_Time"]=bb
-            item["pages"]=pages
-            item["Original_title"]=Original_title
-            item["ISBN"]=ISBN
-            item["ISBN13"]=ISBN13
-            item["Edition_Language"]=Edition_Language
-            item["description"]=description
-            yield item
+            print "\n--------------------图书字段信息-------------------"
+            print "   bookUrl    :" + bookUrl
+            print "   title    :" + title
+            print "   authorName    :" + ",".join(x for x in authorList)
+            print "   authorNameUrl    :" + ",".join(x for x in authorUrlList)
+            print "   Illustrator   :" + ",".join(x for x in Tlluser)
+            print "   IllustratorUrl   :" + ",".join(x for x in Tllist)
+            print "   coverPic    :" + coverPic
+            print "   Rating details    :" + renderRatingGraph
+            print "   score    :" + score
+            print "   ratings    :" + ratings
+            print "   reviews    :" + reviews
+            print "   genres     :" + str(genres)
+            print "   bookFormat    :" + bookFormat
+            print "   Published_Time    :" + aa
+            print "   First_Published_Time    :" + bb
+            print "   pages    :" + pages
+            print "   Original_title    :" + Original_title
+            print "   Literary_Awards   :" + Literary_Awards
+            print "   ISBN    :" + ISBN
+            print "   ISBN13    :" + ISBN13
+            print "   Edition_Language    :" + Edition_Language
+            print "   description    :" + description
+            print "--------------------图书字段信息-------------------\n"
+            # item={}
+            # item["bookUrl"]=bookUrl
+            # item["title"]=title
+            # item["authorName"]=",".join(x for x in authorList)
+            # item["authorNameUrl"]=",".join(x for x in authorUrlList)
+            # item["Illustrator"]=",".join(x for x in Tlluser)
+            # item["IllustratorUrl"]=",".join(x for x in Tllist)
+            # item["coverPic"]=coverPic
+            # item["Rating_details"]=renderRatingGraph
+            # item["score"]=score
+            # item["ratings"]=ratings
+            # item["reviews"]=reviews
+            # item["Literary_Awards"]=Literary_Awards
+            # item["genres"]=str(genres)
+            # item["bookFormat"]=bookFormat
+            # item["Published_Time"]=aa
+            # item["First_Published_Time"]=bb
+            # item["pages"]=pages
+            # item["Original_title"]=Original_title
+            # item["ISBN"]=ISBN
+            # item["ISBN13"]=ISBN13
+            # item["Edition_Language"]=Edition_Language
+            # item["description"]=description
+            # print item
 
 
 
