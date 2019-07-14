@@ -52,6 +52,7 @@ class MangoSpider(scrapy.Spider):
             authorUrlList=[]
             authorList=[]
             for x in response.xpath("//a[@class='authorName']").extract():
+                x=etree.fromstring(x)
                 if "Illustrator" in x.xpath("./span[contains(@class,'greyText')]/text()").extract()[0].strip():
                     Tllist.append(x.xpath("//a[@class='authorName']/@href").extract().strip())
                     Tlluser.append(x.xpath("//a[@class='authorName']/span/text()").extract().strip())
