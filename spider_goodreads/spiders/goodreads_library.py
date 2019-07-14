@@ -52,7 +52,7 @@ class LibrarySpider(scrapy.Spider):
     def parse(self, response):
         libsresults=response.xpath("//table[@id='libsresults']//td[@class='name']").extract()
         for lib in libsresults:
-            name=re.search('">(.*?)</a>',st).group(1)
+            name=re.search('">(.*?)</a>',str(lib)).group(1)
             info = re.search('"geoloc">(.*?)<',str(lib)).group(1)
             # parser = etree.HTMLParser(encoding="utf-8")
             # htmlelement = etree.parse(lib, parser=parser)
