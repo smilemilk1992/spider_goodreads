@@ -110,7 +110,7 @@ class MangoSpider(scrapy.Spider):
                 ISBN13 = etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
             elif "ISBN13" in infoBoxRowTitle:
                 ISBN13 = etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN13")]).xpath("./text()")[0].strip()
-                ISBN13 = ISBN13
+                ISBN = ISBN13
             else:
                 ISBN = "None"
                 ISBN13 = "None"
