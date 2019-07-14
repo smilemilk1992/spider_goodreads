@@ -56,7 +56,7 @@ class LibrarySpider(scrapy.Spider):
             name=re.search('">(.*?)</a>',str(lib)).group(1).replace("<a>","")
             info = re.search('"geoloc">(.*?)<',str(lib)).group(1)
             print "\n--------------"
-            print url
+            print url.replace("amp;","")
             print name
             print info
             print "--------------\n"
