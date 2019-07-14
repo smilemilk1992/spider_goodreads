@@ -77,6 +77,7 @@ class MangoSpider(scrapy.Spider):
             details1=etree.fromstring(infoBoxRowTitle[0]).xpath("./text()")
             # details2 = etree.fromstring(infoBoxRowTitle[1]).xpath("./text()")[0].strip()
             # details3 = etree.fromstring(infoBoxRowTitle[2]).xpath("./text()")[0].strip()
+            print "--------"+details1
             if "Original Title" in details1:
                 Original_title = etree.fromstring(bookDataBox[details1.index("Original Title")]).xpath("./text()")[0].strip()
             else:
