@@ -163,7 +163,7 @@ class MangoSpider(scrapy.Spider):
         s_s_w=(int(RatingGraph[0])+int(RatingGraph[1])+int(RatingGraph[2]))/float(ratings)
         if float(score)>3.7 and int(reviews)>300 and s_w>=0.5 and s_s_w>0.92:
             #"Childrens ", or "Picture Books", or "Chapter Books", or "Pre-K", or "Middle Grade"
-            if "Childrens" in genres.iterkeys() or "Pre K" in genres.iterkeys() or "Chapter Books" in genres.iterkeys() or "Picture Books" in genres.iterkeys() or "Middle Grade" in genres.iterkeys():
+            # if "Childrens" in genres.iterkeys() or "Pre K" in genres.iterkeys() or "Chapter Books" in genres.iterkeys() or "Picture Books" in genres.iterkeys() or "Middle Grade" in genres.iterkeys():
                 print "\n--------------------图书字段信息-------------------"
                 print "   bookUrl    :" + bookUrl
                 print "   title    :" + title
