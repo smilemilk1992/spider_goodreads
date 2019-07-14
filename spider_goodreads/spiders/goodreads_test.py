@@ -38,8 +38,13 @@ class MangoSpider(scrapy.Spider):
 
 
     def parse(self,response):
-        page=response.xpath("//div[@class='pagination']/a/@href").extract()[-2].strip()
-        print page
+        url = response.url.split("?page=")
+        page=response.xpath("//div[@class='pagination']/a/@href").extract()[-2].strip().split("page=")
+        total_page=page[1]
+        for p in range(1,int(total_page)+1):
+            url=url[0]+"?page="+p
+            print url
+
 
 
     def parse1(self, response):
