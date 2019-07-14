@@ -38,12 +38,14 @@ class MangoSpider(scrapy.Spider):
     def parse(self,response):
         linkUrls=response.xpath("//ul[@class='listTagsTwoColumn']//a[@class='actionLinkLite']/@href").extract()
         for url in linkUrls:
-            print url
+            tagUrl = "https://www.goodreads.com"+url
+            yield scrapy.Request(tagUrl, callback=self.tagInfo,meta={"tagUrl":tagUrl,"page":1})
 
-    def parse2(self, response):
-        urls = response.xpath("//a[@class='bookTitle']/@href").extract()
-        for i in urls:
-            yield scrapy.Request("https://www.goodreads.com"+i, callback=self.parse1)
+    def tagInfo(self, response):
+        listTitleUrl = response.xpath("//a[@class='listTitle']/@href").extract()
+        for url in listTitleUrl:
+            titleUrl = "https://www.goodreads.com"+url
+            print titleUrl
 
     def parse1(self, response):
 
