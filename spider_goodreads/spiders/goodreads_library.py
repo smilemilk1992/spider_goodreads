@@ -46,7 +46,7 @@ class LibrarySpider(scrapy.Spider):
         n=1
         page=6*(n-1)+1
         url = self.start_url.format(page)
-        yield scrapy.Request(url, callback=self.parse,cookies={'LAC-User-Location':94404})
+        yield scrapy.Request(url, callback=self.parse,cookies={'LAC-User-Location':94404},meta={"page":1})
 
 
     def parse(self, response):
@@ -54,7 +54,9 @@ class LibrarySpider(scrapy.Spider):
         for lib in libsresults:
             name=re.search('">(.*?)</a>',str(lib)).group(1)
             info = re.search('"geoloc">(.*?)<',str(lib)).group(1)
-            # parser = etree.HTMLParser(encoding="utf-8")
-            # htmlelement = etree.parse(lib, parser=parser)
-            # name = etree.fromstring(lib)
+
             print name,info
+        if libsresults:
+            page=response.meta["page"]+1
+            url = self.start_url.format(6 * (page - 1) + 1)
+            yield scrapy.Request(url, callback=self.parse, cookies={'LAC-User-Location': 94404},meta={"page": 1})
