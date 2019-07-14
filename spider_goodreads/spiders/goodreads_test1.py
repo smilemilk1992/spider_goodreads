@@ -67,7 +67,7 @@ class MangoSpider(scrapy.Spider):
 
     def detailInfo(self, response):
         score = response.xpath("//span[@itemprop='ratingValue']/text()").extract()[0].strip()
-
+        reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
         ratings = response.xpath("//meta[@itemprop='ratingCount']/@content").extract()[0].strip()
         if float(score)<=3.7 or int(reviews)<=300:
             return
@@ -93,7 +93,7 @@ class MangoSpider(scrapy.Spider):
 
 
 
-        reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
+
         coverPic=response.xpath("//div[@class='noCoverMediumContainer']/img/@src | //img[@id='coverImage']/@src").extract()[0].strip()
         description=",".join(x.strip() for x in response.xpath("//div[@id='description']//p//text()|//div[@id='description']/span/text()").extract()) if response.xpath("//div[@id='description']//p//text()|//div[@id='description']/span/text()").extract() else "None"
         bookFormat=response.xpath("//span[@itemprop='bookFormat']/text()").extract()[0].strip() if response.xpath("//span[@itemprop='bookFormat']/text()").extract() else "None"
