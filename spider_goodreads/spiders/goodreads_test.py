@@ -42,7 +42,7 @@ class MangoSpider(scrapy.Spider):
         page=response.xpath("//div[@class='pagination']/a/@href").extract()[-2].strip().split("page=")
         total_page=page[1]
         for p in range(1,int(total_page)+1):
-            url=url[0]+"?page="+p
+            url=url[0]+"?page="+str(p)
             print url
 
 
