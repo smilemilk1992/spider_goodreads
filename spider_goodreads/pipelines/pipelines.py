@@ -3,7 +3,7 @@ import traceback
 import MySQLdb
 
 class SpiderGoodreadsPipeline(object):
-    cc = '''INSERT IGNORE into soider(title,bookUrl,authorName,authorNameUrl,coverPic,coverPic,Rating_details,score,ratings,reviews,bookFormat,Published_Time,First_Published_Time,pages,Original_title,ISBN,ISBN13,Edition_Language,description)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
+    cc = '''INSERT IGNORE into soider1(title,bookUrl,authorName,authorNameUrl,Illustrator,IllustratorUrl,coverPic,Rating_details,score,ratings,reviews,bookFormat,Published_Time,genres,First_Published_Time,pages,Original_title,Literary_Awards,ISBN,ISBN13,Edition_Language,description)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
     conn = MySQLdb.connect(
         host='127.0.0.1',
         port=3306,
@@ -21,6 +21,8 @@ class SpiderGoodreadsPipeline(object):
                 item['bookUrl'],
                 item['authorName'],
                 item['authorNameUrl'],
+                item['Illustrator'],
+                item['IllustratorUrl'],
                 item['coverPic'],
                 item['Rating_details'],
                 item['score'],
@@ -28,9 +30,11 @@ class SpiderGoodreadsPipeline(object):
                 item['reviews'],
                 item['bookFormat'],
                 item['Published_Time'],
+                item['genres'],
                 item['First_Published_Time'],
                 item['pages'],
                 item['Original_title'],
+                item['Literary_Awards'],
                 item['ISBN'],
                 item['ISBN13'],
                 item['Edition_Language'],
