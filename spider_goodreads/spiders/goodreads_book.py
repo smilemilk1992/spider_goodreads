@@ -111,6 +111,10 @@ class MangoSpider(scrapy.Spider):
             else:
                 Edition_Language="None"
 
+            if "Literary Awards" in infoBoxRowTitle:
+                Literary_Awards=etree.fromstring(bookDataBox[infoBoxRowTitle.index("Literary Awards")]).xpath("./text()")[0].strip()
+            else:
+                Literary_Awards="None"
 
 
             details=response.xpath(XpathRule.details).extract()
@@ -121,6 +125,20 @@ class MangoSpider(scrapy.Spider):
             Rating_details=response.xpath("//span[@id='rating_graph']/script/text()").extract()[0].strip()
             renderRatingGraph=re.search("renderRatingGraph\(\[(.*?)\]\);",Rating_details).group(1)
 
+            elementList=response.xpath("//div[@class='bigBoxContent containerWithHeaderContent']/div[contains(@class,'elementList')]").extract()
+            left=[]
+            right=[]
+            for x in elementList:
+                x=etree.fromstring(x)
+                actionLinkLite=x.xpath(".//a[@class='actionLinkLite bookPageGenreLink']/text()")
+                if len(actionLinkLite)==2:
+                    left.append(">".join(x.strip() for x in actionLinkLite))
+                else:
+                    left.append(actionLinkLite[0].strip())
+
+                bookPageGenreLink=x.xpath(".//a[@class='actionLinkLite greyText bookPageGenreLink']/text()")
+                right.append(bookPageGenreLink[0].strip())
+            print left,right
             # item={}
             # item["bookUrl"]=bookUrl
             # item["title"]=title
@@ -161,6 +179,7 @@ class MangoSpider(scrapy.Spider):
             print "   First_Published_Time    :" + bb
             print "   pages    :" + pages
             print "   Original_title    :" + Original_title
+            print "   Literary_Awards   :"+Literary_Awards
             print "   ISBN    :" + ISBN
             print "   ISBN13    :" + ISBN13
             print "   Edition_Language    :" + Edition_Language
