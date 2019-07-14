@@ -117,7 +117,7 @@ class MangoSpider(scrapy.Spider):
                 ISBN = "None"
                 ISBN13 = "None"
             if "Edition Language" in infoBoxRowTitle:
-                Edition_Language = etree.fromstring(bookDataBox[infoBoxRowTitle.index("Edition Language")]).xpath("./text()")[0].strip()
+                Edition_Language = etree.fromstring(bookDataBox[infoBoxRowTitle.index("Edition Language")]).xpath("./text()")[0].strip() if etree.fromstring(bookDataBox[infoBoxRowTitle.index("Edition Language")]).xpath("./text()") else "None"
             else:
                 Edition_Language="None"
 
