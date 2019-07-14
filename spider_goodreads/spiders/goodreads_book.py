@@ -79,20 +79,19 @@ class MangoSpider(scrapy.Spider):
             # details3 = etree.fromstring(infoBoxRowTitle[2]).xpath("./text()")[0].strip()
             print infoBoxRowTitle
             if "Original Title" in infoBoxRowTitle:
-                Original_title = etree.fromstring(bookDataBox[details1.index("Original Title")]).xpath("./text()")[0].strip()
+                Original_title = etree.fromstring(bookDataBox[infoBoxRowTitle.index("Original Title")]).xpath("./text()")[0].strip()
             else:
                 Original_title = "None"
 
             if "ISBN" in infoBoxRowTitle:
-                ISBN = etree.fromstring(bookDataBox[details1.index("ISBN")]).xpath("./text()")[0].strip()
-                ISBN13 = etree.fromstring(bookDataBox[details1.index("ISBN")]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
+                ISBN = etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath("./text()")[0].strip()
+                ISBN13 = etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
             else:
                 ISBN = "None"
                 ISBN13 = "None"
             if "Edition Language" in infoBoxRowTitle:
-                Edition_Language = etree.fromstring(bookDataBox[details1.index("Edition Language")]).xpath("./text()")[0].strip()
+                Edition_Language = etree.fromstring(bookDataBox[infoBoxRowTitle.index("Edition Language")]).xpath("./text()")[0].strip()
             else:
-
                 Edition_Language="None"
 
 
