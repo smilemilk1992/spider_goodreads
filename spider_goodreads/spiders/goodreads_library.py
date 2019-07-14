@@ -51,6 +51,6 @@ class LibrarySpider(scrapy.Spider):
 
     def parse(self, response):
         print response.body
-        title=response.xpath("//div[@class='dropdiv2-util-int']/b/text()").extract()
+        title=response.xpath("//table[@id='libsresults']//td[@class='name']").extract()
         for t in title:
             print t
