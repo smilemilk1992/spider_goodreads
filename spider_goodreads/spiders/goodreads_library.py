@@ -53,7 +53,7 @@ class LibrarySpider(scrapy.Spider):
         libsresults=response.xpath("//table[@id='libsresults']//td[@class='name']").extract()
         for lib in libsresults:
 
-            parser = etree.HTMLParser(encoding="utf-8")
-            htmlelement = etree.parse(lib, parser=parser)
+            # parser = etree.HTMLParser(encoding="utf-8")
+            # htmlelement = etree.parse(lib, parser=parser)
             # name = etree.fromstring(lib)
-            print htmlelement
+            print lib
