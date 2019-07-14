@@ -52,9 +52,11 @@ class LibrarySpider(scrapy.Spider):
     def parse(self, response):
         libsresults=response.xpath("//table[@id='libsresults']//td[@class='name']").extract()
         for lib in libsresults:
-            name=re.search('">(.*?)</a>',str(lib)).group(1)
+            url ="https://www.worldcat.org"+re.search('href="(.*?)"',str(lib)).group(1)
+            name=re.search('">(.*?)</a>',str(lib)).group(1).replace("<a>","")
             info = re.search('"geoloc">(.*?)<',str(lib)).group(1)
             print "\n--------------"
+            print url
             print name
             print info
             print "--------------\n"
