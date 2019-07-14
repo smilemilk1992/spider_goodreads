@@ -58,7 +58,7 @@ class MangoSpider(scrapy.Spider):
         if detailurls:
             page=response.meta["page"]+1
             titleUrl = response.meta["titleUrl"]+"?page="+str(page)
-            yield scrapy.Request(titleUrl, callback=self.pageUrl, meta={"titleUrl": titleUrl, "page": page})
+            yield scrapy.Request(titleUrl, callback=self.pageUrl, meta={"titleUrl": response.meta["titleUrl"], "page": page})
 
         for i in detailurls:
             detailUrl="https://www.goodreads.com" + i
