@@ -34,18 +34,18 @@ class MangoSpider(scrapy.Spider):
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    # start_urls = ['https://www.goodreads.com/book/show/16077840-el-creador']
+    start_urls = ['https://www.worldcat.org/wcpa/oclc/1083732673?page=frame&url=http%3A%2F%2Fcatalog.plsinfo.org%2Fsearch%2F%3Fsearchscope%3D1%26searchtype%3Do%26searcharg%3Docm55606208%26checksum%3D54371965082767c26960e3051661d81f&title=Burlingame+Public+Library&linktype=opac&detail=JQH%3ABurlingame+Public+Library%3APublic+Library']
 
 
-    def start_requests(self):
-        with open('url.txt', "r") as f:
-            url = f.readlines()
-            for x in url:
-                yield scrapy.Request(x.strip(), callback=self.parse)
+    # def start_requests(self):
+    #     with open('url.txt', "r") as f:
+    #         url = f.readlines()
+    #         for x in url:
+    #             yield scrapy.Request(x.strip(), callback=self.parse)
 
 
     def parse(self, response):
-        logging.info(response.url)
+        print response.url
 
             # bookUrl = response.url
             # title=response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()
