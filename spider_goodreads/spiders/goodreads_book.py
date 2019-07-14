@@ -149,8 +149,8 @@ class MangoSpider(scrapy.Spider):
             print "   title    :"+title
             print "   authorName    :"+",".join(x for x in authorList)
             print "   authorNameUrl    :"+",".join(x for x in authorUrlList)
-            print "   Illustrator   :" + ",".join(x for x in Tlluser) if Tlluser else "None"
-            print "   IllustratorUrl   :"+",".join(x for x in Tllist) if Tllist else "None"
+            print "   Illustrator   :" + ",".join(x for x in Tlluser)
+            print "   IllustratorUrl   :"+",".join(x for x in Tllist)
             print "   coverPic    :" + coverPic
             print "   Rating details    :" + renderRatingGraph
             print "   score    :" + score
