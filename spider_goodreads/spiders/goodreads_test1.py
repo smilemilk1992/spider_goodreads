@@ -189,30 +189,30 @@ class MangoSpider(scrapy.Spider):
                 print "   Edition_Language    :" + Edition_Language
                 print "   description    :" + description
                 print "--------------------图书字段信息-------------------\n"
-            # item={}
-            # item["bookUrl"]=bookUrl
-            # item["title"]=title
-            # item["authorName"]=",".join(x for x in authorList)
-            # item["authorNameUrl"]=",".join(x for x in authorUrlList)
-            # item["Illustrator"]=",".join(x for x in Tlluser)
-            # item["IllustratorUrl"]=",".join(x for x in Tllist)
-            # item["coverPic"]=coverPic
-            # item["Rating_details"]=renderRatingGraph
-            # item["score"]=score
-            # item["ratings"]=ratings
-            # item["reviews"]=reviews
-            # item["Literary_Awards"]=Literary_Awards
-            # item["genres"]=str(genres)
-            # item["bookFormat"]=bookFormat
-            # item["Published_Time"]=aa
-            # item["First_Published_Time"]=bb
-            # item["pages"]=pages
-            # item["Original_title"]=Original_title
-            # item["ISBN"]=ISBN
-            # item["ISBN13"]=ISBN13
-            # item["Edition_Language"]=Edition_Language
-            # item["description"]=description
-            # print item
+                item={}
+                item["bookUrl"]=bookUrl
+                item["title"]=title
+                item["authorName"]=",".join(x for x in authorList)
+                item["authorNameUrl"]=",".join(x for x in authorUrlList)
+                item["Illustrator"]=",".join(x for x in Tlluser)
+                item["IllustratorUrl"]=",".join(x for x in Tllist)
+                item["coverPic"]=coverPic
+                item["Rating_details"]=renderRatingGraph
+                item["score"]=score
+                item["ratings"]=ratings
+                item["reviews"]=reviews
+                item["Literary_Awards"]=Literary_Awards
+                item["genres"]=str(genres)
+                item["bookFormat"]=bookFormat
+                item["Published_Time"]=aa
+                item["First_Published_Time"]=bb
+                item["pages"]=pages
+                item["Original_title"]=Original_title
+                item["ISBN"]=ISBN
+                item["ISBN13"]=ISBN13
+                item["Edition_Language"]=Edition_Language
+                item["description"]=description
+                print item
 
 
 
