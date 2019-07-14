@@ -9,7 +9,7 @@ import logging
 class XpathRule(object):
     bookDataBox = "//div[@class='clearFloats']/div[@class='infoBoxRowItem']"
     details="//div[@id='details']/div[@class='row']"
-    infoBoxRowTitle="//div[@class='clearFloats']/div[@class='infoBoxRowTitle']"
+    infoBoxRowTitle="//div[@class='clearFloats']/div[@class='infoBoxRowTitle']/text()"
 
 
 class MangoSpider(scrapy.Spider):
@@ -74,22 +74,22 @@ class MangoSpider(scrapy.Spider):
             #     ISBN = etree.fromstring(bookDataBox[0]).xpath("./text()")[0].strip()
             #     ISBN13 = etree.fromstring(bookDataBox[0]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
             #     Edition_Language = etree.fromstring(bookDataBox[1]).xpath("./text()")[0].strip()
-            details1=etree.fromstring(infoBoxRowTitle).xpath("./text()")
+            # details1=etree.fromstring(infoBoxRowTitle).xpath("./text()")
             # details2 = etree.fromstring(infoBoxRowTitle[1]).xpath("./text()")[0].strip()
             # details3 = etree.fromstring(infoBoxRowTitle[2]).xpath("./text()")[0].strip()
-            print details1
-            if "Original Title" in details1:
+            print infoBoxRowTitle
+            if "Original Title" in infoBoxRowTitle:
                 Original_title = etree.fromstring(bookDataBox[details1.index("Original Title")]).xpath("./text()")[0].strip()
             else:
                 Original_title = "None"
 
-            if "ISBN" in details1:
+            if "ISBN" in infoBoxRowTitle:
                 ISBN = etree.fromstring(bookDataBox[details1.index("ISBN")]).xpath("./text()")[0].strip()
                 ISBN13 = etree.fromstring(bookDataBox[details1.index("ISBN")]).xpath(".//span[@itemprop='isbn']/text()")[0].strip()
             else:
                 ISBN = "None"
                 ISBN13 = "None"
-            if "Edition Language" in details1:
+            if "Edition Language" in infoBoxRowTitle:
                 Edition_Language = etree.fromstring(bookDataBox[details1.index("Edition Language")]).xpath("./text()")[0].strip()
             else:
 
