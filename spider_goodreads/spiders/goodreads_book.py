@@ -34,7 +34,7 @@ class MangoSpider(scrapy.Spider):
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/book/show/25155160-the-dreams-forgotten']
+    start_urls = ['https://www.goodreads.com/book/show/16077840-el-creador']
 
 
     # def start_requests(self):
@@ -73,7 +73,9 @@ class MangoSpider(scrapy.Spider):
             reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
             coverPic=response.xpath("//div[@class='noCoverMediumContainer']/img/@src | //img[@id='coverImage']/@src").extract()[0].strip()
             description=",".join(x.strip() for x in response.xpath("//div[@id='description']//p//text()|//div[@id='description']/span/text()").extract()) if response.xpath("//div[@id='description']//p//text()|//div[@id='description']/span/text()").extract() else "None"
-            bookFormat=response.xpath("//span[@itemprop='bookFormat']/text()").extract()[0].strip()
+            # bookFormat=response.xpath("//span[@itemprop='bookFormat']/text()").extract()[0].strip()
+            bookFormat = response.xpath("//span[@itemprop='bookFormat']/text()").extract()[0].strip() if response.xpath(
+                "//span[@itemprop='bookFormat']/text()").extract() else "None"
             ispage=response.xpath("//span[@itemprop='numberOfPages']/text()").extract()
             if ispage:
                 pages=response.xpath("//span[@itemprop='numberOfPages']/text()").extract()[0].strip().replace(" pages","")
@@ -124,7 +126,7 @@ class MangoSpider(scrapy.Spider):
             Rating_details = response.xpath(
                 "//span[@id='rating_graph']/script/text()|//span[@id='reviewControls__ratingDetailsMiniGraph']/script/text()").extract()[
                 0].strip()
-            print Rating_details
+
             renderRatingGraph=re.search("\[(.*?)\]",Rating_details).group(1)
 
             elementList=response.xpath("//div[@class='bigBoxContent containerWithHeaderContent']/div[contains(@class,'elementList ')]").extract()
@@ -174,33 +176,33 @@ class MangoSpider(scrapy.Spider):
             item["ISBN13"]=ISBN13
             item["Edition_Language"]=Edition_Language
             item["description"]=description
-            yield item
+            # yield item
 
             #
-            # print "\n--------------------图书字段信息-------------------"
-            # print "   bookUrl    :" + bookUrl
-            # print "   title    :"+title
-            # print "   authorName    :"+",".join(x for x in authorList)
-            # print "   authorNameUrl    :"+",".join(x for x in authorUrlList)
-            # print "   Illustrator   :" + ",".join(x for x in Tlluser)
-            # print "   IllustratorUrl   :"+",".join(x for x in Tllist)
-            # print "   coverPic    :" + coverPic
-            # print "   Rating details    :" + renderRatingGraph
-            # print "   score    :" + score
-            # print "   ratings    :" + ratings
-            # print "   reviews    :" + reviews
-            # print "   genres     :"+str(genres)
-            # print "   bookFormat    :" + bookFormat
-            # print "   Published_Time    :" + aa
-            # print "   First_Published_Time    :" + bb
-            # print "   pages    :" + pages
-            # print "   Original_title    :" + Original_title
-            # print "   Literary_Awards   :"+Literary_Awards
-            # print "   ISBN    :" + ISBN
-            # print "   ISBN13    :" + ISBN13
-            # print "   Edition_Language    :" + Edition_Language
-            # print "   description    :" + description
-            # print "--------------------图书字段信息-------------------\n"
+            print "\n--------------------图书字段信息-------------------"
+            print "   bookUrl    :" + bookUrl
+            print "   title    :"+title
+            print "   authorName    :"+",".join(x for x in authorList)
+            print "   authorNameUrl    :"+",".join(x for x in authorUrlList)
+            print "   Illustrator   :" + ",".join(x for x in Tlluser)
+            print "   IllustratorUrl   :"+",".join(x for x in Tllist)
+            print "   coverPic    :" + coverPic
+            print "   Rating details    :" + renderRatingGraph
+            print "   score    :" + score
+            print "   ratings    :" + ratings
+            print "   reviews    :" + reviews
+            print "   genres     :"+str(genres)
+            print "   bookFormat    :" + bookFormat
+            print "   Published_Time    :" + aa
+            print "   First_Published_Time    :" + bb
+            print "   pages    :" + pages
+            print "   Original_title    :" + Original_title
+            print "   Literary_Awards   :"+Literary_Awards
+            print "   ISBN    :" + ISBN
+            print "   ISBN13    :" + ISBN13
+            print "   Edition_Language    :" + Edition_Language
+            print "   description    :" + description
+            print "--------------------图书字段信息-------------------\n"
 
 
 
