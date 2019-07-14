@@ -50,7 +50,7 @@ class LibrarySpider(scrapy.Spider):
 
 
     def parse(self, response):
-        print response.body
-        title=response.xpath("//table[@id='libsresults']//td[@class='name']").extract()
-        for t in title:
-            print t
+        libsresults=response.xpath("//table[@id='libsresults']//td[@class='name']").extract()
+        for lib in libsresults:
+            name = lib.xpath(".//a/text()")[0].strip()
+            print name
