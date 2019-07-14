@@ -62,9 +62,9 @@ class LibrarySpider(scrapy.Spider):
                 print "   url  :"+url.replace("amp;","")
                 print "   name  :" + name
                 print "   city  :" + info[0]
-                print "   ca  :" + info1[0]
-                print "   postal  :" + info1[1]
-                print "   Country  :" + info1[2]
+                print "   ca  :" + info1[1]
+                print "   postal  :" + info1[2]
+                print "   Country  :" + info1[3]
 
                 print "--------------\n"
 
