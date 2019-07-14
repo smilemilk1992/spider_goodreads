@@ -126,20 +126,30 @@ class MangoSpider(scrapy.Spider):
             renderRatingGraph=re.search("renderRatingGraph\(\[(.*?)\]\);",Rating_details).group(1)
 
             elementList=response.xpath("//div[@class='bigBoxContent containerWithHeaderContent']/div[contains(@class,'elementList ')]").extract()
-            left=[]
-            right=[]
+
+            genres={}
             print elementList
             for x in elementList:
                 x=etree.fromstring(x)
                 actionLinkLite=x.xpath(".//a[@class='actionLinkLite bookPageGenreLink']/text()")
                 if len(actionLinkLite)==2:
-                    left.append(">".join(x.strip() for x in actionLinkLite))
+                    a=">".join(x.strip() for x in actionLinkLite)
                 else:
-                    left.append(actionLinkLite[0].strip())
+                    if actionLinkLite:
+                        a=actionLinkLite[0].strip()
+                    else:
+                        a=None
 
                 bookPageGenreLink=x.xpath(".//a[@class='actionLinkLite greyText bookPageGenreLink']/text()")
-                right.append(bookPageGenreLink[0].strip())
-            print left,right
+                if bookPageGenreLink:
+                    b=bookPageGenreLink[0].strip()
+                else:
+                    b=None
+
+                if a:
+                    genres[a]=b
+
+
             # item={}
             # item["bookUrl"]=bookUrl
             # item["title"]=title
@@ -175,6 +185,7 @@ class MangoSpider(scrapy.Spider):
             print "   score    :" + score
             print "   ratings    :" + ratings
             print "   reviews    :" + reviews
+            print "   genres     :"+str(genres)
             print "   bookFormat    :" + bookFormat
             print "   Published_Time    :" + aa
             print "   First_Published_Time    :" + bb
