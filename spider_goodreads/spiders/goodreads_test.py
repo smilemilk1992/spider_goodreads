@@ -42,9 +42,12 @@ class MangoSpider(scrapy.Spider):
         total_page=page[1]
         for p in range(1,int(total_page)+1):
             url="https://www.goodreads.com/list/show/43.Best_Young_Adult_Books?page="+str(p)
-            print url
+            yield scrapy.Request(url, callback=self.parse2)
 
-
+    def parse2(self, response):
+        urls = response.xpath("//a[@class='bookTitle']/@href").extract()
+        for i in urls:
+            print "https://www.goodreads.com"+i
 
     def parse1(self, response):
 
