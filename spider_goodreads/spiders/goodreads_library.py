@@ -52,5 +52,5 @@ class LibrarySpider(scrapy.Spider):
     def parse(self, response):
         libsresults=response.xpath("//table[@id='libsresults']//td[@class='name']").extract()
         for lib in libsresults:
-            name = etree.fromstring(lib)
-            print name
+            # name = etree.fromstring(lib)
+            print lib
