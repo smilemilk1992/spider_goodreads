@@ -58,17 +58,23 @@ class LibrarySpider(scrapy.Spider):
                 info = re.search('"geoloc">(.*?)<',str(lib)).group(1).split(",")
                 info1=info[1].split(" ")
                 item={}
-                item["OriginalUrl"]=response.url
+
                 item["libUrl"]=url.replace("amp;","")
                 item["libName"]=name
                 item["city"]=info[0]
                 item["CA"]=info1[1]
                 item["postal"]=info1[2]
                 item["Country"]=" ".join(x for x in info1[3:])
-                yield item
+                yield scrapy.Request(response.url, callback=self.info, cookies={'LAC-User-Location': 94404}, meta={"item": item})
 
 
         if libsresults:
             page=response.meta["page"]+1
             url = self.start_url.format(6 * (page - 1) + 1)
             yield scrapy.Request(url, callback=self.parse, cookies={'LAC-User-Location': 94404},meta={"page": page})
+
+
+    def info(self,response):
+        item=response.meta["item"]
+        item["OriginalUrl"] = response.url
+        print item
