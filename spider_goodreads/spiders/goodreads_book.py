@@ -41,7 +41,7 @@ class MangoSpider(scrapy.Spider):
         with open('url.txt', "r") as f:
             url = f.readlines()
             for x in url:
-                yield scrapy.Request("https://www.goodreads.com/book/show/30008738-duck-goose", callback=self.parse,dont_filter=false)
+                yield scrapy.Request("https://www.goodreads.com/book/show/30008738-duck-goose", callback=self.parse,dont_filter=False)
 
 
     def parse(self, response):
