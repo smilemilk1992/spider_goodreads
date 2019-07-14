@@ -34,14 +34,14 @@ class MangoSpider(scrapy.Spider):
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/book/show/30008738-duck-goose']
+    start_urls = ['https://www.goodreads.com/book/show/25155160-the-dreams-forgotten']
 
 
-    def start_requests(self):
-        with open('url.txt', "r") as f:
-            url = f.readlines()
-            for x in url:
-                yield scrapy.Request(x.strip(), callback=self.parse)
+    # def start_requests(self):
+    #     with open('url.txt', "r") as f:
+    #         url = f.readlines()
+    #         for x in url:
+    #             yield scrapy.Request(x.strip(), callback=self.parse)
 
 
     def parse(self, response):
@@ -121,8 +121,10 @@ class MangoSpider(scrapy.Spider):
             a=etree.fromstring(details[1]).xpath("./text()")[0]
             aa="".join(x.strip()+" " for x in a.split("\n") if x)
             bb=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(")").lstrip("(") if etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()") else aa
+            Rating_details = response.xpath(
+                "//span[@id='rating_graph']/script/text()|//div[@class='reviewControls__ratingDetails reviewControls--left rating_graph']/script/text()").extract()[
+                0].strip()
 
-            Rating_details=response.xpath("//span[@id='rating_graph']/script/text()").extract()[0].strip()
             renderRatingGraph=re.search("renderRatingGraph\(\[(.*?)\]\);",Rating_details).group(1)
 
             elementList=response.xpath("//div[@class='bigBoxContent containerWithHeaderContent']/div[contains(@class,'elementList ')]").extract()

@@ -127,7 +127,7 @@ class MangoSpider(scrapy.Spider):
             aa="".join(x.strip()+" " for x in a.split("\n") if x)
             bb=etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(")").lstrip("(") if etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()") else aa
 
-            Rating_details=response.xpath("//span[@id='rating_graph']/script/text()").extract()[0].strip()
+            Rating_details=response.xpath("//span[@id='rating_graph']/script/text()|//div[@class='reviewControls__ratingDetails reviewControls--left rating_graph']/script/text()").extract()[0].strip()
             renderRatingGraph=re.search("renderRatingGraph\(\[(.*?)\]\);",Rating_details).group(1)
 
             elementList=response.xpath("//div[@class='bigBoxContent containerWithHeaderContent']/div[contains(@class,'elementList ')]").extract()
