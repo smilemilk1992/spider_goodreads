@@ -54,8 +54,12 @@ class LibrarySpider(scrapy.Spider):
         for lib in libsresults:
             name=re.search('">(.*?)</a>',str(lib)).group(1)
             info = re.search('"geoloc">(.*?)<',str(lib)).group(1)
+            print "\n--------------"
+            print name
+            print info
+            print "--------------\n"
 
-            print name,info
+
         if libsresults:
             page=response.meta["page"]+1
             url = self.start_url.format(6 * (page - 1) + 1)
