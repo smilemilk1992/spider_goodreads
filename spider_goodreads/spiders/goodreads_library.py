@@ -53,4 +53,4 @@ class LibrarySpider(scrapy.Spider):
         libsresults=response.xpath("//table[@id='libsresults']//td[@class='name']").extract()
         for lib in libsresults:
             # name = etree.fromstring(lib)
-            print lib
+            print lib.xpath("./p[@class='geoloc']/text()")
