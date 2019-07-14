@@ -128,6 +128,7 @@ class MangoSpider(scrapy.Spider):
             elementList=response.xpath("//div[@class='bigBoxContent containerWithHeaderContent']/div[contains(@class,'elementList')]").extract()
             left=[]
             right=[]
+            print elementList
             for x in elementList:
                 x=etree.fromstring(x)
                 actionLinkLite=x.xpath(".//a[@class='actionLinkLite bookPageGenreLink']/text()")
