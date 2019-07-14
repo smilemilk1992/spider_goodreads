@@ -45,15 +45,28 @@ class MangoSpider(scrapy.Spider):
         listTitleUrl = response.xpath("//a[@class='listTitle']/@href").extract()
         for url in listTitleUrl:
             titleUrl = "https://www.goodreads.com"+url
-            print titleUrl
+            yield scrapy.Request(titleUrl, callback=self.pageUrl, meta={"titleUrl": titleUrl, "page": 1})
+
         NoneFlag = response.xpath("//div[@class='mediumText']/text()").extract()
         if not NoneFlag:
             page = response.meta["page"]+1
             tagurl=response.meta["tagUrl"]+"?page="+str(page)
             yield scrapy.Request(tagurl, callback=self.tagInfo,meta={"tagUrl":response.meta["tagUrl"],"page":page})
 
+    def pageUrl(self,response):
+        detailurls = response.xpath("//a[@class='bookTitle']/@href").extract()
+        if detailurls:
+            page=response.meta["page"]+1
+            titleUrl = response.meta["titleUrl"]+"?page="+str(page)
+            yield scrapy.Request(titleUrl, callback=self.pageUrl, meta={"titleUrl": titleUrl, "page": page})
 
-    def parse1(self, response):
+        for i in detailurls:
+            detailUrl="https://www.goodreads.com" + i;
+            print detailUrl
+            # yield scrapy.Request(detailUrl, callback=self.detailUrl)
+
+
+    def detailUrl(self, response):
 
             bookUrl = response.url
             title=response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()
