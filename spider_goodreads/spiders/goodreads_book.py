@@ -169,7 +169,7 @@ class MangoSpider(scrapy.Spider):
         info = {}
         storesInfo = etree.fromstring(infos[2]).xpath("//ul[@class='buyButtonBar left']/li[2]//a[@class='actionLinkLite']")
         for i in storesInfo:
-            i = etree.fromstring(i)
+            # i = etree.fromstring(i)
             key = i.xpath("./text()")[0].strip()
             value = "https://www.goodreads.com" + i.xpath("./@href")[0].strip()
             info[key] = value
