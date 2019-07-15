@@ -25,7 +25,7 @@ RETRY_ENABLED=True
 HTTPERROR_ALLOWED_CODES = [403,302,301,503,502,504,307,500]
 RETRY_HTTP_CODES = [403,500, 502, 503, 504, 522, 524, 408,302,301,307]
 LOG_FILE = "mySpider.log"
-LOG_LEVEL = "INFO"
+LOG_LEVEL = "DEBUG"
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
