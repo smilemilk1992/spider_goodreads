@@ -165,11 +165,12 @@ class MangoSpider(scrapy.Spider):
                 genres = "None"
 
         infos = response.xpath("//ul[@class='buyButtonBar left']/li")
+        print infos
         AmazonUrl=etree.fromstring(infos[1]).xpath("./a/@href")[0].strip()
         info = {}
         storesInfo = etree.fromstring(infos[2]).xpath("//ul[@class='buyButtonBar left']/li[2]//a[@class='actionLinkLite']")
         for i in storesInfo:
-            # i = etree.fromstring(i)
+            i = etree.fromstring(i)
             key = i.xpath("./text()")[0].strip()
             value = "https://www.goodreads.com" + i.xpath("./@href")[0].strip()
             info[key] = value
