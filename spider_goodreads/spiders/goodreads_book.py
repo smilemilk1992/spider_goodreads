@@ -171,7 +171,8 @@ class MangoSpider(scrapy.Spider):
         for i in storesInfo:
             # i = etree.fromstring(i)
             key = i.xpath("./text()")[0]
-            value = "https://www.goodreads.com" + i.xpath("./@href")[0]
+            print key
+            value = "https://www.goodreads.com" + str(i.xpath("./@href")[0])
             info[key] = value
 
         # RatingGraph = renderRatingGraph.split(",")
