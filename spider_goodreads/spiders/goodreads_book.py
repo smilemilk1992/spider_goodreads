@@ -170,9 +170,9 @@ class MangoSpider(scrapy.Spider):
         storesInfo = response.xpath("//div[@id='buyDropButtonStores']//a[@class='actionLinkLite']")
         for i in storesInfo:
             # i = etree.fromstring(i)
-            key = i.xpath("./text()")[0]
+            key = i.xpath("./text()").extract()[0]
             print key
-            value = "https://www.goodreads.com" + str(i.xpath("./@href")[0])
+            value = "https://www.goodreads.com" + str(i.xpath("./@href").extract()[0])
             info[key] = value
 
         # RatingGraph = renderRatingGraph.split(",")
