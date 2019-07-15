@@ -43,7 +43,7 @@ class MangoSpider(scrapy.Spider):
 
 
     def parse(self, response):
-        print(response.url)
+        logging.info(response.url)
 
             # bookUrl = response.url
             # title=response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()
