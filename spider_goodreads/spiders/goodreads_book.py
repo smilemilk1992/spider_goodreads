@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import scrapy
 from lxml import etree
 import re
@@ -16,9 +18,9 @@ class MangoSpider(scrapy.Spider):
     '''
     name = "goodreads_book"
     custom_settings = {
-        'CONCURRENT_REQUESTS': 16,  #允许的线程数
+        'CONCURRENT_REQUESTS': 64,  #允许的线程数
         'RETRY_TIMES': 3,  #重试机制
-        'DOWNLOAD_DELAY':5,   #延时（秒）
+        # 'DOWNLOAD_DELAY':,   #延时（秒）
         'ITEM_PIPELINES': {
             "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipeline": 200,
         },
