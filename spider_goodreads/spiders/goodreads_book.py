@@ -85,8 +85,7 @@ class MangoSpider(scrapy.Spider):
                 "//span[@itemprop='bookFormat']/text()").extract() else "None"
             ispage = response.xpath("//span[@itemprop='numberOfPages']/text()").extract()
             if ispage:
-                pages = response.xpath("//span[@itemprop='numberOfPages']/text()").extract()[0].strip().replace(" pages",
-                                                                                                                "")
+                pages = response.xpath("//span[@itemprop='numberOfPages']/text()").extract()[0].replace("pages","").strip()
             else:
                 pages = "None"
 
