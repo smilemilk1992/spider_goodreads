@@ -35,7 +35,6 @@ https://www.goodreads.com/book/show/13546430.Chicka_Chicka_Boom_Boom
 https://www.goodreads.com/book/show/18689808.Chicka_Chicka_1,_2,_3
 https://www.goodreads.com/book/show/759611.Brown_Bear,_Brown_Bear,_What_Do_You_See?
 https://www.goodreads.com/book/show/598160.Polar_Bear,_Polar_Bear,_What_Do_You_Hear?
-https://www.goodreads.com/book/show/.Panda_Bear,_Panda_Bear,_What_Do_You_See?
 https://www.goodreads.com/book/show/4944.The_Very_Hungry_Caterpillar
 https://www.goodreads.com/book/show/876237.From_Head_to_Toe
 https://www.goodreads.com/book/show/1420238.A_House_for_Hermit_Crab
@@ -106,9 +105,6 @@ https://www.goodreads.com/book/show/1110421.Owl_Babies
 https://www.goodreads.com/book/show/1572416.Handa's_Surprise
 https://www.goodreads.com/book/show/13603799.The_Bear_Went_Over_the_Mountain
 https://www.goodreads.com/book/show/1569515.Humphrey's_Corner
-https://www.goodreads.com/book/show/.Julio_Bunny_Goes_to_the_Moon
-https://www.goodreads.com/book/show/.Julio_Bunny_Goes_to_the_Library
-https://www.goodreads.com/book/show/.The_Quangle_Wangle's_Hat
 https://www.goodreads.com/book/show/30903486.Marigold_Garden
 https://www.goodreads.com/book/show/280870.Peter_in_Blueberry_Land
 https://www.goodreads.com/book/show/19321.The_Tale_of_Peter_Rabbit
@@ -262,7 +258,6 @@ https://www.goodreads.com/book/show/8332386.There_Was_an_Old_Lady_Who_Swallowed_
 https://www.goodreads.com/book/show/623077.The_Crocodile_and_the_Dentist
 https://www.goodreads.com/book/show/10177891.Flip_And_Flop
 https://www.goodreads.com/book/show/114332.A_Letter_to_Amy
-https://www.goodreads.com/book/show/.The_Bersenstain_Bears_Go_Out_For_the_Team
 https://www.goodreads.com/book/show/4690444.Golden_Bear
 https://www.goodreads.com/book/show/1070129.Down_by_the_Bay
 https://www.goodreads.com/book/show/858037.Danny_and_the_Dinosaur
@@ -272,7 +267,6 @@ https://www.goodreads.com/book/show/531045.I_Like_Me!
 https://www.goodreads.com/book/show/25930176.Good_Night,_Cubs
 https://www.goodreads.com/book/show/2542399.Polar_Bears
 https://www.goodreads.com/book/show/661476.Snuffy_and_the_Fire
-https://www.goodreads.com/book/show/.There's_a_Whale_in_My_Bath
 https://www.goodreads.com/book/show/1270578.Tiger_Is_a_Scaredy_Cat
 https://www.goodreads.com/book/show/886512.Jamberry
 https://www.goodreads.com/book/show/1458201.Kevin_and_His_Dad
@@ -410,7 +404,6 @@ https://www.goodreads.com/book/show/727788.Under_the_Sea
 https://www.goodreads.com/book/show/25546603.Keiki_Counting_1-2-3
 https://www.goodreads.com/book/show/1001896.The_Real_Mother_Goose
 https://www.goodreads.com/book/show/6434058.The_Circus_Ship
-https://www.goodreads.com/book/show/.Which_Way_to_the_Zoo
 https://www.goodreads.com/book/show/2986346.Of_Colors_and_Things
 https://www.goodreads.com/book/show/1720500.I_Love_My_Baby_Sister
 https://www.goodreads.com/book/show/24361592.Creepy_Carrots
@@ -436,7 +429,6 @@ https://www.goodreads.com/book/show/16195549.Lego_Friends:_Let's_Go_Riding!
 https://www.goodreads.com/book/show/18640467.Lego_Friends:_Perfect_Pets
 https://www.goodreads.com/book/show/17572905.Who_Can_Play?
 https://www.goodreads.com/book/show/13358237.My_First_Brain_Quest
-https://www.goodreads.com/book/show/.First_100_Machines
 https://www.goodreads.com/book/show/11388972.First_100_Soft_to_Touch_Trucks
 https://www.goodreads.com/book/show/9861630.First_100_Words
 https://www.goodreads.com/book/show/30199423.First_Farm_Words
@@ -665,7 +657,6 @@ https://www.goodreads.com/book/show/830097.Blueberries_for_Sal
 https://www.goodreads.com/book/show/401730.Big_Red_Barn
 https://www.goodreads.com/book/show/13588144.You_Are_My_I_Love_You
 https://www.goodreads.com/book/show/6611660.Sleep,_Big_Bear,_Sleep!
-https://www.goodreads.com/book/show/.Potty
 https://www.goodreads.com/book/show/18166930.Toot
 https://www.goodreads.com/book/show/2453640.No_No_Yes_Yes
 https://www.goodreads.com/book/show/830974.I_Stink!
@@ -788,20 +779,16 @@ https://www.goodreads.com/book/show/3267467.No_Matter_What
 https://www.goodreads.com/book/show/34499219.You're_Here_for_a_Reason
 https://www.goodreads.com/book/show/21445820.Duck_in_the_Fridge
 https://www.goodreads.com/book/show/575370.The_Night_Before_First_Grade
-https://www.goodreads.com/book/show/.The_Enchanted_Nightingale:_The_Classic_Grimm's_Tale_of_Jorinda_and_Joringel
 https://www.goodreads.com/book/show/29332292.Peter's_Tree
 https://www.goodreads.com/book/show/38899594.A_Fairy_Tale_Christmas
 https://www.goodreads.com/book/show/22493750.Bernadette_Collection
-https://www.goodreads.com/book/show/.A_Woodland_Christmas_Advent_Calendar
 https://www.goodreads.com/book/show/22493748.The_Tortoise_and_the_Hare
 https://www.goodreads.com/book/show/35297109.Shoemaker_Martin
 https://www.goodreads.com/book/show/357029.Little_Red_Riding_Hood
-https://www.goodreads.com/book/show/.Away_in_a_Manger_Advent_Calendar
 https://www.goodreads.com/book/show/11400011.The_Animal_Boogie
 https://www.goodreads.com/book/show/13044123.Up,_Up,_Up!_[With_CD
 https://www.goodreads.com/book/show/11404532.Journey_Home_from_Granpas_Book_&_CD
 https://www.goodreads.com/book/show/11439462.We_All_Go_Traveling_By
-https://www.goodreads.com/book/show/.The_Wheels_on_the_Bus
 https://www.goodreads.com/book/show/12839081.The_Parrot_Tico_Tango_with_CD
 https://www.goodreads.com/book/show/773276.Good_Night,_Gorilla
 https://www.goodreads.com/book/show/12467012.One_Special_Day:_A_Story_for_Big_Brothers_and_Sisters
@@ -997,7 +984,6 @@ https://www.goodreads.com/book/show/40774131.Hug_Machine
 https://www.goodreads.com/book/show/985598.The_Paper_Princess
 https://www.goodreads.com/book/show/14949989.Part-time_Princess
 https://www.goodreads.com/book/show/34729553.Simon_and_the_Bear:_A_Hanukkah_Tale
-https://www.goodreads.com/book/show/.Give_and_Take
 https://www.goodreads.com/book/show/15798658.Brontorina
 https://www.goodreads.com/book/show/20518974.Star_Stuff:_Carl_Sagan_and_the_Mysteries_of_the_Cosmos
 https://www.goodreads.com/book/show/20821014.The_Spectacular_Tale_of_Peter_Rabbit
@@ -1155,14 +1141,8 @@ https://www.goodreads.com/book/show/18701094.Stories_for_1_Year_Olds
 https://www.goodreads.com/book/show/532249.1,_2,_3_to_the_Zoo
 https://www.goodreads.com/book/show/876435.Spot_Goes_to_the_Farm_Board_Book
 https://www.goodreads.com/book/show/488893.Bath_Time!
-https://www.goodreads.com/book/show/.Cloth_Book_Set_of_3_for_Babies_&_Toddlers
-https://www.goodreads.com/book/show/.Lamaze_Peek-A-Boo_Forest
-https://www.goodreads.com/book/show/.Melissa_&_Doug_Soft_Activity_Baby_Book_-_Whose_Feet?
-https://www.goodreads.com/book/show/.Soft_Activity_Baby_Book_-_Little_Chef
-https://www.goodreads.com/book/show/.Fabric_Activity_Crinkle_Cloth_Books
 https://www.goodreads.com/book/show/20790953.Giraffe_and_Friends
 https://www.goodreads.com/book/show/22543746.Fuzzy_Bee_Cloth_Book
-https://www.goodreads.com/book/show/.Are_You_My_Mother?
 https://www.goodreads.com/book/show/1279267.Good_Night,_Teddy
 https://www.goodreads.com/book/show/271560.Oh_My_Oh_My_Oh_Dinosaurs!
 https://www.goodreads.com/book/show/29852512.I_Love_You,_Blue_Kangaroo!
@@ -1187,7 +1167,6 @@ https://www.goodreads.com/book/show/18570357.What_Do_You_Do_with_an_Idea?
 https://www.goodreads.com/book/show/122980.Look,_Look!
 https://www.goodreads.com/book/show/34298782.We're_Different,_We're_the_Same
 https://www.goodreads.com/book/show/590552.Chicken_Soup_with_Rice:_A_Book_of_Months
-https://www.goodreads.com/book/show/.Pierre:_A_Cautionary_Tale_in_Five_Chapters_and_a_Prologue
 https://www.goodreads.com/book/show/765654.Ish
 https://www.goodreads.com/book/show/23719206.Before_Morning
 https://www.goodreads.com/book/show/3670746.Okilélé
@@ -1210,7 +1189,6 @@ https://www.goodreads.com/book/show/888779.Wiggling_Worms_at_Work
 https://www.goodreads.com/book/show/1105004.Mouse_Count
 https://www.goodreads.com/book/show/33503537.Mouse_Shapes
 https://www.goodreads.com/book/show/900610.Shake_My_Sillies_Out
-https://www.goodreads.com/book/show/.There_Was_an_Old_Lady_Who_Swallowed_a_Chick!
 https://www.goodreads.com/book/show/22323686.There_Was_an_Old_Lady_Who_Swallowed_a_Frog!
 https://www.goodreads.com/book/show/65662.Dragon_Dance:_A_Chinese_New_Year_Lift-the-Flap_Book
 https://www.goodreads.com/book/show/17620970.Bringing_In_the_New_Year
@@ -1363,7 +1341,6 @@ https://www.goodreads.com/book/show/34228275.Someday,_Narwhal
 https://www.goodreads.com/book/show/17797384.A_New_Year's_Reunion:_A_Chinese_Story
 https://www.goodreads.com/book/show/799860.A_Sweetheart_for_Valentine
 https://www.goodreads.com/book/show/7334417.Danny_Is_Done_with_Diapers_:_A_Potty_ABC
-https://www.goodreads.com/book/show/.The_Valentine_Express
 https://www.goodreads.com/book/show/799803.If_You'll_Be_My_Valentine
 https://www.goodreads.com/book/show/225233.Rotten_Ralph
 https://www.goodreads.com/book/show/6553955.Sugar_Cookies:_Sweet_Little_Lessons_on_Love
@@ -1397,7 +1374,6 @@ https://www.goodreads.com/book/show/3050016.My_First_Words:_Let's_Get_Talking
 https://www.goodreads.com/book/show/7134491.My_First_Farm:_Let's_Get_Working!
 https://www.goodreads.com/book/show/6310206.My_First_Things_that_Go
 https://www.goodreads.com/book/show/4747330.My_First_Numbers:_Let's_Get_Counting
-https://www.goodreads.com/book/show/.World_of_Eric_Carle,_The_Very_Hungry_Caterpillar_Fun_Foods_Soft_Book_Teether
 https://www.goodreads.com/book/show/1751517.My_Very_First_Book_of_Food
 https://www.goodreads.com/book/show/1179335.My_Very_First_Book_of_Numbers
 https://www.goodreads.com/book/show/2576156.Where_Is_Baby's_Birthday_Cake?
@@ -1574,7 +1550,6 @@ https://www.goodreads.com/book/show/17220234.Bear_Sees_Colors
 https://www.goodreads.com/book/show/27206551.Sleepyheads
 https://www.goodreads.com/book/show/7623676.I'll_See_You_in_the_Morning
 https://www.goodreads.com/book/show/17797376.The_Sleepy_Little_Alphabet
-https://www.goodreads.com/book/show/.Baby_Sparkle_Funny_Faces_by_DK
 https://www.goodreads.com/book/show/27414470.You_and_Me_and_the_Wishing_Tree
 https://www.goodreads.com/book/show/19561926.The_Heaven_of_Animals
 https://www.goodreads.com/book/show/7017090.The_Spirit_of_Christmas
@@ -1659,7 +1634,6 @@ https://www.goodreads.com/book/show/26192983.A_Dark,_Dark_Cave
 https://www.goodreads.com/book/show/2755729.Play_Lady:_La_Senora_Juguetona
 https://www.goodreads.com/book/show/1098406.Los_Mejores_Colores/Best_Best_Colors
 https://www.goodreads.com/book/show/2152533.Heroinas_y_Heroes/Heroines_And_Heroes
-https://www.goodreads.com/book/show/.No_Fair_to_Tigers:_No_es_justo_para_los_tigres
 https://www.goodreads.com/book/show/23399189.Carry_and_Learn_Numbers
 https://www.goodreads.com/book/show/24612594.Carry_and_Learn_Shapes
 https://www.goodreads.com/book/show/23013693.Carry_and_Learn_Colors
@@ -1740,7 +1714,6 @@ https://www.goodreads.com/book/show/16062285.Dinosaur
 https://www.goodreads.com/book/show/11255814.My_Big_Dinosaur_Book
 https://www.goodreads.com/book/show/10493211.How_Do_Dinosaurs_Say_Happy_Birthday?
 https://www.goodreads.com/book/show/2161605.Dinosaur_A_to_Z
-https://www.goodreads.com/book/show/.Dinosaur_ABC_Coloring_Book
 https://www.goodreads.com/book/show/15946269.Discovery_Rumble_with_the_Dinosaurs!:_10_Noisy_Dinosaur_Sounds
 https://www.goodreads.com/book/show/1361031.The_Early_Bird
 https://www.goodreads.com/book/show/28863341.What_Do_You_Do_with_a_Problem?
@@ -1891,7 +1864,6 @@ https://www.goodreads.com/book/show/20783216.Island_of_the_Blue_Dolphins
 https://www.goodreads.com/book/show/366300.Walter_the_Farting_Dog
 https://www.goodreads.com/book/show/637006.Amanda_Pig_and_the_Really_Hot_Day
 https://www.goodreads.com/book/show/836621.Yertle_the_Turtle_and_Other_Stories
-https://www.goodreads.com/book/show/.Bread_and_Jam_for_Frances
 https://www.goodreads.com/book/show/164539.Bridge_to_Terabithia
 https://www.goodreads.com/book/show/884007.Chato's_Kitchen
 https://www.goodreads.com/book/show/4132457.George_and_Martha:_The_Complete_Stories_of_Two_Best_Friends
@@ -2192,7 +2164,6 @@ https://www.goodreads.com/book/show/33509392.Slug_Days
 https://www.goodreads.com/book/show/20702080.El_Deafo
 https://www.goodreads.com/book/show/996925.Susan_Laughs
 https://www.goodreads.com/book/show/164544.My_Friend_Isabelle
-https://www.goodreads.com/book/show/.Annie's_Plaid_Shirt
 https://www.goodreads.com/book/show/34002123.Miss_Little's_Gift
 https://www.goodreads.com/book/show/25074214.The_Snow_Rabbit
 https://www.goodreads.com/book/show/11296573.Ellie_Bean_the_Drama_Queen:_A_Children's_Book_about_Sensory_Processing_Disorder
@@ -2500,9 +2471,7 @@ https://www.goodreads.com/book/show/702042.Turk_and_Runt:_A_Thanksgiving_Comedy
 https://www.goodreads.com/book/show/699620.Akiak:_A_Tale_From_the_Iditarod
 https://www.goodreads.com/book/show/866551.Night_Tree
 https://www.goodreads.com/book/show/575737.Harvey_Potter's_Balloon_Farm
-https://www.goodreads.com/book/show/.The_Day_I_Became_a_Bird
 https://www.goodreads.com/book/show/3191438.The_Cricket_in_Times_Square
-https://www.goodreads.com/book/show/.The_Catalog_by_Jasper_Tomkins
 https://www.goodreads.com/book/show/824734.Dinosaurs_Before_Dark
 https://www.goodreads.com/book/show/79548.Moomin:_The_Complete_Tove_Jansson_Comic_Strip,_Vol._1
 https://www.goodreads.com/book/show/13414859.Because_Amelia_Smiled
@@ -2694,7 +2663,6 @@ https://www.goodreads.com/book/show/55773.The_Sweetest_Fig
 https://www.goodreads.com/book/show/645343.The_Garden_of_Abdul_Gasazi
 https://www.goodreads.com/book/show/17165968.The_Wreck_of_the_Zephyr
 https://www.goodreads.com/book/show/841804.The_Aminal
-https://www.goodreads.com/book/show/.The_Dragon_and_the_Nibblesome_Knight
 https://www.goodreads.com/book/show/25817009.How_to_Put_Your_Parents_to_Bed
 https://www.goodreads.com/book/show/6393355.Birdie's_Big-Girl_Shoes
 https://www.goodreads.com/book/show/16101212.A_Lion_in_the_Meadow
@@ -2762,15 +2730,11 @@ https://www.goodreads.com/book/show/25777452.I_Use_the_Potty
 https://www.goodreads.com/book/show/40726383.The_Complete_Guide_to_Potty_Training:_The_Step-by-Step_Plan_with_Expert_Solutions_for_Any_Mess
 https://www.goodreads.com/book/show/434014.Toilet_Training_in_Less_Than_a_Day
 https://www.goodreads.com/book/show/25649640.Stress-Free_Potty_Training:_A_Commonsense_Guide_to_Finding_the_Right_Approach_for_Your_Child
-https://www.goodreads.com/book/show/.Potty_Training:_3_Days_to_Potty_Train_Any_Child_Without_Driving_Everyone_Crazy
-https://www.goodreads.com/book/show/.Toddler_Potty_Training:_Incredibly_Simple_2-Day_Potty_Training_that_Works
 https://www.goodreads.com/book/show/25870354.The_Tiny_Potty_Training_Book:_A_Simple_Guide_for_Non-coercive_Potty_Training
 https://www.goodreads.com/book/show/1267576.The_Potty_Training_Answer_Book:_Practical_Answers_to_the_Top_200_Questions_Parents_Ask
 https://www.goodreads.com/book/show/25205433.Oh_Crap!_Potty_Training:_Everything_Modern_Parents_Need_to_Know__to_Do_It_Once_and_Do_It_Right
 https://www.goodreads.com/book/show/2924747.Infant_Potty_Training:_A_Gentle_and_Primevel_Method_Adapted_to_Modern_Living
 https://www.goodreads.com/book/show/32445515.Potty_Training_in_3_Days:_The_Step-By-Step_Plan_for_a_Clean_Break_from_Dirty_Diapers
-https://www.goodreads.com/book/show/.My_Potty_Reward_Stickers_for_Boys:_126_Boy_Potty_Training_Stickers_and_Chart_to_Motivate_Toilet_Training
-https://www.goodreads.com/book/show/.My_Potty_Reward_Stickers_for_Girls:_126_Girl_Potty_Training_Stickers_and_Chart_to_Motivate_Toilet_Training
 https://www.goodreads.com/book/show/39600136.Jacob_Learns_to_Brush_his_Teeth
 https://www.goodreads.com/book/show/22527232.Bacteria_Joe
 https://www.goodreads.com/book/show/18831549.The_Teeth_That_Looked_for_a_New_Mouth:_A_Story_of_a_Boy_Who_Didn't_Like_to_Brush_His_Teeth
@@ -2786,14 +2750,11 @@ https://www.goodreads.com/book/show/386227.Just_Going_to_the_Dentist
 https://www.goodreads.com/book/show/25779191.Dentist_Trip
 https://www.goodreads.com/book/show/817315.The_Berenstain_Bears_Visit_the_Dentist
 https://www.goodreads.com/book/show/28146297.If_I_Were_a_Doctor
-https://www.goodreads.com/book/show/.Childrens_Tooth_Brushing_Guide
 https://www.goodreads.com/book/show/25241524.Healthy_Sleep_Habits,_Happy_Child:_A_Step-By-Step_Program_for_a_Good_Night's_Sleep
 https://www.goodreads.com/book/show/100282.Healthy_Sleep_Habits,_Happy_Child
 https://www.goodreads.com/book/show/192222.Solve_Your_Child's_Sleep_Problems
 https://www.goodreads.com/book/show/7381940.The_Sleep_Lady®'s_Good_Night,_Sleep_Tight:_Gentle_Proven_Solutions_to_Help_Your_Child_Sleep_Well_and_Wake_Up_Happy
 https://www.goodreads.com/book/show/474621.The_Sleepeasy_Solution:_The_Exhausted_Parent's_Guide_to_Getting_Your_Child_to_Sleep_from_Birth_to_Age_5
-https://www.goodreads.com/book/show/.On_Becoming_Baby_Wise:_Giving_Your_Infant_the_Gift_of_Nighttime_Sleep
-https://www.goodreads.com/book/show/.The_Baby_Sleep_Book:_The_Complete_Guide_to_a_Good_Night's_Rest_for_the_Whole_Family
 https://www.goodreads.com/book/show/25810680.The_Natural_Baby_Sleep_Solution:_Use_Your_Child's_Internal_Sleep_Rhythms_for_Better_Nights_and_Naps
 https://www.goodreads.com/book/show/6811128.Eat,_Sleep,_Poop:_A_Complete_Common_Sense_Guide_to_Your_Baby's_First_Year--from_a_Pediatrician/Dad
 https://www.goodreads.com/book/show/186571.Touchpoints:_Birth_to_3_:_Your_Child's_Emotional_and_Behavioral_Development
@@ -2801,7 +2762,6 @@ https://www.goodreads.com/book/show/18125200.The_Joyful_Child:_Montessori,_Globa
 https://www.goodreads.com/book/show/13532207.The_Baby_Owner's_Manual:_Operating_Instructions,_Trouble-Shooting_Tips,_and_Advice_on_First-Year_Maintenance
 https://www.goodreads.com/book/show/20605496.What_to_Expect_the_First_Year
 https://www.goodreads.com/book/show/2688334.The_Happiest_Toddler_on_the_Block:_How_to_Eliminate_Tantrums_and_Raise_a_Patient,_Respectful,_and_Cooperative_One-_to_Four-Year-Old:_Revised_Edition
-https://www.goodreads.com/book/show/.The_Baby_Book,_Revised_Edition:_Everything_You_Need_to_Know_About_Your_Baby_from_Birth_to_Age_Two
 https://www.goodreads.com/book/show/15808364.The_New_Contented_Little_Baby_Book:_The_Secret_to_Calm_and_Confident_Parenting
 https://www.goodreads.com/book/show/13838349.Your_Self-Confident_Baby:_How_to_Encourage_Your_Child's_Natural_Abilities_--_From_the_Very_Start
 https://www.goodreads.com/book/show/255940.Dear_Parent:_Caring_for_Infants_With_Respect
@@ -2841,8 +2801,6 @@ https://www.goodreads.com/book/show/29236376.Positive_Discipline_Parenting_Tools
 https://www.goodreads.com/book/show/22928903.10_Days_to_a_Less_Defiant_Child,_second_edition:_The_Breakthrough_Program_for_Overcoming_Your_Child's_Difficult_Behavior
 https://www.goodreads.com/book/show/213186.Raising_An_Emotionally_Intelligent_Child
 https://www.goodreads.com/book/show/36293935.Emotional_Intelligence_for_Your_Kids:_Teach_your_kids_emotional_intelligence
-https://www.goodreads.com/book/show/.Emotional_Intelligence_The_Secrets_To_Developing_The_Star_Potential_In_Your_Child
-https://www.goodreads.com/book/show/.Emotional_Intelligence_for_Children:_Helping_children_control_their_behavior_and_feelings
 https://www.goodreads.com/book/show/33275801.The_Co-Parenting_Handbook:_Raising_Well-Adjusted_and_Resilient_Kids_from_Little_Ones_to_Young_Adults_Through_Divorce_or_Separation
 https://www.goodreads.com/book/show/8204815.Putting_Children_First:_Proven_Parenting_Strategies_for_Helping_Children_Thrive_Through_Divorce
 https://www.goodreads.com/book/show/28397406.Talking_to_Children_about_Divorce:_A_Parent's_Guide_to_Healthy_Communication_at_Each_Stage_of_Divorce
@@ -3180,7 +3138,6 @@ https://www.goodreads.com/book/show/34002096.Pick_a_Pine_Tree
 https://www.goodreads.com/book/show/34002074.Red_and_Lulu
 https://www.goodreads.com/book/show/34432950.Thanksgiving_in_the_Woods
 https://www.goodreads.com/book/show/34735075.Finding_Christmas
-https://www.goodreads.com/book/show/.The_Christmas_Eve_Tree
 https://www.goodreads.com/book/show/27414459.Walking_in_a_Winter_Wonderland
 https://www.goodreads.com/book/show/30423421.Snow_Sisters!
 https://www.goodreads.com/book/show/21508986.Sleep_Tight_Farm:_A_Farm_Prepares_for_Winter
@@ -3247,7 +3204,6 @@ https://www.goodreads.com/book/show/37699458.Grow_Up,_David!
 https://www.goodreads.com/book/show/120839.Oh,_David!_A_Diaper_David_Book
 https://www.goodreads.com/book/show/15843302.Uh-oh,_David!_Sticker_Book
 https://www.goodreads.com/book/show/120840.David_Gets_In_Trouble
-https://www.goodreads.com/book/show/.David_Shannon_Pack_Set_of_3_Books,_No_David,_David_Gets_in_Trouble,_David_Goes_to_School
 https://www.goodreads.com/book/show/1062516.No,_David!
 https://www.goodreads.com/book/show/1034383.Bear_on_a_Bike
 https://www.goodreads.com/book/show/19041.Big_Red_Tub
@@ -3293,7 +3249,6 @@ https://www.goodreads.com/book/show/29904416.Dave_Pigeon
 https://www.goodreads.com/book/show/6400408.The_Giraffe_and_the_Pelly_and_Me
 https://www.goodreads.com/book/show/31213623.The_Goat
 https://www.goodreads.com/book/show/33294734.Princess_Smartypants_and_the_Missing_Princes
-https://www.goodreads.com/book/show/.The_Usborne_Official_Astronaut's_Handbook:_Everything_a_Beginner_Astronaut_Needs_to_Know
 https://www.goodreads.com/book/show/11556479.The_Duckling_Gets_a_Cookie!?
 https://www.goodreads.com/book/show/1908511.The_Pigeon_Wants_a_Puppy!
 https://www.goodreads.com/book/show/12095327.The_Berenstain_Bears_Say_Please_and_Thank_You
@@ -3328,7 +3283,6 @@ https://www.goodreads.com/book/show/1257094.Spot_Goes_To_The_Park_Lift_The_Flap
 https://www.goodreads.com/book/show/181601.If_You_Give_a_Pig_a_Party
 https://www.goodreads.com/book/show/12264509.Fancy_Nancy_and_the_Mermaid_Ballet
 https://www.goodreads.com/book/show/16285053.That_Is_Not_a_Good_Idea!
-https://www.goodreads.com/book/show/.How_Do_Dinosaurs_Eat_Their_Food?
 https://www.goodreads.com/book/show/6536675.How_Do_Dinosaurs_Say_I_Love_You?
 https://www.goodreads.com/book/show/2099403.Maisy's_Amazing_Big_Book_of_Words
 https://www.goodreads.com/book/show/731804.Pinkalicious
@@ -3502,9 +3456,7 @@ https://www.goodreads.com/book/show/35806148.A_Dog_with_Nice_Ears:_Featuring_Cha
 https://www.goodreads.com/book/show/8032970.Maisy_Goes_to_Preschool
 https://www.goodreads.com/book/show/25387525.Dinosaur_Rescue!
 https://www.goodreads.com/book/show/35795946.The_Detective_Dog
-https://www.goodreads.com/book/show/.A_Fire_Truck_for_Chuck
 https://www.goodreads.com/book/show/35082443.How_to_Grow_a_Dinosaur
-https://www.goodreads.com/book/show/.Beware_the_Monster
 https://www.goodreads.com/book/show/13528339.Dinotrux
 https://www.goodreads.com/book/show/35758056.The_Little_Pioneer
 https://www.goodreads.com/book/show/33913937.Come_Home_Already!
@@ -3555,7 +3507,6 @@ https://www.goodreads.com/book/show/1664194.Bye-Bye,_Big_Bad_Bullybug!
 https://www.goodreads.com/book/show/600413.Olivia_._._._and_the_Missing_Toy
 https://www.goodreads.com/book/show/35297590.This_Is_the_Nest_That_Robin_Built
 https://www.goodreads.com/book/show/35018218.My_Pillow_Keeps_Moving
-https://www.goodreads.com/book/show/.The_Moon_Man
 https://www.goodreads.com/book/show/35430335.If_the_S_in_Moose_Comes_Loose
 https://www.goodreads.com/book/show/22772540.Spot's_First_Easter_Board_Book
 https://www.goodreads.com/book/show/34701675.Goldilocks_and_the_Just_Right_Potty
@@ -3633,11 +3584,9 @@ https://www.goodreads.com/book/show/34227593.I_Am_a_Cat
 https://www.goodreads.com/book/show/33312948.The_Mermaid
 https://www.goodreads.com/book/show/1709870.Arthur_Goes_to_Camp
 https://www.goodreads.com/book/show/1615378.Arthur_Meets_the_President:_An_Arthur_Adventure
-https://www.goodreads.com/book/show/.Arthur's_Birthday
 https://www.goodreads.com/book/show/820664.My_World_Board_Book:_A_Companion_to_Goodnight_Moon
 https://www.goodreads.com/book/show/26125701.The_Find_It_Book
 https://www.goodreads.com/book/show/28953965.Click,_Clack,_Surprise!
-https://www.goodreads.com/book/show/.Glad_Monster,_Sad_Monster_:_A_Book_about_Feelings
 https://www.goodreads.com/book/show/33784325.The_Littlest_Train
 https://www.goodreads.com/book/show/35804746.I_Got_a_Chicken_for_My_Birthday
 https://www.goodreads.com/book/show/34381358.Days_with_Dad
@@ -3673,7 +3622,6 @@ https://www.goodreads.com/book/show/35396828.Marlo_and_the_Dinosaurs
 https://www.goodreads.com/book/show/35592009.On_the_Other_Side_of_the_Garden
 https://www.goodreads.com/book/show/992960.Choo_Choo
 https://www.goodreads.com/book/show/31522470.Dinosaur_Pirates!
-https://www.goodreads.com/book/show/.Kindergarten_Rocks!
 https://www.goodreads.com/book/show/6233934.The_Dumb_Bunnies_Go_To_The_Zoo
 https://www.goodreads.com/book/show/23399198.Never_Ask_a_Dinosaur_to_Dinner
 https://www.goodreads.com/book/show/33163374.The_Boy_and_the_Whale
@@ -3756,7 +3704,6 @@ https://www.goodreads.com/book/show/35030786.Write_to_Me:_Letters_from_Japanese_
 https://www.goodreads.com/book/show/35545801.An_Extraordinary_Ordinary_Moth
 https://www.goodreads.com/book/show/6898871.Dinosaur_Tamer
 https://www.goodreads.com/book/show/386132.The_Elves_and_the_Shoemaker
-https://www.goodreads.com/book/show/.Run,_Elephant,_Run:_An_Indonesian_Rainforest_Adventure
 https://www.goodreads.com/book/show/2346989.Baby_Bugs
 https://www.goodreads.com/book/show/16142145.Maisy's_First_Numbers:_A_Maisy_Concept_Book
 https://www.goodreads.com/book/show/28953911.Shapes
@@ -3820,7 +3767,6 @@ https://www.goodreads.com/book/show/27170130.Food
 https://www.goodreads.com/book/show/13584614.First_Words
 https://www.goodreads.com/book/show/13584613.Things_That_Go
 https://www.goodreads.com/book/show/13584615.Colors
-https://www.goodreads.com/book/show/.My_Animals
 https://www.goodreads.com/book/show/15795133.Hello_Baby:_Animals
 https://www.goodreads.com/book/show/22929063.Hello,_Ocean_Friends
 https://www.goodreads.com/book/show/28256175.Hello,_Baby_Animals
@@ -3831,7 +3777,6 @@ https://www.goodreads.com/book/show/15795134.Hello_Baby:_Words
 https://www.goodreads.com/book/show/15795145.Hello_Baby:_On_the_Go
 https://www.goodreads.com/book/show/13513497.Hello_Baby:_Baby_Grip
 https://www.goodreads.com/book/show/946221.Look_at_the_Animals!
-https://www.goodreads.com/book/show/.Wimmer-Ferguson_See_and_Say
 https://www.goodreads.com/book/show/13585735.Look_Look_Outside!
 https://www.goodreads.com/book/show/3006265.Hearts_and_Stars
 https://www.goodreads.com/book/show/3006264.Spots_and_Dots
@@ -3948,9 +3893,7 @@ https://www.goodreads.com/book/show/8032967.It's_My_Birthday
 https://www.goodreads.com/book/show/1422436.I_Hear
 https://www.goodreads.com/book/show/1195906.Helen_Oxenbury_Nursery_Collection
 https://www.goodreads.com/book/show/25453765.Family
-https://www.goodreads.com/book/show/.On_The_Road
 https://www.goodreads.com/book/show/26033842.Heads_and_Tails
-https://www.goodreads.com/book/show/.Construction_Vehicles
 https://www.goodreads.com/book/show/29102850.Race_Car_Count
 https://www.goodreads.com/book/show/18330624.Sign_Language_ABC
 https://www.goodreads.com/book/show/34220796.ABC_for_Me:_ABC_Baby_Signs:_Learn_baby_sign_language_while_you_practice_your_ABCs!
@@ -4059,7 +4002,6 @@ https://www.goodreads.com/book/show/35805869.Hello,_World!_My_Body
 https://www.goodreads.com/book/show/35799875.There's_a_Bear_on_My_Chair
 https://www.goodreads.com/book/show/36095346.Bigger!_Bigger!
 https://www.goodreads.com/book/show/33155330.I_Love_You_for_Miles_and_Miles
-https://www.goodreads.com/book/show/.My_World_My_Words:_A_Toddler's_First_Words
 https://www.goodreads.com/book/show/26076091.Dolphins_Play
 https://www.goodreads.com/book/show/10419701.Orange_Pear_Apple_Bear
 https://www.goodreads.com/book/show/30208344.Five_Black_Cats
@@ -4142,18 +4084,11 @@ https://www.goodreads.com/book/show/42087382.On_the_Go_Mazes
 https://www.goodreads.com/book/show/.What's_Different?
 https://www.goodreads.com/book/show/15859704.Spot-the-Differences_Puzzle_Fun
 https://www.goodreads.com/book/show/19438774.Bugs_Mazes
-https://www.goodreads.com/book/show/.Treasure_Hunt_Activity_Book
 https://www.goodreads.com/book/show/22323442.Spot_the_Differences_Picture_Puzzles
 https://www.goodreads.com/book/show/42141262.My_First_Crossword_Puzzle_Book
 https://www.goodreads.com/book/show/4241448.Little_Hidden_Pictures
-https://www.goodreads.com/book/show/.Zoo_Animals_Dot-to-Dot
 https://www.goodreads.com/book/show/13340217.STICKER_BOOK:___Build_Your_Own_Cupcake_Sticker_Activity_Book
 https://www.goodreads.com/book/show/17885682.More_Little_Hidden_Pictures
-https://www.goodreads.com/book/show/.Make_Your_Own_Ice_Cream_Sundae_with_54_Stickers
-https://www.goodreads.com/book/show/.Animal_Search-a-Word_Puzzles
-https://www.goodreads.com/book/show/.Make_Your_Own_Pizza_Sticker_Activity_Book
-https://www.goodreads.com/book/show/.Sea_Life_Follow-the-Dots
-https://www.goodreads.com/book/show/.Beach_Sticker_Activity_Book
 https://www.goodreads.com/book/show/23705755.Cat__Dog_Dress_Up_Sticker_Paper_Dolls
 https://www.goodreads.com/book/show/4202523.STICKERS:___Make_Your_Own_Butterfly_Sticker_Activity_Book
 https://www.goodreads.com/book/show/25893626.Bizzy_Bear:_Deep-Sea_Diver
@@ -4324,7 +4259,6 @@ https://www.goodreads.com/book/show/6767587.Meeow_and_the_Little_Chairs
 https://www.goodreads.com/book/show/8345353.Meeow_and_the_Blue_Table
 https://www.goodreads.com/book/show/18635021.Whoosh_and_Chug!
 https://www.goodreads.com/book/show/18142380.Who_Can_Jump?
-https://www.goodreads.com/book/show/.Jane_Cabrera:_Rainbow
 https://www.goodreads.com/book/show/34356523.City
 https://www.goodreads.com/book/show/34356522.Emergency
 https://www.goodreads.com/book/show/24795954.Dinoblock
@@ -5008,7 +4942,6 @@ https://www.goodreads.com/book/show/23000955.Cora_Cooks_Pancit
 https://www.goodreads.com/book/show/17945717.King_for_a_Day
 https://www.goodreads.com/book/show/13235037.A_Path_of_Stars
 https://www.goodreads.com/book/show/20675093.Hana_Hashimoto,_Sixth_Violin
-https://www.goodreads.com/book/show/.Dumpling_Days
 https://www.goodreads.com/book/show/26226528.Moon_Patrol
 https://www.goodreads.com/book/show/906836.The_Brand_New_Kid
 https://www.goodreads.com/book/show/28095397.Why_I_Laugh:_A_Book_About_Autism
@@ -5091,7 +5024,6 @@ https://www.goodreads.com/book/show/30041539.Liam_Labradoodle_Learns_Whole_Body_
 https://www.goodreads.com/book/show/13543386.I_Have_a_Little_Problem,_Said_the_Bear
 https://www.goodreads.com/book/show/17464922.Too_Much_Glue
 https://www.goodreads.com/book/show/1397418.Old_Black_Fly
-https://www.goodreads.com/book/show/.When_I_Feel_Angry
 https://www.goodreads.com/book/show/848173.When_I_Miss_You
 https://www.goodreads.com/book/show/1177158.When_I_Feel_Sad
 https://www.goodreads.com/book/show/21423628.When_I_Feel_Worried
@@ -5149,7 +5081,6 @@ https://www.goodreads.com/book/show/32333040.Jane_Foster's_Cities:_New_York
 https://www.goodreads.com/book/show/32333043.Jane_Foster's_Things_That_Go
 https://www.goodreads.com/book/show/34228064.Jane_Foster's_Cities:_Paris
 https://www.goodreads.com/book/show/28953876.Jane_Foster's_Stripy_Tiger_Pattern_Book
-https://www.goodreads.com/book/show/.I_Am_Dreaming_of_Animals_of_the_Native_Northwest
 https://www.goodreads.com/book/show/1367564.Good_Night,_Baby
 https://www.goodreads.com/book/show/29065945.Tickle_My_Ears
 https://www.goodreads.com/book/show/28686923.Give_&_Take
