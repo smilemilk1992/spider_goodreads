@@ -193,7 +193,7 @@ class MangoSpider(scrapy.Spider):
             print("   score    :" + score)
             print("   ratings    :" + ratings)
             print("   reviews    :" + reviews)
-            print("   genres     :" + str(genres)) if genres else "None"
+            print("   genres     :" + str(genres) if genres else "None")
             print("   Published_Time    :" + aa)
             print("   First_Published_Time    :" + bb)
             print("   pages    :" + pages)
