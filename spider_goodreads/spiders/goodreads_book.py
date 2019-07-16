@@ -178,7 +178,6 @@ class MangoSpider(scrapy.Spider):
         #     # print key
         #     value = "https://www.goodreads.com" + str(i.xpath("./@href").extract()[0])
         #     info[key] = value
-
         print("\n--------------------图书字段信息-------------------")
         print("   bookUrl    :" + bookUrl)
         print("   title    :" + title)
