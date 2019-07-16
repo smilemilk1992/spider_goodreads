@@ -132,7 +132,7 @@ class MangoSpider(scrapy.Spider):
                 bb = etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(")").lstrip(
                     "(") if etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()") else aa
             elif len(details) == 1:
-                a = etree.fromstring(details[0]).xpath("./text()")[0]
+                a = etree.fromstring(details[0]).xpath("./text()")[0] if etree.fromstring(details[0]).xpath("./text()") else "None"
                 aa = "".join(x.strip() + " " for x in a.split("\n") if x)
                 bb = etree.fromstring(details[0]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(
                     ")").lstrip("(") if etree.fromstring(details[0]).xpath("./nobr[@class='greyText']/text()") else aa
