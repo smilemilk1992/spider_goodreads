@@ -38,7 +38,7 @@ class MangoSpider(scrapy.Spider):
     logger = LogHelp.getLog("error.info")
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/book/show/151861.The_Big_Sleep_Over']
+    start_urls = ['https://www.goodreads.com/book/show/1733202']
 
 
     # def start_requests(self):
