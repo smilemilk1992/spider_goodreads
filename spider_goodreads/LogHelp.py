@@ -17,3 +17,4 @@ def getLog(name):
     # 给logger添加handler
     logger.addHandler(fh)
     return logger
+

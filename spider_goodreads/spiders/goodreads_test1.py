@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+
 import scrapy
 from lxml import etree
 import re
@@ -179,30 +177,29 @@ class MangoSpider(scrapy.Spider):
         if float(score)>3.7 and int(reviews)>300 and s_w>=0.5 and s_s_w>0.92:
             #"Childrens ", or "Picture Books", or "Chapter Books", or "Pre-K", or "Middle Grade"
             if "Childrens" in genres.iterkeys() or "Pre K" in genres.iterkeys() or "Chapter Books" in genres.iterkeys() or "Picture Books" in genres.iterkeys() or "Middle Grade" in genres.iterkeys():
-                print "\n--------------------图书字段信息-------------------"
-                print "   bookUrl    :" + bookUrl
-                print "   title    :" + title
-                print "   authorName    :" + ",".join(x for x in authorList)
-                print "   authorNameUrl    :" + ",".join(x for x in authorUrlList)
-                print "   Illustrator   :" + ",".join(x for x in Tlluser)
-                print "   IllustratorUrl   :" + ",".join(x for x in Tllist)
-                print "   coverPic    :" + coverPic
-                print "   Rating details    :" + renderRatingGraph
-                print "   score    :" + score
-                print "   ratings    :" + ratings
-                print "   reviews    :" + reviews
-                print "   genres     :" + str(genres)
-                print "   bookFormat    :" + bookFormat
-                print "   Published_Time    :" + aa
-                print "   First_Published_Time    :" + bb
-                print "   pages    :" + pages
-                print "   Original_title    :" + Original_title
-                print "   Literary_Awards   :" + Literary_Awards
-                print "   ISBN    :" + ISBN
-                print "   ISBN13    :" + ISBN13
-                print "   Edition_Language    :" + Edition_Language
-                print "   description    :" + description
-                print "--------------------图书字段信息-------------------\n"
+                print ("\n--------------------图书字段信息-------------------")
+                print ("   bookUrl    :" + bookUrl)
+                print ("   title    :" + title)
+                print ("   authorName    :" + ",".join(x for x in authorList))
+                print ("   authorNameUrl    :" + ",".join(x for x in authorUrlList))
+                print ("   Illustrator   :" + ",".join(x for x in Tlluser))
+                print ("   IllustratorUrl   :" + ",".join(x for x in Tllist))
+                print ("   coverPic    :" + coverPic)
+                print ("   Rating details    :" + renderRatingGraph)
+                print ("   score    :" + score)
+                print ("   ratings    :" + ratings)
+                print ("   reviews    :" + reviews)
+                print ("   genres     :" + str(genres))
+                print ("   Published_Time    :" + aa)
+                print ("   First_Published_Time    :" + bb)
+                print ("   pages    :" + pages)
+                print ("   Original_title    :" + Original_title)
+                print ("   Literary_Awards   :" + Literary_Awards)
+                print ("   ISBN    :" + ISBN)
+                print ("   ISBN13    :" + ISBN13)
+                print ("   Edition_Language    :" + Edition_Language)
+                print ("   description    :" + description)
+                print ("--------------------图书字段信息-------------------\n")
                 item={}
                 item["bookUrl"]=bookUrl
                 item["title"]=title

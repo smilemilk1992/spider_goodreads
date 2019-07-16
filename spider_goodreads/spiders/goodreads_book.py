@@ -31,8 +31,8 @@ class MangoSpider(scrapy.Spider):
             'spider_goodreads.middlewares.RandomUserAgent.RandomUserAgent': 300,
             # 'spider_goodreads.middlewares.random_http_proxy.IpMiddleware': 110, #添加代理ip逻辑
         },
-        'LOG_FILE' : "error.log",
-        'LOG_LEVEL' : "ERROR"
+        # 'LOG_FILE' : "error.log",
+        # 'LOG_LEVEL' : "ERROR"
     }
 
     logger = LogHelp.getLog("error.info")
