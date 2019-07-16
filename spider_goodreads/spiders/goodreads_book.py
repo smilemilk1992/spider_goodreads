@@ -165,7 +165,7 @@ class MangoSpider(scrapy.Spider):
                 else:
                     b = None
 
-                if a:
+                if a and b:
                     genres[a] = b.replace("users", "").strip()
                 else:
                     genres = "None"
