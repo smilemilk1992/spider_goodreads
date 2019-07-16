@@ -170,14 +170,27 @@ class MangoSpider(scrapy.Spider):
         s = requests.get(
             "https://www.goodreads.com/buy_buttons/12/follow?book_id=41735400&ref=x_gr_w_bb&tag=x_gr_w_bb-20",
             allow_redirects=True)
-        info = {}
+
         storesInfo = response.xpath("//div[@id='buyDropButtonStores']//a[@class='actionLinkLite']")
+        info={}
         for i in storesInfo:
             # i = etree.fromstring(i)
             key = i.xpath("./text()").extract()[0]
-            print key
-            value = "https://www.goodreads.com" + str(i.xpath("./@href").extract()[0])
-            info[key] = value
+            if "Barnes & Noble" in key:
+                Origin_Url = "https://www.goodreads.com" + str(i.xpath("./@href").extract()[0])
+                b= requests.get(Origin_Url,allow_redirects=True)
+                info["Barnes & Noble"] = [Origin_Url,b.url]
+            if "Walmart eBooks" in key:
+                Origin_Url = "https://www.goodreads.com" + str(i.xpath("./@href").extract()[0])
+                b = requests.get(Origin_Url, allow_redirects=True)
+                info["Walmart eBooks"] = [Origin_Url, b.url]
+            if "Alibris" in key:
+                Origin_Url = "https://www.goodreads.com" + str(i.xpath("./@href").extract()[0])
+                b = requests.get(Origin_Url, allow_redirects=True)
+                info["Alibris"] = [Origin_Url, b.url]
+        info["Amazon"]=[AmazonUrl,s.url.split("ref=")[0]]
+
+
 
         # RatingGraph = renderRatingGraph.split(",")
         # s_w = (int(RatingGraph[0]) + int(RatingGraph[1])) / float(ratings)
@@ -194,8 +207,8 @@ class MangoSpider(scrapy.Spider):
         print "   IllustratorUrl   :" + ",".join(x for x in Tllist)
         print "   coverPic    :" + coverPic
         print "   Rating details    :" + renderRatingGraph
-        print "   AmazonUrl    :" + AmazonUrl
-        print "   AmazonUrloRIGIN    :" + s.url.split("ref=")[0]
+        print "   flagUrl    :" + str(info)
+
         print "   score    :" + score
         print "   ratings    :" + ratings
         print "   reviews    :" + reviews
