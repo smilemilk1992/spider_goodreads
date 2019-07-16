@@ -3,6 +3,7 @@
 import scrapy
 from lxml import etree
 import re
+import requests
 import logging
 class XpathRule(object):
     bookDataBox = "//div[@class='clearFloats']/div[@class='infoBoxRowItem']"
