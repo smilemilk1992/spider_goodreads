@@ -177,12 +177,15 @@ class MangoSpider(scrapy.Spider):
             # i = etree.fromstring(i)
             key = i.xpath("./text()").extract()[0]
             Origin_Url = "https://www.goodreads.com" + str(i.xpath("./@href").extract()[0])
-            b = requests.get(Origin_Url, allow_redirects=True)
+
             if "Barnes & Noble" in key:
+                b = requests.get(Origin_Url, allow_redirects=True)
                 info["Barnes & Noble"] = [Origin_Url,b.url]
             if "Walmart eBooks" in key:
+                b = requests.get(Origin_Url, allow_redirects=True)
                 info["Walmart eBooks"] = [Origin_Url, b.url]
             if "Alibris" in key:
+                b = requests.get(Origin_Url, allow_redirects=True)
                 info["Alibris"] = [Origin_Url, b.url]
         info["Amazon"]=["https://www.goodreads.com"+AmazonUrl,s.url.split("ref=")[0]]
 
