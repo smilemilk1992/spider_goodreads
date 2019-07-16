@@ -49,7 +49,7 @@ class MangoSpider(scrapy.Spider):
 
 
     def parse(self, response):
-        try:
+        # try:
             score = response.xpath("//span[@itemprop='ratingValue']/text()").extract()[0].strip()
             reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
             ratings = response.xpath("//meta[@itemprop='ratingCount']/@content").extract()[0].strip()
@@ -261,5 +261,5 @@ class MangoSpider(scrapy.Spider):
             # print "   info    :" + str(info)
             # print "   description    :" + description
             # print "--------------------图书字段信息-------------------\n"
-        except Exception as e:
-            self.logger.error("url ="+response.url+" e="+str(e))
+        # except Exception as e:
+        #     self.logger.error("url ="+response.url+" e="+str(e))
