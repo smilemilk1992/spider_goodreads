@@ -159,8 +159,8 @@ class MangoSpider(scrapy.Spider):
             else:
                 b = None
 
-            if a and b:
-                genres[a] = b.replace("users", "").strip()
+            if a :
+                genres[a] = b.replace("users", "").strip() if b else None
             else:
                 genres = "None"
 
@@ -193,7 +193,7 @@ class MangoSpider(scrapy.Spider):
         print "   score    :" + score
         print "   ratings    :" + ratings
         print "   reviews    :" + reviews
-        print "   genres     :" + str(genres)
+        print "   genres     :" + str(genres if genres else "None")
         print "   bookFormat    :" + bookFormat
         print "   Published_Time    :" + aa
         print "   First_Published_Time    :" + bb
