@@ -167,7 +167,7 @@ class MangoSpider(scrapy.Spider):
 
 
         AmazonUrl=response.xpath("//ul[@class='buyButtonBar left']/li/a[@class='buttonBar']/@href").extract()[0].strip()
-        AmazId=re.search("book_id=(\d+)&ref=",AmazonUrl).group(1)
+        # AmazId=re.search("book_id=(\d+)&ref=",AmazonUrl).group(1)
 
 
         storesInfo = response.xpath("//div[@id='buyDropButtonStores']//a[@class='actionLinkLite']")
@@ -181,11 +181,11 @@ class MangoSpider(scrapy.Spider):
                 b = requests.get(Origin_Url, allow_redirects=True)
                 info["Barnes & Noble"] = [Origin_Url,b.url]
             if "Walmart eBooks" in key:
-                info["Walmart eBooks"] = [Origin_Url, "https://www.kobo.com/us/en/search?query={}".format("_".format(x for x in title.split(" ")))]
+                info["Walmart eBooks"] = [Origin_Url, "https://www.kobo.com/us/en/search?query={}".format("_".join(x for x in title.split(" ")))]
             if "Alibris" in key:
                 b = requests.get(Origin_Url, allow_redirects=True)
                 info["Alibris"] = [Origin_Url, b.url]
-        info["Amazon"]=["https://www.goodreads.com"+AmazonUrl,"https://www.amazon.com/gp/product/"+str(AmazId)]
+        info["Amazon"]=["https://www.goodreads.com"+AmazonUrl,"https://www.amazon.com/gp/product/"+str(ISBN)]
 
 
 
