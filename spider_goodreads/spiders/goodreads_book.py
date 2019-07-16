@@ -29,7 +29,7 @@ class MangoSpider(scrapy.Spider):
             # 'spider_goodreads.middlewares.random_http_proxy.IpMiddleware': 110, #添加代理ip逻辑
         },
         'LOG_FILE' : "error.log",
-        'LOG_LEVEL' : "DEBUG"
+        'LOG_LEVEL' : "ERROR"
     }
 
 
