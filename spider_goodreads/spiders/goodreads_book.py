@@ -32,7 +32,7 @@ class MangoSpider(scrapy.Spider):
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    start_urls = ['https://www.goodreads.com/book/show/1733202.The_Grumpus_Under_the_Rug']
+    start_urls = ['https://www.goodreads.com/book/show/41735400-snippets']
 
 
     # def start_requests(self):
