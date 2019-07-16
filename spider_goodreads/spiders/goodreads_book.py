@@ -166,6 +166,9 @@ class MangoSpider(scrapy.Spider):
 
 
         AmazonUrl=response.xpath("//ul[@class='buyButtonBar left']/li/a[@class='buttonBar']/@href").extract()[0].strip()
+        s = requests.get(
+            "https://www.goodreads.com/buy_buttons/12/follow?book_id=41735400&ref=x_gr_w_bb&tag=x_gr_w_bb-20",
+            allow_redirects=True)
         info = {}
         storesInfo = response.xpath("//div[@id='buyDropButtonStores']//a[@class='actionLinkLite']")
         for i in storesInfo:
@@ -190,6 +193,8 @@ class MangoSpider(scrapy.Spider):
         print "   IllustratorUrl   :" + ",".join(x for x in Tllist)
         print "   coverPic    :" + coverPic
         print "   Rating details    :" + renderRatingGraph
+        print "   AmazonUrl    :" + AmazonUrl
+        print "   AmazonUrloRIGIN    :" + s.url
         print "   score    :" + score
         print "   ratings    :" + ratings
         print "   reviews    :" + reviews
