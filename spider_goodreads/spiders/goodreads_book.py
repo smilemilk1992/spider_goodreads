@@ -38,14 +38,14 @@ class MangoSpider(scrapy.Spider):
     logger = LogHelp.getLog("error.info")
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    # start_urls = ['https://www.goodreads.com/book/show/1733202.The_Grumpus_Under_the_Rug']
+    start_urls = ['https://www.goodreads.com/book/show/151861.The_Big_Sleep_Over']
 
 
-    def start_requests(self):
-        with open('url.txt', "r") as f:
-            url = f.readlines()
-            for x in url:
-                yield scrapy.Request(x.strip(), callback=self.parse)
+    # def start_requests(self):
+    #     with open('url.txt', "r") as f:
+    #         url = f.readlines()
+    #         for x in url:
+    #             yield scrapy.Request(x.strip(), callback=self.parse)
 
 
     def parse(self, response):
@@ -228,7 +228,7 @@ class MangoSpider(scrapy.Spider):
             item["ISBN13"] = ISBN13
             item["Edition_Language"] = Edition_Language
             item["description"] = description
-            yield item
+            # yield item
             # RatingGraph = renderRatingGraph.split(",")
             # s_w = (int(RatingGraph[0]) + int(RatingGraph[1])) / float(ratings)
             # s_s_w = (int(RatingGraph[0]) + int(RatingGraph[1]) + int(RatingGraph[2])) / float(ratings)
