@@ -195,7 +195,7 @@ class MangoSpider(scrapy.Spider):
         print "   coverPic    :" + coverPic
         print "   Rating details    :" + renderRatingGraph
         print "   AmazonUrl    :" + AmazonUrl
-        print "   AmazonUrloRIGIN    :" + s.url
+        print "   AmazonUrloRIGIN    :" + s.url.split("ref=")[0]
         print "   score    :" + score
         print "   ratings    :" + ratings
         print "   reviews    :" + reviews
