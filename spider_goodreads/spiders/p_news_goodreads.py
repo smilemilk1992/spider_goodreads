@@ -32,11 +32,11 @@ class GoodReadsSpider(scrapy.Spider):
     # start_urls = ['https://www.goodreads.com/book/show/1733202']
 
     def start_requests(self):
-        with open('url.txt', "r") as f:
-            url = f.readlines()
-            for x in url:
-                id=re.search("https://www.goodreads.com/book/show/(\d+)",x.strip()).group(1)
-                yield scrapy.Request(x.strip(), callback=self.parse,dont_filter=False,meta={"id":id})
+        # with open('url.txt', "r") as f:
+        #     url = f.readlines()
+        #     for x in url:
+        id=re.search("https://www.goodreads.com/book/show/(\d+)","https://www.goodreads.com/book/show/1733202").group(1)
+        yield scrapy.Request("https://www.goodreads.com/book/show/1733202", callback=self.parse,dont_filter=False,meta={"id":id})
 
 
     def parse(self, response):
