@@ -95,7 +95,7 @@ class GoodReadsSpider(scrapy.Spider):
         print "   goodreadsBarnesNoble    :" + goodreadsBarnesNoble
         print "   barnesNoble    :" + barnesNoble
 
-        # print "--------------------图书字段信息-------------------\n"
+        print "--------------------图书字段信息-------------------\n"
         # item = {}
         # item["goodreadsId"] = re.search("https://www.goodreads.com/book/show/(\d+)",response.url).group(1)
         # item["relationId"] = response.meta["id"]
