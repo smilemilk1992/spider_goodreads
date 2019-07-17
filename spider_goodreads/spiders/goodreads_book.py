@@ -33,14 +33,14 @@ class MangoSpider(scrapy.Spider):
 
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
-    # start_urls = ['https://www.goodreads.com/book/show/41735400-snippets']
+    start_urls = ['https://www.goodreads.com/book/show/41735400-snippets']
 
 
-    def start_requests(self):
-        with open('url.txt', "r") as f:
-            url = f.readlines()
-            for x in url:
-                yield scrapy.Request(x.strip(), callback=self.parse)
+    # def start_requests(self):
+    #     with open('url.txt', "r") as f:
+    #         url = f.readlines()
+    #         for x in url:
+    #             yield scrapy.Request(x.strip(), callback=self.parse)
 
 
     def parse(self, response):
@@ -181,7 +181,7 @@ class MangoSpider(scrapy.Spider):
                 b = requests.get(Origin_Url, allow_redirects=True)
                 info["Barnes & Noble"] = [Origin_Url,b.url]
             if "Walmart eBooks" in key:
-                info["Walmart eBooks"] = [Origin_Url, "https://www.kobo.com/us/en/search?query={}".format("_".join(x for x in title.split(" ")))]
+                info["Walmart eBooks"] = [Origin_Url, "https://www.kobo.com/us/en/search?query={}".format("+".join(x for x in title.split(" ")))]
             if "Alibris" in key:
                 b = requests.get(Origin_Url, allow_redirects=True)
                 info["Alibris"] = [Origin_Url, b.url]
