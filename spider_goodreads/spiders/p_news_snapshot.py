@@ -31,7 +31,7 @@ class GoodReadsSpider(scrapy.Spider):
         # 'LOG_LEVEL': "ERROR"
     }
 
-    start_urls = ['https://www.goodreads.com/book/show/1733202']
+    start_urls = ['https://www.goodreads.com/book/show/25783727']
 
     # def start_requests(self):
     #     with open('url.txt', "r") as f:
@@ -79,7 +79,7 @@ class GoodReadsSpider(scrapy.Spider):
 
             if "Alibris" in key:
                 goodreadsAlibrisUrl = Origin_Url
-                alibrisUrl="https://www.alibris.com/booksearch?keyword={}".format(ISBN) if ISBN else None
+                alibrisUrl="https://www.alibris.com/booksearch?keyword={}".format(ISBN) if ISBN else re.search('isbn: (\d+)',response.body).group(1)
 
         yield scrapy.Request(goodreadsBarnesNoble, callback=self.parse1, meta={"goodreadsId": goodreadsId,
                                                                                                   "goodreadsUrl":goodreadsUrl,
