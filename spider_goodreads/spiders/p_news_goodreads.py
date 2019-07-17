@@ -39,6 +39,7 @@ class GoodReadsSpider(scrapy.Spider):
 
 
     def parse(self, response):
+        otherEdition=response.xpath("//div[@class='otherEdition']/a/@href").extract()
         score = response.xpath("//span[@itemprop='ratingValue']/text()").extract()[0].strip()
         reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
         ratings = response.xpath("//meta[@itemprop='ratingCount']/@content").extract()[0].strip()
@@ -163,6 +164,7 @@ class GoodReadsSpider(scrapy.Spider):
 
 
         print "\n--------------------图书字段信息-------------------"
+        print "    ------ :"+str(otherEdition)
         print "   bookUrl    :" + bookUrl
         print "   title    :" + title
         print "   authorName    :" + ",".join(x for x in authorList)
