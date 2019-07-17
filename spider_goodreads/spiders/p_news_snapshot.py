@@ -31,7 +31,7 @@ class GoodReadsSpider(scrapy.Spider):
         # 'LOG_LEVEL': "ERROR"
     }
 
-    start_urls = ['https://www.goodreads.com/book/show/25783727']
+    start_urls = ['https://www.goodreads.com/book/show/488924']
 
     # def start_requests(self):
     #     with open('url.txt', "r") as f:
