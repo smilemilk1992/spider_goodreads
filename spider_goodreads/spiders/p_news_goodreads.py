@@ -40,6 +40,9 @@ class GoodReadsSpider(scrapy.Spider):
 
     def parse(self, response):
         otherEdition=response.xpath("//div[@class='otherEdition']/a/@href").extract()
+        if otherEdition:
+            for o in otherEdition:
+                yield scrapy.Request(o, callback=self.parse)
         score = response.xpath("//span[@itemprop='ratingValue']/text()").extract()[0].strip()
         reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
         ratings = response.xpath("//meta[@itemprop='ratingCount']/@content").extract()[0].strip()
