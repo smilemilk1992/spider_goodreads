@@ -71,10 +71,13 @@ class GoodReadsSpider(scrapy.Spider):
             Origin_Url = "https://www.goodreads.com" + str(i.xpath("./@href").extract()[0])
             if "Barnes & Noble" in key:
                 goodreadsBarnesNoble = Origin_Url
+                barnesNoble = requests.get(Origin_Url, allow_redirects=True).url
             if "Walmart eBooks" in key:
                 goodreadsWalmarteBooksUrl = Origin_Url
+                walmarteBooksUrl=requests.get(Origin_Url, allow_redirects=True).url
             if "Alibris" in key:
                 goodreadsAlibrisUrl = Origin_Url
+                alibrisUrl=requests.get(Origin_Url, allow_redirects=True).url
 
 
 
@@ -86,11 +89,11 @@ class GoodReadsSpider(scrapy.Spider):
         print "   goodreadsAmazonUrl    :" + goodreadsAmazonUrl
         print "   amazonUrl    :" + amazonUrl
         print "   goodreadsAlibrisUrl   :" + goodreadsAlibrisUrl
-        # print "   alibrisUrl   :" +
+        print "   alibrisUrl   :" +alibrisUrl
         print "   goodreadsWalmarteBooksUrl    :" + goodreadsWalmarteBooksUrl
-        # print "   walmarteBooksUrl    :" + renderRatingGraph
+        print "   walmarteBooksUrl    :" + walmarteBooksUrl
         print "   goodreadsBarnesNoble    :" + goodreadsBarnesNoble
-        # print "   barnesNoble    :" + ratings
+        print "   barnesNoble    :" + barnesNoble
 
         # print "--------------------图书字段信息-------------------\n"
         # item = {}
