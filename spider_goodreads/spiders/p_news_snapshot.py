@@ -76,7 +76,7 @@ class GoodReadsSpider(scrapy.Spider):
             if "Walmart eBooks" in key:
                 goodreadsWalmarteBooksUrl = Origin_Url
                 walmarteBooksUrl = "https://www.kobo.com/us/en/search?query={}".format(
-                    "+".join(x for x in title.split(" ")))
+                    "+".join(x for x in re.split(" |:",title)))
 
             if "Alibris" in key:
                 goodreadsAlibrisUrl = Origin_Url
