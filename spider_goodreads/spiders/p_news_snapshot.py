@@ -106,7 +106,7 @@ class GoodReadsSpider(scrapy.Spider):
 
     def parse2(self, response):
         walmarteBooksUrl = response.url
-        yield scrapy.Request(response.meta['goodreadsAlibrisUrl'], callback=self.parse2, dont_filter=False,
+        yield scrapy.Request(response.meta['goodreadsAlibrisUrl'], callback=self.parse3, dont_filter=False,
                              meta={"goodreadsId": response.meta['goodreadsId'],
                                    "goodreadsUrl": response.meta['goodreadsUrl'],
                                    "title": response.meta['title'],
