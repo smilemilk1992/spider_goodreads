@@ -32,17 +32,18 @@ class GoodReadsSpider(scrapy.Spider):
     # start_urls = ['https://www.goodreads.com/book/show/2476280']
 
     def start_requests(self):
-        # with open('url.txt', "r") as f:
-        #     url = f.readlines()
-        #     for x in url:
-                yield scrapy.Request("https://www.goodreads.com/book/show/2476280", callback=self.parse,dont_filter=False)
+        with open('url.txt', "r") as f:
+            url = f.readlines()
+            for x in url:
+                id=re.search("https://www.goodreads.com/book/show/(\d+)",x.strip()).group(1)
+                yield scrapy.Request(x.strip(), callback=self.parse,dont_filter=False,meta={"id":id})
 
 
     def parse(self, response):
         otherEdition=response.xpath("//div[@class='otherEdition']/a/@href").extract()
         if otherEdition:
             for o in otherEdition:
-                yield scrapy.Request(o, callback=self.parse,dont_filter=False)
+                yield scrapy.Request(o, callback=self.parse,dont_filter=False,meta={"id":response.meta["id"]})
         score = response.xpath("//span[@itemprop='ratingValue']/text()").extract()[0].strip()
         reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
         ratings = response.xpath("//meta[@itemprop='ratingCount']/@content").extract()[0].strip()
@@ -167,7 +168,7 @@ class GoodReadsSpider(scrapy.Spider):
 
 
         print "\n--------------------图书字段信息-------------------"
-        print "    ------ :"+str(otherEdition)
+        print "   relationId  :"+response.meta["id"]
         print "   bookUrl    :" + bookUrl
         print "   title    :" + title
         print "   authorName    :" + ",".join(x for x in authorList)
