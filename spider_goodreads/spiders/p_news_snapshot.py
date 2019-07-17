@@ -107,7 +107,7 @@ class GoodReadsSpider(scrapy.Spider):
         print "   goodreadsAlibrisUrl   :" + response.meta['goodreadsAlibrisUrl']
         print "   alibrisUrl   :" +response.meta['alibrisUrl']
         print "   goodreadsWalmarteBooksUrl    :" + response.meta['goodreadsWalmarteBooksUrl']
-        print "   walmarteBooksUrl    :" + response['walmarteBooksUrl']
+        print "   walmarteBooksUrl    :" + response.meta['walmarteBooksUrl']
         print "   goodreadsBarnesNoble    :" + response.meta['goodreadsBarnesNoble']
         print "   barnesNoble    :" + barnesNoble
 
