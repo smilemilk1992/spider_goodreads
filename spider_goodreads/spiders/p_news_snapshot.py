@@ -63,7 +63,8 @@ class GoodReadsSpider(scrapy.Spider):
         else:
             ISBN = None
             ISBN13 = None
-        amazonUrl="https://www.amazon.com/gp/product/{}".format(ISBN) if ISBN else None
+        amazonUrl="https://www.amazon.com/gp/product/{}".format(ISBN) if ISBN else "https://www.amazon.com/s?k={}".format(
+                    "+".join(x for x in title.split(" ")))
 
         storesInfo = response.xpath("//div[@id='buyDropButtonStores']//a[@class='actionLinkLite']")
         for i in storesInfo:
