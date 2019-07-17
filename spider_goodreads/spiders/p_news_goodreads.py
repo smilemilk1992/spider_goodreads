@@ -29,13 +29,13 @@ class GoodReadsSpider(scrapy.Spider):
         }
     }
 
-    start_urls = ['https://www.goodreads.com/book/show/2476280']
+    # start_urls = ['https://www.goodreads.com/book/show/2476280']
 
-    # def start_requests(self):
-    #     with open('url.txt', "r") as f:
-    #         url = f.readlines()
-    #         for x in url:
-    #             yield scrapy.Request(x.strip(), callback=self.parse)
+    def start_requests(self):
+        # with open('url.txt', "r") as f:
+        #     url = f.readlines()
+        #     for x in url:
+                yield scrapy.Request("'https://www.goodreads.com/book/show/2476280'", callback=self.parse,dont_filter=False)
 
 
     def parse(self, response):
