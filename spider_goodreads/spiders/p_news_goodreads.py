@@ -32,11 +32,11 @@ class GoodReadsSpider(scrapy.Spider):
     # start_urls = ['https://www.goodreads.com/book/show/1733202']
 
     def start_requests(self):
-        # with open('url.txt', "r") as f:
-        #     url = f.readlines()
-        #     for x in url:
-        id=re.search("https://www.goodreads.com/book/show/(\d+)","https://www.goodreads.com/book/show/1733202").group(1)
-        yield scrapy.Request("https://www.goodreads.com/book/show/1733202", callback=self.parse,dont_filter=False,meta={"id":id})
+        with open('url.txt', "r") as f:
+            url = f.readlines()
+            for x in url:
+                id=re.search("https://www.goodreads.com/book/show/(\d+)",x.strip()).group(1)
+                yield scrapy.Request(x.strip(), callback=self.parse,dont_filter=False,meta={"id":id})
 
 
     def parse(self, response):
@@ -165,8 +165,6 @@ class GoodReadsSpider(scrapy.Spider):
 
 
 
-
-
         print "\n--------------------图书字段信息-------------------"
         print "   relationId  :"+response.meta["id"]
         print "   bookUrl    :" + bookUrl
@@ -192,3 +190,29 @@ class GoodReadsSpider(scrapy.Spider):
         print "   Edition_Language    :" + Edition_Language
         print "   description    :" + description
         print "--------------------图书字段信息-------------------\n"
+        item = {}
+        item["goodreadsId"] = re.search("https://www.goodreads.com/book/show/(\d+)",response.url).group(1)
+        item["relationId"] = response.meta["id"]
+        item["goodreadsUrl"] = response.url
+        item["title"] = title
+        item["authorName"] = ",".join(x for x in authorList)
+        item["authorNameUrl"] = ",".join(x for x in authorUrlList)
+        item["Illustrator"] = ",".join(x for x in Tlluser)
+        item["IllustratorUrl"] = ",".join(x for x in Tllist)
+        item["coverPic"] = coverPic
+        item["ratingDetails"] = renderRatingGraph
+        item["score"] = score
+        item["ratings"] = ratings
+        item["reviews"] = reviews
+        item["genres"] = genres if genres else None
+        item["bookFormat"] = bookFormat
+        item["publishedTime"]=aa
+        item["firstPublishedTime"] = bb
+        item["pages"] = pages
+        item["originalTitle"] = Original_title
+        item["literaryAwards"] = Literary_Awards
+        item["ISBN"] = ISBN
+        item["ISBN13"] = ISBN13
+        item["editionLanguage"] = Edition_Language
+        item['description']=description
+        yield item
