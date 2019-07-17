@@ -31,7 +31,7 @@ class GoodReadsSpider(scrapy.Spider):
         # 'LOG_LEVEL': "ERROR"
     }
 
-    start_urls = ['https://www.goodreads.com/book/show/488924']
+    start_urls = ['https://www.goodreads.com/book/show/1733202']
 
     # def start_requests(self):
     #     with open('url.txt', "r") as f:
@@ -76,7 +76,7 @@ class GoodReadsSpider(scrapy.Spider):
             if "Walmart eBooks" in key:
                 goodreadsWalmarteBooksUrl = Origin_Url
                 walmarteBooksUrl = "https://www.kobo.com/us/en/search?query={}".format(
-                    "+".join(x for x in title.split(" ")) if len(title.split(":"))==1 else title.split(":"))
+                    "+".join(x for x in title.split(" ")) if len(title.split(":"))==1 else title.split(":")[0])
 
             if "Alibris" in key:
                 goodreadsAlibrisUrl = Origin_Url
