@@ -178,13 +178,13 @@ class GoodReadsSpider(scrapy.Spider):
         print "   score    :" + score
         print "   ratings    :" + ratings
         print "   reviews    :" + reviews
-        print "   genres     :" + str(genres if genres else "None")
+        print "   genres     :" + str(genres).replace("'","\'") if genres else "None"
         print "   bookFormat    :" + bookFormat
         print "   Published_Time    :" + aa
         print "   First_Published_Time    :" + bb
         print "   pages    :" + pages
-        print "   Original_title    :" + Original_title
-        print "   Literary_Awards   :" + Literary_Awards
+        print "   Original_title    :" + Original_title.replace("'","\'")
+        print "   Literary_Awards   :" + Literary_Awards.replace("'","\'")
         print "   ISBN    :" + ISBN
         print "   ISBN13    :" + ISBN13
         print "   Edition_Language    :" + Edition_Language
@@ -204,15 +204,15 @@ class GoodReadsSpider(scrapy.Spider):
         item["score"] = score
         item["ratings"] = ratings
         item["reviews"] = reviews
-        item["genres"] = genres if genres else None
-        item["bookFormat"] = bookFormat
-        item["publishedTime"]=aa
-        item["firstPublishedTime"] = bb
+        item["genres"] = str(genres).replace("'","\'") if genres else None
+        item["bookFormat"] = bookFormat.replace("'","\'")
+        item["publishedTime"]=aa.replace("'","\'")
+        item["firstPublishedTime"] = bb.replace("'","\'")
         item["pages"] = pages
-        item["originalTitle"] = Original_title
-        item["literaryAwards"] = Literary_Awards
+        item["originalTitle"] = Original_title.replace("'","\'")
+        item["literaryAwards"] = Literary_Awards.replace("'","\'")
         item["ISBN"] = ISBN
         item["ISBN13"] = ISBN13
-        item["editionLanguage"] = Edition_Language
-        item['description']=description
+        item["editionLanguage"] = Edition_Language.replace("'","\'")
+        item['description']=description.replace("'","\'")
         yield item
