@@ -29,7 +29,7 @@ class GoodReadsSpider(scrapy.Spider):
         }
     }
 
-    start_urls = ['https://www.goodreads.com/book/show/41735400-snippets']
+    start_urls = ['https://www.goodreads.com/book/show/2476280']
 
     # def start_requests(self):
     #     with open('url.txt', "r") as f:
