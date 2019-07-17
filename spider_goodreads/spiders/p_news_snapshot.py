@@ -96,7 +96,7 @@ class GoodReadsSpider(scrapy.Spider):
 
 
     def parse1(self, response):
-        barnesNoble=response.url
+        barnesNoble=response.url.split("?ean=")[0]
 
         print "\n--------------------图书字段信息-------------------"
         print "   goodreadsId  :"+response.meta['goodreadsId']
