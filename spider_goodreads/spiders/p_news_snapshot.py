@@ -79,7 +79,7 @@ class GoodReadsSpider(scrapy.Spider):
                 goodreadsAlibrisUrl = Origin_Url
                 # alibrisUrl=requests.get(Origin_Url, allow_redirects=True).url
 
-        yield scrapy.Request(goodreadsBarnesNoble, callback=self.parse1, dont_filter=False, meta={"goodreadsId": goodreadsId,
+        yield scrapy.Request(goodreadsBarnesNoble, callback=self.parse1, meta={"goodreadsId": goodreadsId,
                                                                                                   "goodreadsUrl":goodreadsUrl,
                                                                                                   "title":title,
                                                                                                   "goodreadsAmazonUrl":goodreadsAmazonUrl,
@@ -92,7 +92,7 @@ class GoodReadsSpider(scrapy.Spider):
 
     def parse1(self, response):
         barnesNoble=response.url
-        yield scrapy.Request(response.meta['goodreadsWalmarteBooksUrl'], callback=self.parse2, dont_filter=False,
+        yield scrapy.Request(response.meta['goodreadsWalmarteBooksUrl'], callback=self.parse2,
                              meta={"goodreadsId": response.meta['goodreadsId'],
                                    "goodreadsUrl": response.meta['goodreadsUrl'],
                                    "title": response.meta['title'],
@@ -106,7 +106,7 @@ class GoodReadsSpider(scrapy.Spider):
 
     def parse2(self, response):
         walmarteBooksUrl = response.url
-        yield scrapy.Request(response.meta['goodreadsAlibrisUrl'], callback=self.parse3, dont_filter=False,
+        yield scrapy.Request(response.meta['goodreadsAlibrisUrl'], callback=self.parse3,
                              meta={"goodreadsId": response.meta['goodreadsId'],
                                    "goodreadsUrl": response.meta['goodreadsUrl'],
                                    "title": response.meta['title'],
