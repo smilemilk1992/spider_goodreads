@@ -35,7 +35,7 @@ class GoodReadsSpider(scrapy.Spider):
         # with open('url.txt', "r") as f:
         #     url = f.readlines()
         #     for x in url:
-                yield scrapy.Request("'https://www.goodreads.com/book/show/2476280'", callback=self.parse,dont_filter=False)
+                yield scrapy.Request("https://www.goodreads.com/book/show/2476280", callback=self.parse,dont_filter=False)
 
 
     def parse(self, response):
