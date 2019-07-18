@@ -67,7 +67,7 @@ class GoodReadsSpider(scrapy.Spider):
             ISBN = None
             ISBN13 = None
         amazonUrl="https://www.amazon.com/gp/product/{}".format(ISBN) if ISBN else "https://www.amazon.com/s?k={}".format(
-                    "+".join(x for x in title.split(" ")))
+                    "+".join(x for x in re.split(" |,|&|!|\?|:|'",title)))
 
         storesInfo = response.xpath("//div[@id='buyDropButtonStores']//a[@class='actionLinkLite']")
         for i in storesInfo:
@@ -100,7 +100,7 @@ class GoodReadsSpider(scrapy.Spider):
 
 
     def parse1(self, response):
-        barnesNoble=response.url.split("?ean=")[0]
+        barnesNoble=response.url.split("&")[0]
         yield scrapy.Request(response.meta["goodreadsAlibrisUrl"],
                              callback=self.parse2, meta={"goodreadsId": response.meta['goodreadsId'],
                                                         "goodreadsUrl": response.meta['goodreadsUrl'],
