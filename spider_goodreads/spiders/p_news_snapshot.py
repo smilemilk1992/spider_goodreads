@@ -113,7 +113,7 @@ class GoodReadsSpider(scrapy.Spider):
                                                        "walmarteBooksUrl": response.meta['walmarteBooksUrl'],
                                                          "barnesNoble":barnesNoble,"id":response.meta["id"]})
     def parse2(self,response):
-        alibrisUrl=response.url
+        alibrisUrl=response.url.split("&")[0]
 
         print "\n--------------------图书字段信息-------------------"
         print "   relationId           :"+response.meta["id"]
