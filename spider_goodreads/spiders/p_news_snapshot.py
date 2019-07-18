@@ -38,11 +38,14 @@ class GoodReadsSpider(scrapy.Spider):
             url = f.readlines()
             for x in url:
                 id=re.search("https://www.goodreads.com/book/show/(\d+)",x.strip()).group(1)
-                yield scrapy.Request(x.strip(), callback=self.parse,dont_filter=False)
+                yield scrapy.Request(x.strip(), callback=self.parse,dont_filter=False,meta={"id":id})
 
 
     def parse(self, response):
-
+        otherEdition = response.xpath("//div[@class='otherEdition']/a/@href").extract()
+        if otherEdition:
+            for o in otherEdition:
+                yield scrapy.Request(o, callback=self.parse,dont_filter=False,meta={"id":response.meta["id"]})
         title = response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()
         goodreadsId=re.search("https://www.goodreads.com/book/show/(\d+)",response.url).group(1)
         goodreadsUrl=response.url
@@ -80,9 +83,10 @@ class GoodReadsSpider(scrapy.Spider):
 
             if "Alibris" in key:
                 goodreadsAlibrisUrl = Origin_Url
-                alibrisUrl="https://www.alibris.com/booksearch?keyword={}".format(ISBN) if ISBN else re.search('isbn: (\d+)',response.body).group(1)
+                #??
+                # alibrisUrl="https://www.alibris.com/booksearch?keyword={}".format(ISBN) if ISBN else re.search('isbn: (\d+)',response.body).group(1)
 
-        yield scrapy.Request(goodreadsBarnesNoble, callback=self.parse1, meta={"goodreadsId": goodreadsId,
+        yield scrapy.Request(goodreadsBarnesNoble, callback=self.parse1, dont_filter=False,meta={"goodreadsId": goodreadsId,
                                                                                                   "goodreadsUrl":goodreadsUrl,
                                                                                                   "title":title,
                                                                                                   "goodreadsAmazonUrl":goodreadsAmazonUrl,
@@ -91,26 +95,39 @@ class GoodReadsSpider(scrapy.Spider):
                                                                                                   "goodreadsWalmarteBooksUrl":goodreadsWalmarteBooksUrl,
                                                                                                   "goodreadsBarnesNoble":goodreadsBarnesNoble,
                                                                                "walmarteBooksUrl":walmarteBooksUrl,
-                                                                               "alibrisUrl":alibrisUrl})
+                                                                               "id":response.meta["id"]})
 
 
 
     def parse1(self, response):
         barnesNoble=response.url.split("?ean=")[0]
+        yield scrapy.Request(response.meta["goodreadsAlibrisUrl"], dont_filter=False,
+                             callback=self.parse2, meta={"goodreadsId": response.meta['goodreadsId'],
+                                                        "goodreadsUrl": response.meta['goodreadsUrl'],
+                                                       "title": response.meta['title'],
+                                                       "goodreadsAmazonUrl": response.meta['goodreadsAmazonUrl'],
+                                                       "amazonUrl": response.meta['amazonUrl'],
+                                                       "goodreadsAlibrisUrl": response.meta['goodreadsAlibrisUrl'],
+                                                       "goodreadsWalmarteBooksUrl": response.meta['goodreadsWalmarteBooksUrl'],
+                                                       "goodreadsBarnesNoble": response.meta['goodreadsBarnesNoble'],
+                                                       "walmarteBooksUrl": response.meta['walmarteBooksUrl'],
+                                                         "barnesNoble":barnesNoble,"id":response.meta["id"]})
+    def parse2(self,response):
+        alibrisUrl=response.url
 
         print "\n--------------------图书字段信息-------------------"
+        print "   id           :"+response.meta["id"]
         print "   goodreadsId  :"+response.meta['goodreadsId']
         print "   goodreadsUrl    :" + response.meta['goodreadsUrl']
         print "   title    :" + response.meta['title']
         print "   goodreadsAmazonUrl    :" + response.meta['goodreadsAmazonUrl']
         print "   amazonUrl    :" + response.meta['amazonUrl']
         print "   goodreadsAlibrisUrl   :" + response.meta['goodreadsAlibrisUrl']
-        print "   alibrisUrl   :" +response.meta['alibrisUrl']
+        print "   alibrisUrl   :" +alibrisUrl
         print "   goodreadsWalmarteBooksUrl    :" + response.meta['goodreadsWalmarteBooksUrl']
         print "   walmarteBooksUrl    :" + response.meta['walmarteBooksUrl']
         print "   goodreadsBarnesNoble    :" + response.meta['goodreadsBarnesNoble']
-        print "   barnesNoble    :" + barnesNoble
-
+        print "   barnesNoble    :" + response.meta['barnesNoble']
         print "--------------------图书字段信息-------------------\n"
         # item = {}
         # item["goodreadsId"] = re.search("https://www.goodreads.com/book/show/(\d+)",response.url).group(1)
