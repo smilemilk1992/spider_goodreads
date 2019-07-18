@@ -16,7 +16,7 @@ item["goodreadsId"] = response.meta['goodreadsId']
         item["barnesNoble"] = response.meta['barnesNoble']
 '''
 class SpiderGoodreadsPipeline(object):
-    cc = '''INSERT IGNORE into p_news_snapshot(goodreadsId,relationId,goodreadsUrl,title,goodreadsAmazonUrl,amazonUrl,goodreadsAlibrisUrl,alibrisUrl,goodreadsWalmarteBooksUrl,walmarteBooksUrl,goodreadsBarnesNoble,barnesNoble)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
+    cc = '''INSERT IGNORE into p_news_snapshot1(goodreadsId,relationId,goodreadsUrl,title,goodreadsAmazonUrl,amazonUrl,goodreadsAlibrisUrl,alibrisUrl,goodreadsWalmarteBooksUrl,walmarteBooksUrl,goodreadsBarnesNoble,barnesNoble)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
     conn = MySQLdb.connect(
         host='120.27.218.142',
         port=3306,
