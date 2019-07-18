@@ -21,14 +21,14 @@ class GoodReadsSpider(scrapy.Spider):
         'RETRY_TIMES': 3,  #重试机制
         # 'DOWNLOAD_DELAY':5,   #延时（秒）
         'ITEM_PIPELINES': {
-            "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipeline": 200,
+            "spider_goodreads.pipelines.pipelines_snapshot.SpiderGoodreadsPipeline": 200,
         },
         'DOWNLOADER_MIDDLEWARES': {
             'spider_goodreads.middlewares.RandomUserAgent.RandomUserAgent': 300,
             # 'spider_goodreads.middlewares.random_http_proxy.IpMiddleware': 110, #添加代理ip逻辑
         },
-        # 'LOG_FILE': "goodreads_snapshot.log",
-        # 'LOG_LEVEL': "ERROR"
+        'LOG_FILE': "goodreads_snapshot.log",
+        'LOG_LEVEL': "ERROR"
     }
 
     # start_urls = ['https://www.goodreads.com/book/show/1733202']
@@ -86,7 +86,7 @@ class GoodReadsSpider(scrapy.Spider):
                 #??
                 # alibrisUrl="https://www.alibris.com/booksearch?keyword={}".format(ISBN) if ISBN else re.search('isbn: (\d+)',response.body).group(1)
 
-        yield scrapy.Request(goodreadsBarnesNoble, callback=self.parse1, dont_filter=False,meta={"goodreadsId": goodreadsId,
+        yield scrapy.Request(goodreadsBarnesNoble, callback=self.parse1,meta={"goodreadsId": goodreadsId,
                                                                                                   "goodreadsUrl":goodreadsUrl,
                                                                                                   "title":title,
                                                                                                   "goodreadsAmazonUrl":goodreadsAmazonUrl,
@@ -101,7 +101,7 @@ class GoodReadsSpider(scrapy.Spider):
 
     def parse1(self, response):
         barnesNoble=response.url.split("?ean=")[0]
-        yield scrapy.Request(response.meta["goodreadsAlibrisUrl"], dont_filter=False,
+        yield scrapy.Request(response.meta["goodreadsAlibrisUrl"],
                              callback=self.parse2, meta={"goodreadsId": response.meta['goodreadsId'],
                                                         "goodreadsUrl": response.meta['goodreadsUrl'],
                                                        "title": response.meta['title'],
@@ -116,7 +116,7 @@ class GoodReadsSpider(scrapy.Spider):
         alibrisUrl=response.url
 
         print "\n--------------------图书字段信息-------------------"
-        print "   id           :"+response.meta["id"]
+        print "   relationId           :"+response.meta["id"]
         print "   goodreadsId  :"+response.meta['goodreadsId']
         print "   goodreadsUrl    :" + response.meta['goodreadsUrl']
         print "   title    :" + response.meta['title']
@@ -129,29 +129,18 @@ class GoodReadsSpider(scrapy.Spider):
         print "   goodreadsBarnesNoble    :" + response.meta['goodreadsBarnesNoble']
         print "   barnesNoble    :" + response.meta['barnesNoble']
         print "--------------------图书字段信息-------------------\n"
-        # item = {}
-        # item["goodreadsId"] = re.search("https://www.goodreads.com/book/show/(\d+)",response.url).group(1)
-        # item["relationId"] = response.meta["id"]
-        # item["goodreadsUrl"] = response.url
-        # item["title"] = title
-        # item["authorName"] = ",".join(x for x in authorList)
-        # item["authorNameUrl"] = ",".join(x for x in authorUrlList)
-        # item["Illustrator"] = ",".join(x for x in Tlluser)
-        # item["IllustratorUrl"] = ",".join(x for x in Tllist)
-        # item["coverPic"] = coverPic
-        # item["ratingDetails"] = renderRatingGraph
-        # item["score"] = score
-        # item["ratings"] = ratings
-        # item["reviews"] = reviews
-        # item["genres"] = str(genres).replace("'","\'") if genres else None
-        # item["bookFormat"] = bookFormat.replace("'","\'")
-        # item["publishedTime"]=aa.replace("'","\'")
-        # item["firstPublishedTime"] = bb.replace("'","\'")
-        # item["pages"] = pages
-        # item["originalTitle"] = Original_title.replace("'","\'")
-        # item["literaryAwards"] = Literary_Awards.replace("'","\'")
-        # item["ISBN"] = ISBN
-        # item["ISBN13"] = ISBN13
-        # item["editionLanguage"] = Edition_Language.replace("'","\'")
-        # item['description']=description.replace("'","\'")
-        # yield item
+        item = {}
+        item["goodreadsId"] = response.meta['goodreadsId']
+        item["relationId"] = response.meta["id"]
+        item["goodreadsUrl"] = response.meta['goodreadsUrl']
+        item["title"] = response.meta['title']
+        item["goodreadsAmazonUrl"] = response.meta['goodreadsAmazonUrl']
+        item["amazonUrl"] = response.meta['amazonUrl']
+        item["goodreadsAlibrisUrl"] = response.meta['goodreadsAlibrisUrl']
+        item["alibrisUrl"] = alibrisUrl
+        item["goodreadsWalmarteBooksUrl"] = response.meta['goodreadsWalmarteBooksUrl']
+        item["walmarteBooksUrl"] = response.meta['walmarteBooksUrl']
+        item["goodreadsBarnesNoble"] = response.meta['goodreadsBarnesNoble']
+        item["barnesNoble"] = response.meta['barnesNoble']
+
+        yield item
