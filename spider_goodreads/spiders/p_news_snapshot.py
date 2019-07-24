@@ -84,11 +84,13 @@ class GoodReadsSpider(scrapy.Spider):
                 goodreadsAlibrisUrl = Origin_Url
             if "Indigo" in key:
                 goodreadsIndigo=Origin_Url
+                print "goodreadsIndigo",goodreadsIndigo,response.meta["goodreadsId"]
             if "IndieBound" in key:
                 goodreadsIndieBound=Origin_Url
+                print "goodreadsIndieBound",goodreadsIndieBound,response.meta["goodreadsId"]
 
 
-        yield scrapy.Request(goodreadsBarnesNoble, callback=self.getbarnesNoble,meta={"goodreadsId": goodreadsId,
+        # yield scrapy.Request(goodreadsBarnesNoble, callback=self.getbarnesNoble,meta={"goodreadsId": goodreadsId,
                                                                               "goodreadsUrl":goodreadsUrl,
                                                                               "title":title,
                                                                               "goodreadsAmazonUrl":goodreadsAmazonUrl,
