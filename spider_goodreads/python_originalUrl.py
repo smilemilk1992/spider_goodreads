@@ -67,15 +67,7 @@ def getInfo(datas):
 
 def insertDb(item):
     sql = '''INSERT IGNORE into p_news_snapshot2(cudosId,goodreadsId,title,goodreadsUrl,goodreadsReq,goodreadsAmazonUrl,AmazonUrl,goodreadsAlibrisUrl,AlibrisUrl,goodreadsWalmarteBooksUrl,WalmarteBooksUrl,goodreadsBarnesNoble,BarnesNoble,goodreadsIndieBound,IndieBound,goodreadsIndigo,Indigo)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
-    conn = MySQLdb.connect(
-        host='120.27.218.142',
-        port=3306,
-        user='worker',
-        passwd='worker',
-        db='test',
-        charset="utf8"
-    )
-    cur = conn.cursor()
+
     insertdata = (
         item['cudosId'],
         item['goodreadsId'],
@@ -97,9 +89,18 @@ def insertDb(item):
     )
     cur.execute(sql, insertdata)
     conn.commit()
-    cur.close()
-    conn.close()
     print item
 
 if __name__ == "__main__":
+    conn = MySQLdb.connect(
+        host='120.27.218.142',
+        port=3306,
+        user='worker',
+        passwd='worker',
+        db='test',
+        charset="utf8"
+    )
+    cur = conn.cursor()
     start()
+    cur.close()
+    conn.close()
