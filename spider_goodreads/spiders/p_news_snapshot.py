@@ -84,123 +84,45 @@ class GoodReadsSpider(scrapy.Spider):
                 goodreadsAlibrisUrl = Origin_Url
             if "Indigo" in key:
                 goodreadsIndigo=Origin_Url
-                print "goodreadsIndigo",goodreadsIndigo,response.meta["goodreadsId"]
             if "IndieBound" in key:
                 goodreadsIndieBound=Origin_Url
-                print "goodreadsIndieBound",goodreadsIndieBound,response.meta["goodreadsId"]
-
-
-        # yield scrapy.Request(goodreadsBarnesNoble, callback=self.getbarnesNoble,meta={"goodreadsId": goodreadsId,
-        #                                                                       "goodreadsUrl":goodreadsUrl,
-        #                                                                       "title":title,
-        #                                                                       "goodreadsAmazonUrl":goodreadsAmazonUrl,
-        #                                                                       "amazonUrl":amazonUrl,
-        #                                                                       "goodreadsAlibrisUrl":goodreadsAlibrisUrl,
-        #                                                                       "goodreadsWalmarteBooksUrl":goodreadsWalmarteBooksUrl,
-        #                                                                       "goodreadsBarnesNoble":goodreadsBarnesNoble,
-        #                                                                       "walmarteBooksUrl":walmarteBooksUrl,
-        #                                                                       "goodreadsIndigo":goodreadsIndigo,
-        #                                                                       "goodreadsIndieBound":goodreadsIndieBound,
-        #                                                                       "goodreadsId":response.meta["goodreadsId"]})
 
 
 
-    def getbarnesNoble(self, response):
-        barnesNoble=response.url.split("&")[0]
-        yield scrapy.Request(response.meta["goodreadsAlibrisUrl"],
-                             callback=self.getalibrisUrl, meta={"goodreadsId": response.meta['goodreadsId'],
-                                                                "goodreadsUrl": response.meta['goodreadsUrl'],
-                                                                "title": response.meta['title'],
-                                                                "goodreadsAmazonUrl": response.meta['goodreadsAmazonUrl'],
-                                                                "amazonUrl": response.meta['amazonUrl'],
-                                                                "goodreadsAlibrisUrl": response.meta['goodreadsAlibrisUrl'],
-                                                                "goodreadsWalmarteBooksUrl": response.meta['goodreadsWalmarteBooksUrl'],
-                                                                "goodreadsBarnesNoble": response.meta['goodreadsBarnesNoble'],
-                                                                "walmarteBooksUrl": response.meta['walmarteBooksUrl'],
-                                                                "goodreadsIndigo": response.meta['goodreadsIndigo'],
-                                                                "goodreadsIndieBound": response.meta['goodreadsIndieBound'],
-                                                                "barnesNoble":barnesNoble,
-                                                                "goodreadsId":response.meta["goodreadsId"]})
-    def getalibrisUrl(self,response):
-        alibrisUrl=response.url.split("&")[0]
-        yield scrapy.Request(response.meta["goodreadsIndigo"],
-                             callback=self.getgoodreadsIndigo, meta={"goodreadsId": response.meta['goodreadsId'],
-                                                                "goodreadsUrl": response.meta['goodreadsUrl'],
-                                                                "title": response.meta['title'],
-                                                                "goodreadsAmazonUrl": response.meta[
-                                                                    'goodreadsAmazonUrl'],
-                                                                "amazonUrl": response.meta['amazonUrl'],
-                                                                "goodreadsAlibrisUrl": response.meta[
-                                                                    'goodreadsAlibrisUrl'],
-                                                                "goodreadsWalmarteBooksUrl": response.meta[
-                                                                    'goodreadsWalmarteBooksUrl'],
-                                                                "goodreadsBarnesNoble": response.meta[
-                                                                    'goodreadsBarnesNoble'],
-                                                                "walmarteBooksUrl": response.meta['walmarteBooksUrl'],
-                                                                "goodreadsIndigo": response.meta['goodreadsIndigo'],
-                                                                "goodreadsIndieBound": response.meta['goodreadsIndieBound'],
-                                                                "alibrisUrl":alibrisUrl,
-                                                                "barnesNoble": response.meta['barnesNoble'],
-                                                                "goodreadsId": response.meta["goodreadsId"]})
-    def getgoodreadsIndigo(self,response):
-        Indigo=response.url
-        yield scrapy.Request(response.meta["goodreadsIndieBound"],
-                             callback=self.getgoodreadsIndigo, meta={"goodreadsId": response.meta['goodreadsId'],
-                                                                     "goodreadsUrl": response.meta['goodreadsUrl'],
-                                                                     "title": response.meta['title'],
-                                                                     "goodreadsAmazonUrl": response.meta[
-                                                                         'goodreadsAmazonUrl'],
-                                                                     "amazonUrl": response.meta['amazonUrl'],
-                                                                     "goodreadsAlibrisUrl": response.meta[
-                                                                         'goodreadsAlibrisUrl'],
-                                                                     "goodreadsWalmarteBooksUrl": response.meta[
-                                                                         'goodreadsWalmarteBooksUrl'],
-                                                                     "goodreadsBarnesNoble": response.meta[
-                                                                         'goodreadsBarnesNoble'],
-                                                                     "walmarteBooksUrl": response.meta[
-                                                                         'walmarteBooksUrl'],
-                                                                     "goodreadsIndigo": response.meta[
-                                                                         'goodreadsIndigo'],
-                                                                     "goodreadsIndieBound": response.meta[
-                                                                         'goodreadsIndieBound'],
-                                                                     "Indigo": Indigo,
-                                                                     "alibrisUrl":response.meta['alibrisUrl'],
-                                                                     "barnesNoble": response.meta['barnesNoble'],
-                                                                     "goodreadsId": response.meta["goodreadsId"]})
-    def getgoodreadsIndieBound(self,response):
-        IndieBound=response.url
 
         print "\n--------------------图书字段信息-------------------"
+        print "   cudosId      :"+response.meta['cudosId']
         print "   goodreadsId  :"+response.meta['goodreadsId']
-        print "   goodreadsUrl    :" + response.meta['goodreadsUrl']
-        print "   title    :" + response.meta['title']
-        print "   goodreadsAmazonUrl    :" + response.meta['goodreadsAmazonUrl']
-        print "   amazonUrl    :" + response.meta['amazonUrl']
-        print "   goodreadsAlibrisUrl   :" + response.meta['goodreadsAlibrisUrl']
-        print "   alibrisUrl   :" +response.meta['alibrisUrl']
-        print "   goodreadsWalmarteBooksUrl    :" + response.meta['goodreadsWalmarteBooksUrl']
-        print "   walmarteBooksUrl    :" + response.meta['walmarteBooksUrl']
-        print "   goodreadsBarnesNoble    :" + response.meta['goodreadsBarnesNoble']
-        print "   barnesNoble    :" + response.meta['barnesNoble']
-        print "   goodreadsIndieBound    :" + response.meta['goodreadsIndieBound']
-        print "   IndieBound    :" + IndieBound
-        print "   goodreadsIndigo    :" + response.meta['goodreadsIndigo']
-        print "   Indigo    :" + response.meta['Indigo']
+        print "   goodreadsUrl    :" + "https://www.goodreads.com/book/show/"+response.meta['goodreadsId']
+        print "   title    :" + title
+        print "   goodreadsAmazonUrl    :" + goodreadsAmazonUrl
+        # print "   amazonUrl    :" + response.meta['amazonUrl']
+        print "   goodreadsAlibrisUrl   :" + goodreadsAlibrisUrl
+        # print "   alibrisUrl   :" +response.meta['alibrisUrl']
+        print "   goodreadsWalmarteBooksUrl    :" + goodreadsWalmarteBooksUrl
+        # print "   walmarteBooksUrl    :" + response.meta['walmarteBooksUrl']
+        print "   goodreadsBarnesNoble    :" + goodreadsBarnesNoble
+        # print "   barnesNoble    :" + response.meta['barnesNoble']
+        print "   goodreadsIndieBound    :" + goodreadsIndieBound
+        # print "   IndieBound    :" + IndieBound
+        print "   goodreadsIndigo    :" + goodreadsIndigo
+        # print "   Indigo    :" + response.meta['Indigo']
         print "--------------------图书字段信息-------------------\n"
         item = {}
+        item['cudosId']=response.meta['cudosId']
         item["goodreadsId"] = response.meta['goodreadsId']
-        item["goodreadsUrl"] = response.meta['goodreadsUrl']
-        item["title"] = response.meta['title']
-        item["goodreadsAmazonUrl"] = response.meta['goodreadsAmazonUrl']
-        item["amazonUrl"] = response.meta['amazonUrl']
-        item["goodreadsAlibrisUrl"] = response.meta['goodreadsAlibrisUrl']
-        item["alibrisUrl"] = response.meta['alibrisUrl']
-        item["goodreadsWalmarteBooksUrl"] = response.meta['goodreadsWalmarteBooksUrl']
-        item["walmarteBooksUrl"] = response.meta['walmarteBooksUrl']
-        item["goodreadsBarnesNoble"] = response.meta['goodreadsBarnesNoble']
-        item["barnesNoble"] = response.meta['barnesNoble']
-        item["goodreadsIndieBound"]=response.meta['goodreadsIndieBound']
-        item["IndieBound"]=IndieBound
-        item["goodreadsIndigo"]=response.meta['goodreadsIndigo']
-        item["Indigo"]=response.meta['Indigo']
+        item["goodreadsUrl"] = "https://www.goodreads.com/book/show/"+response.meta['goodreadsId']
+        item["title"] = title
+        item["goodreadsAmazonUrl"] = goodreadsAmazonUrl
+        # item["amazonUrl"] = response.meta['amazonUrl']
+        item["goodreadsAlibrisUrl"] = goodreadsAlibrisUrl
+        # item["alibrisUrl"] = response.meta['alibrisUrl']
+        item["goodreadsWalmarteBooksUrl"] = goodreadsWalmarteBooksUrl
+        # item["walmarteBooksUrl"] = response.meta['walmarteBooksUrl']
+        item["goodreadsBarnesNoble"] = goodreadsBarnesNoble
+        # item["barnesNoble"] = response.meta['barnesNoble']
+        item["goodreadsIndieBound"]=goodreadsIndieBound
+        # item["IndieBound"]=IndieBound
+        item["goodreadsIndigo"]=goodreadsIndigo
+        # item["Indigo"]=response.meta['Indigo']
         print item
