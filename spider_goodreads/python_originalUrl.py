@@ -27,16 +27,16 @@ def getInfo(datas):
         value="https://www.goodreads.com"+i['href']
         stores[key]=value
     goodreadsAmazonUrl = "https://www.goodreads.com" + \
-                         soup.find("ul", {"class": "buyButtonBar left"}).find("a", {"class": "buttonBar"})["href"]
+                         soup.find("ul", {"class": "buyButtonBar left"}).find("a", {"class": "buttonBar"})["href"].split("ref=")[0]
     goodreadsAlibrisUrl=stores["Alibris"].split("&")[0]
     goodreadsWalmarteBooksUrl=stores["Walmart eBooks"].split("&")[0]
     goodreadsBarnesNoble=stores["Barnes & Noble"].split("&")[0]
     goodreadsIndieBound=stores["IndieBound"].split("&")[0]
     goodreadsIndigo=stores["Indigo"].split("&")[0]
 
-    html = requests.get(goodreadsAmazonUrl, allow_redirects=False)
+    AmazonUrl = requests.get(goodreadsAmazonUrl, allow_redirects=False).url
 
-    print link,html.headers['Location'],goodreadsAlibrisUrl,goodreadsWalmarteBooksUrl,goodreadsBarnesNoble,goodreadsIndieBound,goodreadsIndigo
+    print link,AmazonUrl,goodreadsAlibrisUrl,goodreadsWalmarteBooksUrl,goodreadsBarnesNoble,goodreadsIndieBound,goodreadsIndigo
 
     print "---------------"
 
