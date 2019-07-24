@@ -17,7 +17,7 @@ class GoodReadsSpider(scrapy.Spider):
     '''
     name = "goodreads_snapshot"
     custom_settings = {
-        'CONCURRENT_REQUESTS': 64,  #允许的线程数
+        'CONCURRENT_REQUESTS': 16,  #允许的线程数
         'RETRY_TIMES': 5,  #重试机制
         # 'DOWNLOAD_DELAY':5,   #延时（秒）
         'ITEM_PIPELINES': {
@@ -76,45 +76,97 @@ class GoodReadsSpider(scrapy.Spider):
             Origin_Url = "https://www.goodreads.com" + str(i.xpath("./@href").extract()[0])
             if "Barnes & Noble" in key:
                 goodreadsBarnesNoble = Origin_Url
-                # barnesNoble = requests.get(Origin_Url, allow_redirects=True).url
             if "Walmart eBooks" in key:
                 goodreadsWalmarteBooksUrl = Origin_Url
                 walmarteBooksUrl = "https://www.kobo.com/us/en/search?query={}".format(
                     "+".join(x for x in title.split(" ")) if len(title.split(":"))==1 else title.split(":")[0])
-
             if "Alibris" in key:
                 goodreadsAlibrisUrl = Origin_Url
-                #??
-                # alibrisUrl="https://www.alibris.com/booksearch?keyword={}".format(ISBN) if ISBN else re.search('isbn: (\d+)',response.body).group(1)
-
-        yield scrapy.Request(goodreadsBarnesNoble, callback=self.parse1,meta={"goodreadsId": goodreadsId,
-                                                                                                  "goodreadsUrl":goodreadsUrl,
-                                                                                                  "title":title,
-                                                                                                  "goodreadsAmazonUrl":goodreadsAmazonUrl,
-                                                                                                  "amazonUrl":amazonUrl,
-                                                                                                  "goodreadsAlibrisUrl":goodreadsAlibrisUrl,
-                                                                                                  "goodreadsWalmarteBooksUrl":goodreadsWalmarteBooksUrl,
-                                                                                                  "goodreadsBarnesNoble":goodreadsBarnesNoble,
-                                                                               "walmarteBooksUrl":walmarteBooksUrl,
-                                                                               "goodreadsId":response.meta["goodreadsId"]})
+            if "Indigo" in key:
+                goodreadsIndigo=Origin_Url
+            if "IndieBound" in key:
+                goodreadsIndieBound=Origin_Url
 
 
+        yield scrapy.Request(goodreadsBarnesNoble, callback=self.getbarnesNoble,meta={"goodreadsId": goodreadsId,
+                                                                              "goodreadsUrl":goodreadsUrl,
+                                                                              "title":title,
+                                                                              "goodreadsAmazonUrl":goodreadsAmazonUrl,
+                                                                              "amazonUrl":amazonUrl,
+                                                                              "goodreadsAlibrisUrl":goodreadsAlibrisUrl,
+                                                                              "goodreadsWalmarteBooksUrl":goodreadsWalmarteBooksUrl,
+                                                                              "goodreadsBarnesNoble":goodreadsBarnesNoble,
+                                                                              "walmarteBooksUrl":walmarteBooksUrl,
+                                                                              "goodreadsIndigo":goodreadsIndigo,
+                                                                              "goodreadsIndieBound":goodreadsIndieBound,
+                                                                              "goodreadsId":response.meta["goodreadsId"]})
 
-    def parse1(self, response):
+
+
+    def getbarnesNoble(self, response):
         barnesNoble=response.url.split("&")[0]
         yield scrapy.Request(response.meta["goodreadsAlibrisUrl"],
-                             callback=self.parse2, meta={"goodreadsId": response.meta['goodreadsId'],
-                                                        "goodreadsUrl": response.meta['goodreadsUrl'],
-                                                       "title": response.meta['title'],
-                                                       "goodreadsAmazonUrl": response.meta['goodreadsAmazonUrl'],
-                                                       "amazonUrl": response.meta['amazonUrl'],
-                                                       "goodreadsAlibrisUrl": response.meta['goodreadsAlibrisUrl'],
-                                                       "goodreadsWalmarteBooksUrl": response.meta['goodreadsWalmarteBooksUrl'],
-                                                       "goodreadsBarnesNoble": response.meta['goodreadsBarnesNoble'],
-                                                       "walmarteBooksUrl": response.meta['walmarteBooksUrl'],
-                                                         "barnesNoble":barnesNoble,"goodreadsId":response.meta["goodreadsId"]})
-    def parse2(self,response):
+                             callback=self.getalibrisUrl, meta={"goodreadsId": response.meta['goodreadsId'],
+                                                                "goodreadsUrl": response.meta['goodreadsUrl'],
+                                                                "title": response.meta['title'],
+                                                                "goodreadsAmazonUrl": response.meta['goodreadsAmazonUrl'],
+                                                                "amazonUrl": response.meta['amazonUrl'],
+                                                                "goodreadsAlibrisUrl": response.meta['goodreadsAlibrisUrl'],
+                                                                "goodreadsWalmarteBooksUrl": response.meta['goodreadsWalmarteBooksUrl'],
+                                                                "goodreadsBarnesNoble": response.meta['goodreadsBarnesNoble'],
+                                                                "walmarteBooksUrl": response.meta['walmarteBooksUrl'],
+                                                                "goodreadsIndigo": response.meta['goodreadsIndigo'],
+                                                                "goodreadsIndieBound": response.meta['goodreadsIndieBound'],
+                                                                "barnesNoble":barnesNoble,
+                                                                "goodreadsId":response.meta["goodreadsId"]})
+    def getalibrisUrl(self,response):
         alibrisUrl=response.url.split("&")[0]
+        yield scrapy.Request(response.meta["goodreadsIndigo"],
+                             callback=self.getgoodreadsIndigo, meta={"goodreadsId": response.meta['goodreadsId'],
+                                                                "goodreadsUrl": response.meta['goodreadsUrl'],
+                                                                "title": response.meta['title'],
+                                                                "goodreadsAmazonUrl": response.meta[
+                                                                    'goodreadsAmazonUrl'],
+                                                                "amazonUrl": response.meta['amazonUrl'],
+                                                                "goodreadsAlibrisUrl": response.meta[
+                                                                    'goodreadsAlibrisUrl'],
+                                                                "goodreadsWalmarteBooksUrl": response.meta[
+                                                                    'goodreadsWalmarteBooksUrl'],
+                                                                "goodreadsBarnesNoble": response.meta[
+                                                                    'goodreadsBarnesNoble'],
+                                                                "walmarteBooksUrl": response.meta['walmarteBooksUrl'],
+                                                                "goodreadsIndigo": response.meta['goodreadsIndigo'],
+                                                                "goodreadsIndieBound": response.meta['goodreadsIndieBound'],
+                                                                "alibrisUrl":alibrisUrl,
+                                                                "barnesNoble": response.meta['barnesNoble'],
+                                                                "goodreadsId": response.meta["goodreadsId"]})
+    def getgoodreadsIndigo(self,response):
+        Indigo=response.url
+        yield scrapy.Request(response.meta["goodreadsIndieBound"],
+                             callback=self.getgoodreadsIndigo, meta={"goodreadsId": response.meta['goodreadsId'],
+                                                                     "goodreadsUrl": response.meta['goodreadsUrl'],
+                                                                     "title": response.meta['title'],
+                                                                     "goodreadsAmazonUrl": response.meta[
+                                                                         'goodreadsAmazonUrl'],
+                                                                     "amazonUrl": response.meta['amazonUrl'],
+                                                                     "goodreadsAlibrisUrl": response.meta[
+                                                                         'goodreadsAlibrisUrl'],
+                                                                     "goodreadsWalmarteBooksUrl": response.meta[
+                                                                         'goodreadsWalmarteBooksUrl'],
+                                                                     "goodreadsBarnesNoble": response.meta[
+                                                                         'goodreadsBarnesNoble'],
+                                                                     "walmarteBooksUrl": response.meta[
+                                                                         'walmarteBooksUrl'],
+                                                                     "goodreadsIndigo": response.meta[
+                                                                         'goodreadsIndigo'],
+                                                                     "goodreadsIndieBound": response.meta[
+                                                                         'goodreadsIndieBound'],
+                                                                     "Indigo": Indigo,
+                                                                     "alibrisUrl":response.meta['alibrisUrl'],
+                                                                     "barnesNoble": response.meta['barnesNoble'],
+                                                                     "goodreadsId": response.meta["goodreadsId"]})
+    def getgoodreadsIndieBound(self,response):
+        IndieBound=response.url
 
         print "\n--------------------图书字段信息-------------------"
         print "   goodreadsId  :"+response.meta['goodreadsId']
@@ -123,11 +175,15 @@ class GoodReadsSpider(scrapy.Spider):
         print "   goodreadsAmazonUrl    :" + response.meta['goodreadsAmazonUrl']
         print "   amazonUrl    :" + response.meta['amazonUrl']
         print "   goodreadsAlibrisUrl   :" + response.meta['goodreadsAlibrisUrl']
-        print "   alibrisUrl   :" +alibrisUrl
+        print "   alibrisUrl   :" +response.meta['alibrisUrl']
         print "   goodreadsWalmarteBooksUrl    :" + response.meta['goodreadsWalmarteBooksUrl']
         print "   walmarteBooksUrl    :" + response.meta['walmarteBooksUrl']
         print "   goodreadsBarnesNoble    :" + response.meta['goodreadsBarnesNoble']
         print "   barnesNoble    :" + response.meta['barnesNoble']
+        print "   goodreadsIndieBound    :" + response.meta['goodreadsIndieBound']
+        print "   IndieBound    :" + IndieBound
+        print "   goodreadsIndigo    :" + response.meta['goodreadsIndigo']
+        print "   Indigo    :" + response.meta['Indigo']
         print "--------------------图书字段信息-------------------\n"
         item = {}
         item["goodreadsId"] = response.meta['goodreadsId']
@@ -136,10 +192,13 @@ class GoodReadsSpider(scrapy.Spider):
         item["goodreadsAmazonUrl"] = response.meta['goodreadsAmazonUrl']
         item["amazonUrl"] = response.meta['amazonUrl']
         item["goodreadsAlibrisUrl"] = response.meta['goodreadsAlibrisUrl']
-        item["alibrisUrl"] = alibrisUrl
+        item["alibrisUrl"] = response.meta['alibrisUrl']
         item["goodreadsWalmarteBooksUrl"] = response.meta['goodreadsWalmarteBooksUrl']
         item["walmarteBooksUrl"] = response.meta['walmarteBooksUrl']
         item["goodreadsBarnesNoble"] = response.meta['goodreadsBarnesNoble']
         item["barnesNoble"] = response.meta['barnesNoble']
-
+        item["goodreadsIndieBound"]=response.meta['goodreadsIndieBound']
+        item["IndieBound"]=IndieBound
+        item["goodreadsIndigo"]=response.meta['goodreadsIndigo']
+        item["Indigo"]=response.meta['Indigo']
         print item
