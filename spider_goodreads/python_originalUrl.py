@@ -28,14 +28,15 @@ def getInfo(datas):
         stores[key]=value
     goodreadsAmazonUrl = "https://www.goodreads.com" + \
                          soup.find("ul", {"class": "buyButtonBar left"}).find("a", {"class": "buttonBar"})["href"]
-    goodreadsAlibrisUrl=stores["Alibris"]
-    goodreadsWalmarteBooksUrl=stores["Walmart eBooks"]
-    goodreadsBarnesNoble=stores["Barnes & Noble"]
-    goodreadsIndieBound=stores["IndieBound"]
-    goodreadsIndigo=stores["Indigo"]
+    goodreadsAlibrisUrl=stores["Alibris"].split("&")[0]
+    goodreadsWalmarteBooksUrl=stores["Walmart eBooks"].split("&")[0]
+    goodreadsBarnesNoble=stores["Barnes & Noble"].split("&")[0]
+    goodreadsIndieBound=stores["IndieBound"].split("&")[0]
+    goodreadsIndigo=stores["Indigo"].split("&")[0]
 
     print link,goodreadsAmazonUrl,goodreadsAlibrisUrl,goodreadsWalmarteBooksUrl,goodreadsBarnesNoble,goodreadsIndieBound,goodreadsIndigo
 
+    print "---------------"
 
 def insertDb(item):
     sql = '''INSERT IGNORE into p_news_snapshot2(cudosId,goodreadsId,title,goodreadsUrl,goodreadsReq,goodreadsAmazonUrl,goodreadsAlibrisUrl,goodreadsWalmarteBooksUrl,goodreadsBarnesNoble,goodreadsIndieBound,goodreadsIndigo)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
