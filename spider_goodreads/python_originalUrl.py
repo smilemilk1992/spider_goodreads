@@ -34,7 +34,7 @@ def getInfo(datas):
     goodreadsIndieBound=stores["IndieBound"].split("&")[0]
     goodreadsIndigo=stores["Indigo"].split("&")[0]
 
-    AmazonUrl = requests.get(goodreadsAmazonUrl, allow_redirects=False).headers['Location'].split("ref=")[0]
+    AmazonUrl = requests.get(goodreadsAmazonUrl).url.split("ref=")[0]
     AlibrisUrl=requests.get(goodreadsAlibrisUrl).url.split("&")[0]
     WalmarteBooksUrl = requests.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
     BarnesNoble = "https://www.barnesandnoble.com/w/?ean="+requests.get(goodreadsBarnesNoble).url.split("&")[0].split("?ean=")[1]
