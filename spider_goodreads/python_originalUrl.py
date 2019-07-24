@@ -26,7 +26,7 @@ def getInfo(datas):
         key=i.get_text()
         value="https://www.goodreads.com"+i['href']
         stores[key]=value
-    goodreadsAmazonUrl = "https://www.goodreads.com" + \
+        goodreadsAlibrisUrl = "https://www.goodreads.com" + \
                          soup.find("ul", {"class": "buyButtonBar left"}).find("a", {"class": "buttonBar"})["href"]
     goodreadsAlibrisUrl=stores["Alibris"].split("&")[0]
     goodreadsWalmarteBooksUrl=stores["Walmart eBooks"].split("&")[0]
@@ -34,7 +34,9 @@ def getInfo(datas):
     goodreadsIndieBound=stores["IndieBound"].split("&")[0]
     goodreadsIndigo=stores["Indigo"].split("&")[0]
 
-    print link,goodreadsAmazonUrl,goodreadsAlibrisUrl,goodreadsWalmarteBooksUrl,goodreadsBarnesNoble,goodreadsIndieBound,goodreadsIndigo
+    html = requests.get(goodreadsAlibrisUrl, allow_redirects=False)
+
+    print link,html.headers['Location'],goodreadsAlibrisUrl,goodreadsWalmarteBooksUrl,goodreadsBarnesNoble,goodreadsIndieBound,goodreadsIndigo
 
     print "---------------"
 
