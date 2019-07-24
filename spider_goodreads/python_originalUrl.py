@@ -3,13 +3,15 @@ import re
 import requests
 from bs4 import BeautifulSoup
 import MySQLdb
-
+from concurrent.futures import ThreadPoolExecutor
 def start():
     with open('cudos_goodreads.txt', "r") as f:
         url = f.readlines()
-        for x in url:
-            datas = x.split("\t")
-            getInfo(datas)
+        with ThreadPoolExecutor(3) as executor:
+            for x in url:
+                datas = x.split("\t")
+                executor.submit(getInfo, datas)
+
 
 
 def getInfo(datas):
@@ -27,7 +29,7 @@ def getInfo(datas):
         value="https://www.goodreads.com"+i['href']
         stores[key]=value
     goodreadsAmazonUrl = "https://www.goodreads.com" + \
-                         soup.find("ul", {"class": "buyButtonBar left"}).find("a", {"class": "buttonBar"})["href"]
+                         soup.find("a", id="buyButton")["href"]
     goodreadsAlibrisUrl=stores["Alibris"].split("&")[0]
     goodreadsWalmarteBooksUrl=stores["Walmart eBooks"].split("&")[0]
     goodreadsBarnesNoble=stores["Barnes & Noble"].split("&")[0]
