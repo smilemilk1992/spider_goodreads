@@ -34,18 +34,23 @@ class GoodReadsSpider(scrapy.Spider):
     # start_urls = ['https://www.goodreads.com/book/show/1733202']
 
     def start_requests(self):
-        with open('url.txt', "r") as f:
+        with open('cudos_goodreads.txt', "r") as f:
             url = f.readlines()
             for x in url:
-                id=re.search("https://www.goodreads.com/book/show/(\d+)",x.strip()).group(1)
-                yield scrapy.Request(x.strip(), callback=self.parse,dont_filter=False,meta={"id":id})
+                datas=x.split("\t")
+                cudosId=datas[0]
+                goodreadsUrl=datas[1]
+                title=datas[2]
+                link = goodreadsUrl+"."+"_".join(x for x in title.split(" "))
+                goodreadsId=goodreadsUrl.replace("https://www.goodreads.com/book/show/","")
+                yield scrapy.Request(link, callback=self.parse,dont_filter=False,meta={"goodreadsId":goodreadsId,"cudosId":cudosId})
 
 
     def parse(self, response):
-        otherEdition = response.xpath("//div[@class='otherEdition']/a/@href").extract()
-        if otherEdition:
-            for o in otherEdition:
-                yield scrapy.Request(o, callback=self.parse,dont_filter=False,meta={"id":response.meta["id"]})
+        # otherEdition = response.xpath("//div[@class='otherEdition']/a/@href").extract()
+        # if otherEdition:
+        #     for o in otherEdition:
+        #         yield scrapy.Request(o, callback=self.parse,dont_filter=False,meta={"id":response.meta["id"]})
         title = response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()
         goodreadsId=re.search("https://www.goodreads.com/book/show/(\d+)",response.url).group(1)
         goodreadsUrl=response.url
@@ -143,4 +148,4 @@ class GoodReadsSpider(scrapy.Spider):
         item["goodreadsBarnesNoble"] = response.meta['goodreadsBarnesNoble']
         item["barnesNoble"] = response.meta['barnesNoble']
 
-        yield item
+        print item
