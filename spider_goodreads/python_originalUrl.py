@@ -42,12 +42,31 @@ def getInfo(datas):
     BarnesNoble = "https://www.barnesandnoble.com/w/?ean="+requests.get(goodreadsBarnesNoble).url.split("&")[0].split("?ean=")[1]
     IndieBound=requests.get(goodreadsIndieBound).url
     Indigo=requests.get(goodreadsIndigo).url
-    print link,AmazonUrl,AlibrisUrl,WalmarteBooksUrl,BarnesNoble,IndieBound,Indigo
+    item={}
+    item["cudosId"]=cudosId
+    item["goodreadsId"]=goodreadsId
+    item["title"]=title
+    item["goodreadsUrl"]=goodreadsUrl
+    item["goodreadsReq"]=rs.url
+    item["goodreadsAmazonUrl"]=goodreadsAmazonUrl
+    item["AmazonUrl"] = AmazonUrl
+    item["goodreadsAlibrisUrl"]=goodreadsAlibrisUrl
+    item["AlibrisUrl"] = AlibrisUrl
+    item["goodreadsWalmarteBooksUrl"]=goodreadsWalmarteBooksUrl
+    item["WalmarteBooksUrl"] = WalmarteBooksUrl
+    item["goodreadsBarnesNoble"]=goodreadsBarnesNoble
+    item["BarnesNoble"] = BarnesNoble
+    item["goodreadsIndieBound"]=goodreadsIndieBound
+    item["IndieBound"] = IndieBound
+    item["goodreadsIndigo"]=goodreadsIndigo
+    item["Indigo"] = Indigo
+    insertDb(item)
+    # print link,AmazonUrl,AlibrisUrl,WalmarteBooksUrl,BarnesNoble,IndieBound,Indigo
 
-    print "---------------"
+    # print "---------------"
 
 def insertDb(item):
-    sql = '''INSERT IGNORE into p_news_snapshot2(cudosId,goodreadsId,title,goodreadsUrl,goodreadsReq,goodreadsAmazonUrl,goodreadsAlibrisUrl,goodreadsWalmarteBooksUrl,goodreadsBarnesNoble,goodreadsIndieBound,goodreadsIndigo)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
+    sql = '''INSERT IGNORE into p_news_snapshot2(cudosId,goodreadsId,title,goodreadsUrl,goodreadsReq,goodreadsAmazonUrl,AmazonUrl,goodreadsAlibrisUrl,AlibrisUrl,goodreadsWalmarteBooksUrl,WalmarteBooksUrl,goodreadsBarnesNoble,BarnesNoble,goodreadsIndieBound,IndieBound,goodreadsIndigo,Indigo)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
     conn = MySQLdb.connect(
         host='120.27.218.142',
         port=3306,
@@ -64,16 +83,23 @@ def insertDb(item):
         item['goodreadsUrl'],
         item['goodreadsReq'],
         item['goodreadsAmazonUrl'],
+        item['AmazonUrl'],
         item['goodreadsAlibrisUrl'],
+        item['AlibrisUrl'],
         item['goodreadsWalmarteBooksUrl'],
+        item['WalmarteBooksUrl'],
         item['goodreadsBarnesNoble'],
+        item['BarnesNoble'],
         item['goodreadsIndieBound'],
-        item['goodreadsIndigo']
+        item['IndieBound'],
+        item['goodreadsIndigo'],
+        item['Indigo']
     )
     cur.execute(sql, insertdata)
     conn.commit()
     cur.close()
     conn.close()
+    print item
 
 if __name__ == "__main__":
     start()
