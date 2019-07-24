@@ -35,11 +35,11 @@ def getInfo(datas):
     goodreadsIndigo=stores["Indigo"].split("&")[0]
 
     AmazonUrl = requests.get(goodreadsAmazonUrl, allow_redirects=False).headers['Location'].split("ref=")[0]
-    AlibrisUrl=requests.get(goodreadsAlibrisUrl, allow_redirects=False).headers['Location'].split("&")[0]
-    WalmarteBooksUrl = requests.get(goodreadsWalmarteBooksUrl, allow_redirects=False).headers['Location'].split("&")[0]
-    BarnesNoble = requests.get(goodreadsBarnesNoble, allow_redirects=False).headers['Location'].split("&")[0]
-    IndieBound=requests.get(goodreadsIndieBound, allow_redirects=False).headers['Location']
-    Indigo=requests.get(goodreadsIndigo, allow_redirects=False).headers['Location']
+    AlibrisUrl=requests.get(goodreadsAlibrisUrl, allow_redirects=False).url.split("&")[0]
+    WalmarteBooksUrl = requests.get(goodreadsWalmarteBooksUrl, allow_redirects=False).url.split("&")[0]
+    BarnesNoble = requests.get(goodreadsBarnesNoble, allow_redirects=False).url.split("&")[0]
+    IndieBound=requests.get(goodreadsIndieBound, allow_redirects=False).url
+    Indigo=requests.get(goodreadsIndigo, allow_redirects=False).url
     print link,AmazonUrl,AlibrisUrl,WalmarteBooksUrl,BarnesNoble,IndieBound,Indigo
 
     print "---------------"
