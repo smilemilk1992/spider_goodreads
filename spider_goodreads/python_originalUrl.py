@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 def start():
     with open('cudos_goodreads.txt', "r") as f:
         url = f.readlines()
-        with ThreadPoolExecutor(3) as executor:
+        with ThreadPoolExecutor(10) as executor:
             for x in url:
                 datas = x.split("\t")
                 executor.submit(getInfo, datas)
