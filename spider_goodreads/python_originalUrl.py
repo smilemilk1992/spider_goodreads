@@ -20,11 +20,21 @@ def getInfo(datas):
     goodreadsId = goodreadsUrl.replace("https://www.goodreads.com/book/show/", "")
     rs = requests.get(link)
     soup = BeautifulSoup(rs.text,"html.parser")
-    goodreadsAmazonUrl="https://www.goodreads.com"+soup.find("ul",{"class":"buyButtonBar left"}).find("a",{"class":"buttonBar"})["href"]
     OnlineStores = soup.find("div",{"class":"floatingBox buyBox"}).find_all("a",{"class":"actionLinkLite"})
+    stores={}
     for i in OnlineStores:
-        print link,i.get_text(),i['href']
-    # print link,goodreadsAmazonUrl
+        key=i.get_text()
+        value="https://www.goodreads.com"+i['href']
+        stores[key]=value
+    goodreadsAmazonUrl = "https://www.goodreads.com" + \
+                         soup.find("ul", {"class": "buyButtonBar left"}).find("a", {"class": "buttonBar"})["href"]
+    goodreadsAlibrisUrl=stores["Alibris"]
+    goodreadsWalmarteBooksUrl=stores["Walmart eBooks"]
+    goodreadsBarnesNoble=stores["Barnes & Noble"]
+    goodreadsIndieBound=stores["IndieBound"]
+    goodreadsIndigo=stores["Indigo"]
+
+    print link,goodreadsAmazonUrl,goodreadsAlibrisUrl,goodreadsWalmarteBooksUrl,goodreadsBarnesNoble,goodreadsIndieBound,goodreadsIndigo
 
 
 def insertDb(item):
