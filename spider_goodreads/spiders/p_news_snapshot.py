@@ -91,17 +91,17 @@ class GoodReadsSpider(scrapy.Spider):
 
 
         # yield scrapy.Request(goodreadsBarnesNoble, callback=self.getbarnesNoble,meta={"goodreadsId": goodreadsId,
-                                                                              "goodreadsUrl":goodreadsUrl,
-                                                                              "title":title,
-                                                                              "goodreadsAmazonUrl":goodreadsAmazonUrl,
-                                                                              "amazonUrl":amazonUrl,
-                                                                              "goodreadsAlibrisUrl":goodreadsAlibrisUrl,
-                                                                              "goodreadsWalmarteBooksUrl":goodreadsWalmarteBooksUrl,
-                                                                              "goodreadsBarnesNoble":goodreadsBarnesNoble,
-                                                                              "walmarteBooksUrl":walmarteBooksUrl,
-                                                                              "goodreadsIndigo":goodreadsIndigo,
-                                                                              "goodreadsIndieBound":goodreadsIndieBound,
-                                                                              "goodreadsId":response.meta["goodreadsId"]})
+        #                                                                       "goodreadsUrl":goodreadsUrl,
+        #                                                                       "title":title,
+        #                                                                       "goodreadsAmazonUrl":goodreadsAmazonUrl,
+        #                                                                       "amazonUrl":amazonUrl,
+        #                                                                       "goodreadsAlibrisUrl":goodreadsAlibrisUrl,
+        #                                                                       "goodreadsWalmarteBooksUrl":goodreadsWalmarteBooksUrl,
+        #                                                                       "goodreadsBarnesNoble":goodreadsBarnesNoble,
+        #                                                                       "walmarteBooksUrl":walmarteBooksUrl,
+        #                                                                       "goodreadsIndigo":goodreadsIndigo,
+        #                                                                       "goodreadsIndieBound":goodreadsIndieBound,
+        #                                                                       "goodreadsId":response.meta["goodreadsId"]})
 
 
 
