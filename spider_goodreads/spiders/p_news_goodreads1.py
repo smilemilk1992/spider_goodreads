@@ -233,24 +233,24 @@ class GoodReadsSpider(scrapy.Spider):
         print "   title    :" + item["title"]
         print "   authorName    :" + item["authorName"]
         print "   authorNameUrl    :" + item["authorNameUrl"]
-        print "   Illustrator   :" + item["Illustrator"]
-        print "   IllustratorUrl   :" + item["IllustratorUrl"]
+        print "   Illustrator   :" + str(item["Illustrator"])
+        print "   IllustratorUrl   :" + str(item["IllustratorUrl"])
         print "   coverPic    :" + item["coverPic"]
         print "   ratingDetails    :" + item["ratingDetails"]
         print "   score    :" + item["score"]
         print "   ratings    :" + item["ratings"]
         print "   reviews    :" + item["reviews"]
-        print "   genres     :" + item["genres"]
-        print "   bookFormat    :" + item["bookFormat"]
-        print "   publishedTime    :" + item["publishedTime"]
-        print "   firstPublishedTime    :" + item["firstPublishedTime"]
-        print "   pages    :" + item["pages"]
-        print "   ISBN    :" + item["ISBN"]
-        print "   ISBN13    :" + item["ISBN13"]
-        print "   originalTitle    :" + item["originalTitle"]
-        print "   literaryAwards   :" + item["literaryAwards"]
-        print "   editionLanguage    :" + item["editionLanguage"]
-        print "   description    :" + item["description"]
+        print "   genres     :" + str(item["genres"])
+        print "   bookFormat    :" + str(item["bookFormat"])
+        print "   publishedTime    :" + str(item["publishedTime"])
+        print "   firstPublishedTime    :" + str(item["firstPublishedTime"])
+        print "   pages    :" + str(item["pages"])
+        print "   ISBN    :" + str(item["ISBN"])
+        print "   ISBN13    :" + str(item["ISBN13"])
+        print "   originalTitle    :" + str(item["originalTitle"])
+        print "   literaryAwards   :" + str(item["literaryAwards"])
+        print "   editionLanguage    :" + str(item["editionLanguage"])
+        print "   description    :" + str(item["description"])
         print "   isbnInfo    :" + str(isbninfo)
         print "--------------------图书字段信息-------------------\n"
 
