@@ -98,6 +98,19 @@ class GoodReadsSpider(scrapy.Spider):
         else:
             Original_title = "None"
 
+        if "ISBN" in infoBoxRowTitle:
+            ISBN = etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath("./text()")[0].strip()
+            ISBN13 = \
+            etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath(".//span[@itemprop='isbn']/text()")[
+                0].strip() if etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath(
+                ".//span[@itemprop='isbn']/text()") else "None"
+        elif "ISBN13" in infoBoxRowTitle:
+            ISBN13 = etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN13")]).xpath("./text()")[0].strip()
+            ISBN = "None"
+        else:
+            ISBN = "None"
+            ISBN13 = "None"
+
         if "Edition Language" in infoBoxRowTitle:
             Edition_Language = \
                 etree.fromstring(bookDataBox[infoBoxRowTitle.index("Edition Language")]).xpath("./text()")[
@@ -182,8 +195,17 @@ class GoodReadsSpider(scrapy.Spider):
         item["literaryAwards"] = Literary_Awards.replace("'", "\'")
         item["editionLanguage"] = Edition_Language.replace("'", "\'")
         item['description'] = description.replace("'", "\'")
-        actionLinkLite="https://www.goodreads.com"+response.xpath("//div[@class='otherEditionsActions']/a[@class='actionLinkLite']/@href").extract()[0]
-        yield scrapy.Request(actionLinkLite+"?per_page=100", callback=self.otherLink,dont_filter=False,meta={"goodreadsid":response.meta["goodreadsid"],"item":item})
+        isbninfo = {}
+        otherEditionsActions=response.xpath("//div[@class='otherEditionsActions']/a[@class='actionLinkLite']/@href").extract()
+        if otherEditionsActions:
+            actionLinkLite="https://www.goodreads.com"+otherEditionsActions[0]
+            yield scrapy.Request(actionLinkLite+"?per_page=100", callback=self.otherLink,dont_filter=False,meta={"goodreadsid":response.meta["goodreadsid"],"item":item})
+        else:
+            isbninfo[response.meta["goodreadsid"]]=[ISBN,ISBN13]
+            item["isbninfo"]=isbninfo
+            print "-----------",response.meta["goodreadsid"]
+
+
 
     def otherLink(self,response):
         isbninfo={}
