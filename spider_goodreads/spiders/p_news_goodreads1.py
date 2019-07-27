@@ -62,7 +62,6 @@ class GoodReadsSpider(scrapy.Spider):
             i=etree.fromstring(i)
             dataRow=i.xpath(".//div[@class='dataRow']")
             for data in dataRow:
-
                 dataTitle=data.xpath("./div[@class='dataTitle']/text()")[0].strip()
                 if "ISBN" in dataTitle:
                     ISBN=i.xpath(".//div[@class='dataValue']/text()")[0].strip()
