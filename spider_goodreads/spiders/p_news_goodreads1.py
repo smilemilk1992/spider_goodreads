@@ -124,16 +124,16 @@ class GoodReadsSpider(scrapy.Spider):
         details = response.xpath(XpathRule.details).extract()
         if len(details) >= 2:
             a = etree.fromstring(details[1]).xpath("./text()")[0]
-            aa = "".join(x.strip() + " " for x in a.split("\n") if x)
-            bb = etree.fromstring(details[1]).xpath(XpathRule.greyText)[0].strip().rstrip(")").lstrip("(") \
-                if etree.fromstring(details[1]).xpath(XpathRule.greyText) else aa
+            publishedTime = "".join(x.strip() + " " for x in a.split("\n") if x)
+            firstPublishedTime = etree.fromstring(details[1]).xpath(XpathRule.greyText)[0].strip().rstrip(")").lstrip("(") \
+                if etree.fromstring(details[1]).xpath(XpathRule.greyText) else publishedTime
         elif len(details) == 1:
             a = etree.fromstring(details[0]).xpath("./text()")[0] if etree.fromstring(details[0]).xpath("./text()") else None
-            aa = "".join(x.strip() + " " for x in a.split("\n") if x)
-            bb = etree.fromstring(details[0]).xpath(XpathRule.greyText)[0].strip().rstrip(")").lstrip("(") \
-                if etree.fromstring(details[0]).xpath(XpathRule.greyText) else aa
+            publishedTime = "".join(x.strip() + " " for x in a.split("\n") if x)
+            firstPublishedTime = etree.fromstring(details[0]).xpath(XpathRule.greyText)[0].strip().rstrip(")").lstrip("(") \
+                if etree.fromstring(details[0]).xpath(XpathRule.greyText) else publishedTime
         else:
-            aa = None
+            publishedTime = None
             bb = None
         Rating_details = response.xpath(XpathRule.Rating_details).extract()[0].strip()
         renderRatingGraph = re.search("\[(.*?)\]", Rating_details).group(1)
@@ -158,7 +158,7 @@ class GoodReadsSpider(scrapy.Spider):
             if a:
                 genres[a] = b.replace("users", "").strip() if b else None
             else:
-                genres = "None"
+                genres = None
         item = {}
         item["cudosid"]=response.meta["cudosid"]
         item["goodreadsId"] = re.search("https://www.goodreads.com/book/show/(\d+)", response.url).group(1)
@@ -177,12 +177,12 @@ class GoodReadsSpider(scrapy.Spider):
         item["ISBN13"] = ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None
         item["genres"] = str(genres).replace("'", "\'") if genres else None
         item["bookFormat"] = bookFormat.replace("'", "\'")
-        item["publishedTime"] = aa.replace("'", "\'")
-        item["firstPublishedTime"] = bb.replace("'", "\'")
+        item["publishedTime"] = publishedTime.replace("'", "\'") if publishedTime else None
+        item["firstPublishedTime"] = firstPublishedTime.replace("'", "\'") if firstPublishedTime else None
         item["pages"] = pages
-        item["originalTitle"] = Original_title.replace("'", "\'")
-        item["literaryAwards"] = Literary_Awards.replace("'", "\'")
-        item["editionLanguage"] = Edition_Language.replace("'", "\'")
+        item["originalTitle"] = Original_title.replace("'", "\'") if Original_title else None
+        item["literaryAwards"] = Literary_Awards.replace("'", "\'") if Literary_Awards else None
+        item["editionLanguage"] = Edition_Language.replace("'", "\'") if Edition_Language else None
         item['description'] = description.replace("'", "\'")
 
         otherEditionsActions=response.xpath("//div[@class='otherEditionsActions']/a[@class='actionLinkLite']/@href").extract()
