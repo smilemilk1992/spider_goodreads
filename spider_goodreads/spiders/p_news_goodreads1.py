@@ -56,7 +56,7 @@ class GoodReadsSpider(scrapy.Spider):
         yield scrapy.Request(actionLinkLite+"?per_page=100", callback=self.otherLink,dont_filter=False,meta={"goodreadsid":response.meta["goodreadsid"]})
 
     def otherLink(self,response):
-        isbninfo=[]
+        isbninfo={}
         infolist = response.xpath("//div[@class='editionData']").extract()
         for info in infolist:
             info =etree.fromstring(info)
@@ -70,12 +70,12 @@ class GoodReadsSpider(scrapy.Spider):
                     if "ISBN13" in dataTitle:
                         ISBN13 = data.xpath(".//div[@class='dataValue']/text()")[0].strip()
                         ISBN=None
-                        isbninfo[infoId]=[str(ISBN), str(ISBN13.lstrip("(ISBN13: ").rstrip(")"))]
+                        isbninfo[infoId]=[ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")]
 
                     elif "ISBN" in dataTitle:
                         ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
-                        isbninfo[infoId]=[str(ISBN),str(ISBN13.lstrip("(ISBN13: ").rstrip(")")) if ISBN13 else None]
+                        isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
         print response.meta["goodreadsid"],isbninfo
 
 
