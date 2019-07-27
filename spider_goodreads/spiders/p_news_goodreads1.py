@@ -57,11 +57,10 @@ class GoodReadsSpider(scrapy.Spider):
 
     def otherLink(self,response):
         xx=[]
-        moreDetails=response.xpath("//div[@class='moreDetails']").extract()
+        moreDetails=response.xpath("//div[@class='moreDetails hideDetails']").extract()
         for i in moreDetails:
             i=etree.fromstring(i)
             dataTitle=i.xpath("../div[@class='dataTitle']/text()")[0].strip()
-            print "---",dataTitle
             if "ISBN" in dataTitle:
                 ISBN=i.xpath("../div[@class='dataValue']/text()")[0].strip()
                 ISBN13=i.xpath("../div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if i.xpath("../div[@class='dataValue']/span[@class='greyText']/text()") else None
