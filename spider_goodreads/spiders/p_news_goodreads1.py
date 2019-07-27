@@ -52,8 +52,139 @@ class GoodReadsSpider(scrapy.Spider):
 
 
     def parse(self, response):
+        score = response.xpath("//span[@itemprop='ratingValue']/text()").extract()[0].strip()
+        reviews = response.xpath("//meta[@itemprop='reviewCount']/@content").extract()[0].strip()
+        ratings = response.xpath("//meta[@itemprop='ratingCount']/@content").extract()[0].strip()
+        bookUrl = response.url
+        title = response.xpath("//h1[@id='bookTitle']/text()").extract()[0].strip()
+        Tllist = []
+        Tlluser = []
+        authorUrlList = []
+        authorList = []
+        for x in response.xpath("//div[@class='authorName__container']").extract():
+            x = etree.fromstring(x)
+            greyText = x.xpath(".//span[contains(@class,'greyText')]/text()")
+            if greyText:
+                if "Illustrator" in x.xpath("./span[contains(@class,'greyText')]/text()")[0].strip():
+                    Tllist.append(x.xpath("./a[@class='authorName']/@href")[0].strip())
+                    Tlluser.append(x.xpath("./a[@class='authorName']/span/text()")[0].strip())
+                else:
+                    authorUrlList.append(x.xpath("./a[@class='authorName']/@href")[0].strip())
+                    authorList.append(x.xpath("./a[@class='authorName']/span/text()")[0].strip())
+            else:
+                authorUrlList.append(x.xpath("./a[@class='authorName']/@href")[0].strip())
+                authorList.append(x.xpath("./a[@class='authorName']/span/text()")[0].strip())
+
+        coverPic = \
+            response.xpath("//div[@class='noCoverMediumContainer']/img/@src | //img[@id='coverImage']/@src").extract()[
+                0].strip()
+        description = ",".join(x.strip() for x in response.xpath(
+            "//div[@id='description']//p//text()|//div[@id='description']/span/text()").extract()) if response.xpath(
+            "//div[@id='description']//p//text()|//div[@id='description']/span/text()").extract() else "None"
+        bookFormat = response.xpath("//span[@itemprop='bookFormat']/text()").extract()[0].strip() if response.xpath(
+            "//span[@itemprop='bookFormat']/text()").extract() else "None"
+        ispage = response.xpath("//span[@itemprop='numberOfPages']/text()").extract()
+        if ispage:
+            pages = response.xpath("//span[@itemprop='numberOfPages']/text()").extract()[0].strip().replace(" pages",
+                                                                                                            "")
+        else:
+            pages = "None"
+
+        bookDataBox = response.xpath(XpathRule.bookDataBox).extract()
+        infoBoxRowTitle = response.xpath(XpathRule.infoBoxRowTitle).extract()
+        if "Original Title" in infoBoxRowTitle:
+            Original_title = etree.fromstring(bookDataBox[infoBoxRowTitle.index("Original Title")]).xpath("./text()")[
+                0].strip()
+        else:
+            Original_title = "None"
+
+        if "Edition Language" in infoBoxRowTitle:
+            Edition_Language = \
+                etree.fromstring(bookDataBox[infoBoxRowTitle.index("Edition Language")]).xpath("./text()")[
+                    0].strip() if etree.fromstring(bookDataBox[infoBoxRowTitle.index("Edition Language")]).xpath(
+                    "./text()") else "None"
+        else:
+            Edition_Language = "None"
+
+        if "Literary Awards" in infoBoxRowTitle:
+            Literary_Awards = ",".join(x for x in
+                                       etree.fromstring(bookDataBox[infoBoxRowTitle.index("Literary Awards")]).xpath(
+                                           "./a[@class='award']/text()"))
+        else:
+            Literary_Awards = "None"
+
+        details = response.xpath(XpathRule.details).extract()
+        if len(details) >= 2:
+            a = etree.fromstring(details[1]).xpath("./text()")[0]
+            aa = "".join(x.strip() + " " for x in a.split("\n") if x)
+            bb = etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(")").lstrip(
+                "(") if etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()") else aa
+        elif len(details) == 1:
+            a = etree.fromstring(details[0]).xpath("./text()")[0] if etree.fromstring(details[0]).xpath(
+                "./text()") else "None"
+            aa = "".join(x.strip() + " " for x in a.split("\n") if x)
+            bb = etree.fromstring(details[0]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(
+                ")").lstrip("(") if etree.fromstring(details[0]).xpath("./nobr[@class='greyText']/text()") else aa
+        else:
+            aa = "None"
+            bb = "None"
+        Rating_details = response.xpath(
+            "//span[@id='rating_graph']/script/text()|//span[@id='reviewControls__ratingDetailsMiniGraph']/script/text()").extract()[
+            0].strip()
+
+        renderRatingGraph = re.search("\[(.*?)\]", Rating_details).group(1)
+
+        elementList = response.xpath(
+            "//div[@class='bigBoxContent containerWithHeaderContent']/div[contains(@class,'elementList ')]").extract()
+
+        genres = {}
+        for x in elementList:
+            x = etree.fromstring(x)
+            actionLinkLite = x.xpath(".//a[@class='actionLinkLite bookPageGenreLink']/text()")
+            if len(actionLinkLite) == 2:
+                a = ">".join(x.strip() for x in actionLinkLite)
+            else:
+                if actionLinkLite:
+                    a = actionLinkLite[0].strip()
+                else:
+                    a = None
+
+            bookPageGenreLink = x.xpath(".//a[@class='actionLinkLite greyText bookPageGenreLink']/text()")
+            if bookPageGenreLink:
+                b = bookPageGenreLink[0].strip()
+            else:
+                b = None
+
+            if a:
+                genres[a] = b.replace("users", "").strip() if b else None
+            else:
+                genres = "None"
+        item = {}
+        item["cudosid"]=response.meta["cudosid"]
+        item["goodreadsId"] = re.search("https://www.goodreads.com/book/show/(\d+)", response.url).group(1)
+        item["relationId"] = response.meta["id"]
+        item["goodreadsUrl"] = response.url
+        item["title"] = title
+        item["authorName"] = ",".join(x for x in authorList)
+        item["authorNameUrl"] = ",".join(x for x in authorUrlList)
+        item["Illustrator"] = ",".join(x for x in Tlluser)
+        item["IllustratorUrl"] = ",".join(x for x in Tllist)
+        item["coverPic"] = coverPic
+        item["ratingDetails"] = renderRatingGraph
+        item["score"] = score
+        item["ratings"] = ratings
+        item["reviews"] = reviews
+        item["genres"] = str(genres).replace("'", "\'") if genres else None
+        item["bookFormat"] = bookFormat.replace("'", "\'")
+        item["publishedTime"] = aa.replace("'", "\'")
+        item["firstPublishedTime"] = bb.replace("'", "\'")
+        item["pages"] = pages
+        item["originalTitle"] = Original_title.replace("'", "\'")
+        item["literaryAwards"] = Literary_Awards.replace("'", "\'")
+        item["editionLanguage"] = Edition_Language.replace("'", "\'")
+        item['description'] = description.replace("'", "\'")
         actionLinkLite="https://www.goodreads.com"+response.xpath("//div[@class='otherEditionsActions']/a[@class='actionLinkLite']/@href").extract()[0]
-        yield scrapy.Request(actionLinkLite+"?per_page=100", callback=self.otherLink,dont_filter=False,meta={"goodreadsid":response.meta["goodreadsid"]})
+        yield scrapy.Request(actionLinkLite+"?per_page=100", callback=self.otherLink,dont_filter=False,meta={"goodreadsid":response.meta["goodreadsid"],"item":item})
 
     def otherLink(self,response):
         isbninfo={}
@@ -76,7 +207,33 @@ class GoodReadsSpider(scrapy.Spider):
                         ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
                         isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
-        print response.meta["goodreadsid"],isbninfo
+        item=response.meta["item"]
+        its={}
+        its["isbnInfo"]=isbninfo
+        its["cudosid"] = item["cudosid"]
+        its["goodreadsId"] = item["goodreadsId"]
+        its["relationId"] = item["relationId"]
+        its["goodreadsUrl"] = item["goodreadsUrl"]
+        its["title"] = item["title"]
+        its["authorName"] = item["authorName"]
+        its["authorNameUrl"] = item["authorNameUrl"]
+        its["Illustrator"] = item["Illustrator"]
+        its["IllustratorUrl"] = item["IllustratorUrl"]
+        its["coverPic"] = item["coverPic"]
+        its["ratingDetails"] = item["ratingDetails"]
+        its["score"] = item["score"]
+        its["ratings"] = item["ratings"]
+        its["reviews"] = item["reviews"]
+        its["genres"] = item["genres"]
+        its["bookFormat"] = item["bookFormat"]
+        its["publishedTime"] = item["publishedTime"]
+        its["firstPublishedTime"] = item["firstPublishedTime"]
+        its["pages"] = item["pages"]
+        its["originalTitle"] = item["originalTitle"]
+        its["literaryAwards"] =item["literaryAwards"]
+        its["editionLanguage"] = item["editionLanguage"]
+        its['description'] = item["description"]
+        print its
 
 
 
