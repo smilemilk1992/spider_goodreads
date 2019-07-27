@@ -48,14 +48,35 @@ class GoodReadsSpider(scrapy.Spider):
                                      dont_filter=False,
                                      meta={"goodreadsid":goodreadsid,
                                            "cudosid":cudosid,
-                                           "title":title,
-                                           "flag":False,
-                                           "isbninfo":{}})
+                                           "title":title})
 
 
     def parse(self, response):
         actionLinkLite="https://www.goodreads.com"+response.xpath("//div[@class='otherEditionsActions']/a[@class='actionLinkLite']/@href").extract()[0]
-        print response.meta["goodreadsid"],actionLinkLite
+        yield scrapy.Request(actionLinkLite+"?per_page=100&utf8=✓", callback=self.parse,dont_filter=False,meta={"goodreadsid":response.meta["goodreadsid"]})
+
+    def otherLink(self,response):
+        xx=[]
+        moreDetails=response.xpath("//div[@class='moreDetails']").extract()
+        for i in moreDetails:
+            i=etree.fromstring(i)
+            dataTitle=i.xpath("../div[@class='dataTitle']/text()")[0].strip()
+            if "ISBN" in dataTitle:
+                ISBN=i.xpath("../div[@class='dataValue']/text()")[0].strip()
+                ISBN13=i.xpath("../div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if i.xpath("../div[@class='dataValue']/span[@class='greyText']/text()") else None
+                xx.append([ISBN,ISBN13])
+            elif "ISBN13" in dataTitle:
+                ISBN13 = i.xpath("../div[@class='dataValue']/text()")[0].strip()
+                ISBN=None
+                xx.append([ISBN, ISBN13])
+            else:
+                xx.append([None, None])
+        print response.meta["goodreadsid"],xx
+
+
+
+
+
 
 
 
