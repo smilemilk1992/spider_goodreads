@@ -60,7 +60,7 @@ class GoodReadsSpider(scrapy.Spider):
     #                                  meta={"goodreadsid":goodreadsid,"cudosid":cudosid})
 
     def start_requests(self):
-        x="27	https://www.goodreads.com/book/show/21416421	Waiting is Not Easy!	Mo Willems"
+        x="158	https://www.goodreads.com/book/show/331731	The Church Mouse	Graham Oakley"
         datas=x.strip().split("\t")
         cudosid = int(datas[0])
         goodreadsid = int(datas[1].replace("https://www.goodreads.com/book/show/", ""))
