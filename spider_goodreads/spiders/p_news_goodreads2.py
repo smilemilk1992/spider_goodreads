@@ -15,7 +15,7 @@ class GoodReadsSpider(scrapy.Spider):
     '''
     图书信息
     '''
-    name = "goodreads1"
+    name = "goodreads2"
     custom_settings = {
         'CONCURRENT_REQUESTS': 8,  #允许的线程数
         'RETRY_TIMES': 3,  #重试机制
@@ -79,8 +79,8 @@ class GoodReadsSpider(scrapy.Spider):
             response.xpath("//div[@class='noCoverMediumContainer']/img/@src | //img[@id='coverImage']/@src").extract()[
                 0].strip()
         description = ",".join(x.strip() for x in response.xpath(
-            "//div[@id='description']//p//text()|//div[@id='description']/span/text()").extract()) if response.xpath(
-            "//div[@id='description']//p//text()|//div[@id='description']/span/text()").extract() else "None"
+            "//div[@id='description']//p//text()|//div[@id='description']/span//text()").extract()) if response.xpath(
+            "//div[@id='description']//p//text()|//div[@id='description']/span//text()").extract() else "None"
         bookFormat = response.xpath("//span[@itemprop='bookFormat']/text()").extract()[0].strip() if response.xpath(
             "//span[@itemprop='bookFormat']/text()").extract() else "None"
         ispage = response.xpath("//span[@itemprop='numberOfPages']/text()").extract()
@@ -134,13 +134,13 @@ class GoodReadsSpider(scrapy.Spider):
                 "(") if etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()") else aa
         elif len(details) == 1:
             a = etree.fromstring(details[0]).xpath("./text()")[0] if etree.fromstring(details[0]).xpath(
-                "./text()") else "None"
+                "./text()") else None
             aa = "".join(x.strip() + " " for x in a.split("\n") if x)
             bb = etree.fromstring(details[0]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(
                 ")").lstrip("(") if etree.fromstring(details[0]).xpath("./nobr[@class='greyText']/text()") else aa
         else:
-            aa = "None"
-            bb = "None"
+            aa = None
+            bb = None
         Rating_details = response.xpath(
             "//span[@id='rating_graph']/script/text()|//span[@id='reviewControls__ratingDetailsMiniGraph']/script/text()").extract()[
             0].strip()
@@ -186,6 +186,8 @@ class GoodReadsSpider(scrapy.Spider):
         item["score"] = score
         item["ratings"] = ratings
         item["reviews"] = reviews
+        item["ISBN"] = ISBN
+        item["ISBN13"] = ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None
         item["genres"] = str(genres).replace("'", "\'") if genres else None
         item["bookFormat"] = bookFormat.replace("'", "\'")
         item["publishedTime"] = aa.replace("'", "\'")
@@ -195,15 +197,17 @@ class GoodReadsSpider(scrapy.Spider):
         item["literaryAwards"] = Literary_Awards.replace("'", "\'")
         item["editionLanguage"] = Edition_Language.replace("'", "\'")
         item['description'] = description.replace("'", "\'")
-        isbninfo = {}
+
         otherEditionsActions=response.xpath("//div[@class='otherEditionsActions']/a[@class='actionLinkLite']/@href").extract()
         if otherEditionsActions:
             actionLinkLite="https://www.goodreads.com"+otherEditionsActions[0]
             yield scrapy.Request(actionLinkLite+"?per_page=100", callback=self.otherLink,dont_filter=False,meta={"goodreadsid":response.meta["goodreadsid"],"item":item})
         else:
-            isbninfo[response.meta["goodreadsid"]]=[ISBN,ISBN13]
-            item["isbninfo"]=isbninfo
-            print "-----------",response.meta["goodreadsid"]
+            pass
+            # isbninfo = {}
+            # isbninfo[response.meta["goodreadsid"]]=[ISBN,ISBN13]
+            # item["isbninfo"]=isbninfo
+            # print "-----------",response.meta["goodreadsid"]
 
 
 
@@ -214,23 +218,28 @@ class GoodReadsSpider(scrapy.Spider):
             info =etree.fromstring(info)
             infoUrl=info.xpath(".//a[@class='bookTitle']/@href")[0].strip()
             infoId=re.search("book/show/(\d+)",infoUrl).group(1)
+            if infoId is response.meta["goodreadsid"]:
+                continue
             moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']")
+
             for i in moreDetails:
                 dataRow=i.xpath("./div[@class='dataRow']")
                 for data in dataRow:
                     isbninfo[infoId] = [None, None]
                     dataTitle=data.xpath("./div[@class='dataTitle']/text()")[0].strip()
+
                     if "ISBN13" in dataTitle:
-                        ISBN13 = data.xpath(".//div[@class='dataValue']/text()")[0].strip()
+
+                        ISBN13 = data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN=None
                         isbninfo[infoId]=[ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")]
 
-                    elif "ISBN" in dataTitle:
+                    if "ISBN" in dataTitle:
                         ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
                         isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
 
-
+        print isbninfo
         item=response.meta["item"]
         print "\n--------------------图书字段信息-------------------"
         print "   cudosid  :" + str(item["cudosid"])
@@ -251,6 +260,8 @@ class GoodReadsSpider(scrapy.Spider):
         print "   publishedTime    :" + item["publishedTime"]
         print "   firstPublishedTime    :" + item["firstPublishedTime"]
         print "   pages    :" + item["pages"]
+        print "   ISBN    :" + item["ISBN"]
+        print "   ISBN13    :" + item["ISBN13"]
         print "   originalTitle    :" + item["originalTitle"]
         print "   literaryAwards   :" + item["literaryAwards"]
         print "   editionLanguage    :" + item["editionLanguage"]
