@@ -134,13 +134,13 @@ class GoodReadsSpider(scrapy.Spider):
                 "(") if etree.fromstring(details[1]).xpath("./nobr[@class='greyText']/text()") else aa
         elif len(details) == 1:
             a = etree.fromstring(details[0]).xpath("./text()")[0] if etree.fromstring(details[0]).xpath(
-                "./text()") else "None"
+                "./text()") else None
             aa = "".join(x.strip() + " " for x in a.split("\n") if x)
             bb = etree.fromstring(details[0]).xpath("./nobr[@class='greyText']/text()")[0].strip().rstrip(
                 ")").lstrip("(") if etree.fromstring(details[0]).xpath("./nobr[@class='greyText']/text()") else aa
         else:
-            aa = "None"
-            bb = "None"
+            aa = None
+            bb = None
         Rating_details = response.xpath(
             "//span[@id='rating_graph']/script/text()|//span[@id='reviewControls__ratingDetailsMiniGraph']/script/text()").extract()[
             0].strip()
@@ -187,7 +187,7 @@ class GoodReadsSpider(scrapy.Spider):
         item["ratings"] = ratings
         item["reviews"] = reviews
         item["ISBN"] = ISBN
-        item["ISBN13"] = ISBN13
+        item["ISBN13"] = ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None
         item["genres"] = str(genres).replace("'", "\'") if genres else None
         item["bookFormat"] = bookFormat.replace("'", "\'")
         item["publishedTime"] = aa.replace("'", "\'")
