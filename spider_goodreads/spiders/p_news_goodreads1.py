@@ -79,8 +79,8 @@ class GoodReadsSpider(scrapy.Spider):
             response.xpath("//div[@class='noCoverMediumContainer']/img/@src | //img[@id='coverImage']/@src").extract()[
                 0].strip()
         description = ",".join(x.strip() for x in response.xpath(
-            "//div[@id='description']//p//text()|//div[@id='description']/span/text()").extract()) if response.xpath(
-            "//div[@id='description']//p//text()|//div[@id='description']/span/text()").extract() else "None"
+            "//div[@id='description']//p//text()|//div[@id='description']/span//text()").extract()) if response.xpath(
+            "//div[@id='description']//p//text()|//div[@id='description']/span//text()").extract() else "None"
         bookFormat = response.xpath("//span[@itemprop='bookFormat']/text()").extract()[0].strip() if response.xpath(
             "//span[@itemprop='bookFormat']/text()").extract() else "None"
         ispage = response.xpath("//span[@itemprop='numberOfPages']/text()").extract()
@@ -197,12 +197,13 @@ class GoodReadsSpider(scrapy.Spider):
         item["literaryAwards"] = Literary_Awards.replace("'", "\'")
         item["editionLanguage"] = Edition_Language.replace("'", "\'")
         item['description'] = description.replace("'", "\'")
-        isbninfo = {}
+
         otherEditionsActions=response.xpath("//div[@class='otherEditionsActions']/a[@class='actionLinkLite']/@href").extract()
         if otherEditionsActions:
             actionLinkLite="https://www.goodreads.com"+otherEditionsActions[0]
             yield scrapy.Request(actionLinkLite+"?per_page=100", callback=self.otherLink,dont_filter=False,meta={"goodreadsid":response.meta["goodreadsid"],"item":item})
         else:
+            isbninfo = {}
             isbninfo[response.meta["goodreadsid"]]=[ISBN,ISBN13]
             item["isbninfo"]=isbninfo
             print "-----------",response.meta["goodreadsid"]
@@ -216,8 +217,8 @@ class GoodReadsSpider(scrapy.Spider):
             info =etree.fromstring(info)
             infoUrl=info.xpath(".//a[@class='bookTitle']/@href")[0].strip()
             infoId=re.search("book/show/(\d+)",infoUrl).group(1)
-            # if infoId is response.meta["goodreadsid"]:
-            #     continue
+            if infoId is response.meta["goodreadsid"]:
+                continue
             moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']")
 
             for i in moreDetails:
@@ -225,6 +226,7 @@ class GoodReadsSpider(scrapy.Spider):
                 for data in dataRow:
                     isbninfo[infoId] = [None, None]
                     dataTitle=data.xpath("./div[@class='dataTitle']/text()")[0].strip()
+                    print "----",dataTitle
                     if "ISBN13" in dataTitle:
                         ISBN13 = data.xpath(".//div[@class='dataValue']/text()")[0].strip()
                         ISBN=None
