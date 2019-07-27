@@ -208,8 +208,8 @@ class GoodReadsSpider(scrapy.Spider):
                         isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
         item=response.meta["item"]
         print "\n--------------------图书字段信息-------------------"
-        print "   cudosid  :" + item["cudosid"]
-        print "   goodreadsId  :" + item["goodreadsId"]
+        print "   cudosid  :" + str(item["cudosid"])
+        print "   goodreadsId  :" + str(item["goodreadsId"])
         print "   goodreadsUrl    :" + item["goodreadsUrl"]
         print "   title    :" + item["title"]
         print "   authorName    :" + item["authorName"]
