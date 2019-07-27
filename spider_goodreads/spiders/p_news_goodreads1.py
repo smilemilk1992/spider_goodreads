@@ -37,8 +37,14 @@ class GoodReadsSpider(scrapy.Spider):
         with open('cudos_goodreads.txt', "r") as f:
             url = f.readlines()
             for x in url:
-                id=re.search("https://www.goodreads.com/book/show/(\d+)",x.strip()).group(1)
-                yield scrapy.Request(x.strip(), callback=self.parse,dont_filter=False,meta={"id":id})
+                datas=x.strip().split("\t")
+                cudosid = int(datas[0])
+                goodreadsid = int(datas[1].replace("https://www.goodreads.com/book/show/", ""))
+                goodreadsUrl = datas[1]
+                goodreadsReq=datas[1]+"."+"_".join(i for i in datas[2].split(" "))
+                title = datas[2]
+                author = datas[3]
+                yield scrapy.Request(goodreadsReq, callback=self.parse,dont_filter=False,meta={"goodreadsid":goodreadsid})
 
 
     def parse(self, response):
