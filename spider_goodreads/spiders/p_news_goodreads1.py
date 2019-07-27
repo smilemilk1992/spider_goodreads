@@ -215,6 +215,7 @@ class GoodReadsSpider(scrapy.Spider):
             infoUrl=info.xpath(".//a[@class='bookTitle']/@href")[0].strip()
             infoId=re.search("book/show/(\d+)",infoUrl).group(1)
             moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']")
+            isbninfo[infoId]=[None,None]
             for i in moreDetails:
                 dataRow=i.xpath("./div[@class='dataRow']")
                 for data in dataRow:
@@ -228,9 +229,8 @@ class GoodReadsSpider(scrapy.Spider):
                         ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
                         isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
-                    else:
-                        ISBN=ISBN13=None
-                        isbninfo[infoId]=[ISBN,ISBN13]
+
+
         item=response.meta["item"]
         print "\n--------------------图书字段信息-------------------"
         print "   cudosid  :" + str(item["cudosid"])
