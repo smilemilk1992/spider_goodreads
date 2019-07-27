@@ -72,7 +72,7 @@ class GoodReadsSpider(scrapy.Spider):
             ISBN13 = "None"
         isbninfo=response.meta["isbninfo"]
         isbninfo[reqId]=[ISBN,ISBN13]
-        if reqId is response.meta["goodreadsid"]:
+        if str(reqId) == str(response.meta["goodreadsid"]):
             print "-----", str(reqId), str(response.meta["goodreadsid"])
             flag=True
             otherEdition=response.xpath("//div[@class='otherEdition']/a/@href").extract()
