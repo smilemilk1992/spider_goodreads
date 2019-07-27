@@ -3,8 +3,9 @@
 import scrapy
 from lxml import etree
 import re
-import requests
-import logging
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 class XpathRule(object):
     score="//span[@itemprop='ratingValue']/text()"
     reviews="//meta[@itemprop='reviewCount']/@content"
