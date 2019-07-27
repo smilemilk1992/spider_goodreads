@@ -57,20 +57,23 @@ class GoodReadsSpider(scrapy.Spider):
 
     def otherLink(self,response):
         xx=[]
-        moreDetails=response.xpath("//div[@class='moreDetails hideDetails']").extract()
-        for i in moreDetails:
-            i=etree.fromstring(i)
-            dataRow=i.xpath("./div[@class='dataRow']")
-            for data in dataRow:
-                dataTitle=data.xpath("./div[@class='dataTitle']/text()")[0].strip()
-                if "ISBN" in dataTitle:
-                    ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
-                    ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
-                    xx.append([ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None])
-                elif "ISBN13" in dataTitle:
-                    ISBN13 = data.xpath(".//div[@class='dataValue']/text()")[0].strip()
-                    ISBN=None
-                    xx.append([ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")])
+        infolist = response.xpath("//div[@class='editionData']").extract()
+        for info in infolist:
+            info =etree.fromstring(info)
+            moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']").extract()
+            for i in moreDetails:
+                i=etree.fromstring(i)
+                dataRow=i.xpath("./div[@class='dataRow']")
+                for data in dataRow:
+                    dataTitle=data.xpath("./div[@class='dataTitle']/text()")[0].strip()
+                    if "ISBN" == dataTitle:
+                        ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
+                        ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
+                        xx.append([ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None])
+                    elif "ISBN13" == dataTitle:
+                        ISBN13 = data.xpath(".//div[@class='dataValue']/text()")[0].strip()
+                        ISBN=None
+                        xx.append([ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")])
         print response.meta["goodreadsid"],xx
 
 
