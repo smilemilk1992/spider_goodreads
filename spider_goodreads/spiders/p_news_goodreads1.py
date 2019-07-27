@@ -162,7 +162,6 @@ class GoodReadsSpider(scrapy.Spider):
         item = {}
         item["cudosid"]=response.meta["cudosid"]
         item["goodreadsId"] = re.search("https://www.goodreads.com/book/show/(\d+)", response.url).group(1)
-        item["relationId"] = response.meta["id"]
         item["goodreadsUrl"] = response.url
         item["title"] = title
         item["authorName"] = ",".join(x for x in authorList)
@@ -212,7 +211,6 @@ class GoodReadsSpider(scrapy.Spider):
         its["isbnInfo"]=isbninfo
         its["cudosid"] = item["cudosid"]
         its["goodreadsId"] = item["goodreadsId"]
-        its["relationId"] = item["relationId"]
         its["goodreadsUrl"] = item["goodreadsUrl"]
         its["title"] = item["title"]
         its["authorName"] = item["authorName"]
