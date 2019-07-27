@@ -61,18 +61,15 @@ class GoodReadsSpider(scrapy.Spider):
         for info in infolist:
             info =etree.fromstring(info)
             moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']")
-
             for i in moreDetails:
-
                 dataRow=i.xpath("./div[@class='dataRow']")
                 for data in dataRow:
                     dataTitle=data.xpath("./div[@class='dataTitle']/text()")[0].strip()
-                    print "---", dataTitle
-                    if "ISBN" is dataTitle:
+                    if "ISBN" in dataTitle:
                         ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
                         xx.append([ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None])
-                    elif "ISBN13" is dataTitle:
+                    elif "ISBN13" in dataTitle:
                         ISBN13 = data.xpath(".//div[@class='dataValue']/text()")[0].strip()
                         ISBN=None
                         xx.append([ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")])
