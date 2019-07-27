@@ -230,7 +230,7 @@ class GoodReadsSpider(scrapy.Spider):
         print "   literaryAwards   :" + item["literaryAwards"]
         print "   editionLanguage    :" + item["editionLanguage"]
         print "   description    :" + item["description"]
-        print "   isbnInfo    :" + isbninfo
+        print "   isbnInfo    :" + str(isbninfo)
         print "--------------------图书字段信息-------------------\n"
 
 
