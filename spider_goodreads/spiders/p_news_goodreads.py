@@ -17,7 +17,7 @@ class GoodReadsSpider(scrapy.Spider):
     '''
     name = "goodreads"
     custom_settings = {
-        'CONCURRENT_REQUESTS': 48,  #允许的线程数
+        'CONCURRENT_REQUESTS': 16,  #允许的线程数
         'RETRY_TIMES': 3,  #重试机制
         # 'DOWNLOAD_DELAY':5,   #延时（秒）
         'ITEM_PIPELINES': {
