@@ -216,8 +216,8 @@ class GoodReadsSpider(scrapy.Spider):
             info =etree.fromstring(info)
             infoUrl=info.xpath(".//a[@class='bookTitle']/@href")[0].strip()
             infoId=re.search("book/show/(\d+)",infoUrl).group(1)
-            if infoId is response.meta["goodreadsid"]:
-                continue
+            # if infoId is response.meta["goodreadsid"]:
+            #     continue
             moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']")
 
             for i in moreDetails:
@@ -256,8 +256,8 @@ class GoodReadsSpider(scrapy.Spider):
         print "   publishedTime    :" + item["publishedTime"]
         print "   firstPublishedTime    :" + item["firstPublishedTime"]
         print "   pages    :" + item["pages"]
-        print "   ISBN    :" + response.meta["ISBN"]
-        print "   ISBN13    :" + response.meta["ISBN13"]
+        print "   ISBN    :" + item["ISBN"]
+        print "   ISBN13    :" + item["ISBN13"]
         print "   originalTitle    :" + item["originalTitle"]
         print "   literaryAwards   :" + item["literaryAwards"]
         print "   editionLanguage    :" + item["editionLanguage"]
