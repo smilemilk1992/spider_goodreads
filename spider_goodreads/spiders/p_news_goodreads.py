@@ -217,4 +217,4 @@ class GoodReadsSpider(scrapy.Spider):
         item["ISBN13"] = ISBN13
         item["editionLanguage"] = Edition_Language.replace("'","\'")
         item['description']=description.replace("'","\'")
-        yield item
+        # yield item
