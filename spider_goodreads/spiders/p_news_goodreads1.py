@@ -61,8 +61,9 @@ class GoodReadsSpider(scrapy.Spider):
         for info in infolist:
             info =etree.fromstring(info)
             moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']")
-            print "---",moreDetails
+
             for i in moreDetails:
+                print "---", i
                 dataRow=i.xpath("./div[@class='dataRow']")
                 for data in dataRow:
                     dataTitle=data.xpath("./div[@class='dataTitle']/text()")[0].strip()
