@@ -34,7 +34,7 @@ class GoodReadsSpider(scrapy.Spider):
         'RETRY_TIMES': 3,  #重试机制
         # 'DOWNLOAD_DELAY':5,   #延时（秒）
         'ITEM_PIPELINES': {
-            # "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipeline": 200,
+            "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipeline": 200,
         },
         'DOWNLOADER_MIDDLEWARES': {
             'spider_goodreads.middlewares.RandomUserAgent.RandomUserAgent': 300,
@@ -208,7 +208,6 @@ class GoodReadsSpider(scrapy.Spider):
             if infoId is response.meta["goodreadsid"]:
                 continue
             moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']")
-
             for i in moreDetails:
                 dataRow=i.xpath("./div[@class='dataRow']")
                 isbninfo[infoId] = [None, None]
@@ -224,8 +223,8 @@ class GoodReadsSpider(scrapy.Spider):
                         ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
                         isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
 
-        print isbninfo
         item=response.meta["item"]
+        item["isbnInfo"]=str(isbninfo)
         print "\n--------------------图书字段信息-------------------"
         print "   cudosid  :" + str(item["cudosid"])
         print "   goodreadsId  :" + str(item["goodreadsId"])
@@ -253,6 +252,7 @@ class GoodReadsSpider(scrapy.Spider):
         print "   description    :" + str(item["description"])
         print "   isbnInfo    :" + str(isbninfo)
         print "--------------------图书字段信息-------------------\n"
+        yield item
 
 
 

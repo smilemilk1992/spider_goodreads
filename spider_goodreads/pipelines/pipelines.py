@@ -3,10 +3,10 @@ import traceback
 import MySQLdb
 
 class SpiderGoodreadsPipeline(object):
-    cc = '''INSERT IGNORE p_news_goodreads(goodreadsId,relationId,goodreadsUrl,title,authorName,authorNameUrl,
+    cc = '''INSERT IGNORE p_news_goodreads(cudosid,goodreadsId,goodreadsUrl,title,authorName,authorNameUrl,
     Illustrator,IllustratorUrl,coverPic,ratingDetails,score,ratings,reviews,genres,bookFormat,publishedTime,
-    firstPublishedTime,pages,originalTitle,literaryAwards,ISBN,ISBN13,editionLanguage,description)
-    value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
+    firstPublishedTime,pages,originalTitle,literaryAwards,ISBN,ISBN13,editionLanguage,description,isbnInfo)
+    value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
     conn = MySQLdb.connect(
         host='120.27.218.142',
         port=3306,
@@ -20,8 +20,8 @@ class SpiderGoodreadsPipeline(object):
     def process_item(self, item, spider):
         try:
             insertdata = (
+                item['cudosid'],
                 item['goodreadsId'],
-                item['relationId'],
                 item['goodreadsUrl'],
                 item['title'],
                 item['authorName'],
@@ -43,7 +43,8 @@ class SpiderGoodreadsPipeline(object):
                 item['ISBN'],
                 item['ISBN13'],
                 item['editionLanguage'],
-                item['description']
+                item['description'],
+                item['isbnInfo']
                 )
             # print "------insert success-------", insertdata
 
