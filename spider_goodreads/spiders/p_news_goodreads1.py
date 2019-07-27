@@ -70,12 +70,12 @@ class GoodReadsSpider(scrapy.Spider):
                     if "ISBN13" in dataTitle:
                         ISBN13 = data.xpath(".//div[@class='dataValue']/text()")[0].strip()
                         ISBN=None
-                        isbninfo[infoId]=[ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")]
+                        isbninfo[infoId]=[str(ISBN), str(ISBN13.lstrip("(ISBN13: ").rstrip(")"))]
 
                     elif "ISBN" in dataTitle:
                         ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
-                        isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
+                        isbninfo[infoId]=[str(ISBN),str(ISBN13.lstrip("(ISBN13: ").rstrip(")")) if ISBN13 else None]
         print response.meta["goodreadsid"],isbninfo
 
 
