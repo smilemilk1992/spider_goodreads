@@ -21,7 +21,7 @@ class GoodReadsSpider(scrapy.Spider):
         'RETRY_TIMES': 3,  #重试机制
         # 'DOWNLOAD_DELAY':5,   #延时（秒）
         'ITEM_PIPELINES': {
-            "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipeline": 200,
+            # "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipeline": 200,
         },
         'DOWNLOADER_MIDDLEWARES': {
             'spider_goodreads.middlewares.RandomUserAgent.RandomUserAgent': 300,
