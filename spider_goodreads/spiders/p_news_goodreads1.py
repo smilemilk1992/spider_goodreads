@@ -54,7 +54,7 @@ class GoodReadsSpider(scrapy.Spider):
 
 
     def parse(self, response):
-        actionLinkLite="https://www.goodreads.com"+response.xpath("//a[@class='actionLinkLite']/@href").extract()[0]
+        actionLinkLite="https://www.goodreads.com"+response.xpath("//div[@class='otherEditionsActions']/a[@class='actionLinkLite']/@href").extract()[0]
         print response.meta["goodreadsid"],actionLinkLite
 
 
