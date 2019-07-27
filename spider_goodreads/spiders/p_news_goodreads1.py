@@ -232,15 +232,13 @@ class GoodReadsSpider(scrapy.Spider):
                         ISBN13 = data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN=None
                         isbninfo[infoId]=[ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")]
-                        print "----13", dataTitle, [ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")]
 
                     if "ISBN" in dataTitle:
-                        print "----", dataTitle, data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
                         isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
-                        print "----13", dataTitle, [ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")]
 
+        print isbninfo
         item=response.meta["item"]
         print "\n--------------------图书字段信息-------------------"
         print "   cudosid  :" + str(item["cudosid"])
