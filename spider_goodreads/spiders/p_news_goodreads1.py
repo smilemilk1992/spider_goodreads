@@ -54,43 +54,10 @@ class GoodReadsSpider(scrapy.Spider):
 
 
     def parse(self, response):
-        reqId = re.search("book/show/(\d+)",response.url).group(1)
-
-        bookDataBox = response.xpath(XpathRule.bookDataBox).extract()
-        infoBoxRowTitle = response.xpath(XpathRule.infoBoxRowTitle).extract()
-        if "ISBN" in infoBoxRowTitle:
-            ISBN = etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath("./text()")[0].strip()
-            ISBN13 = \
-            etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath(".//span[@itemprop='isbn']/text()")[
-                0].strip() if etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN")]).xpath(
-                ".//span[@itemprop='isbn']/text()") else "None"
-        elif "ISBN13" in infoBoxRowTitle:
-            ISBN13 = etree.fromstring(bookDataBox[infoBoxRowTitle.index("ISBN13")]).xpath("./text()")[0].strip()
-            ISBN = "None"
-        else:
-            ISBN = "None"
-            ISBN13 = "None"
-        isbninfo=response.meta["isbninfo"]
-        isbninfo[reqId]=[ISBN,ISBN13]
-        if str(reqId) == str(response.meta["goodreadsid"]):
-            flag=False
-            otherEdition=response.xpath("//div[@class='otherEdition']/a/@href").extract()
-            otherEditionUrl ={}
-            if otherEdition:
-                for o in otherEdition:
-                    id=re.search("book/show/(\d+)",o).group(1)
-                    otherEditionUrl[id]=o
-                    if o is otherEdition[-1]:
-                        flag=True
-                    yield scrapy.Request(o, callback=self.parse, dont_filter=False, meta={"goodreadsid": response.meta["goodreadsid"],
-                                                                                             "cudosid":response.meta["cudosid"],
-                                                                                             "title":response.meta["title"],
-                                                                                          "flag":flag,
-                                                                                          "isbninfo":isbninfo})
+        actionLinkLite="https://www.goodreads.com"+response.xpath("//a[@class='actionLinkLite']/@href").extract()[0]
+        print response.meta["goodreadsid"],actionLinkLite
 
 
-        if response.meta['flag']:
-            print response.meta["goodreadsid"],isbninfo
 
 
 
