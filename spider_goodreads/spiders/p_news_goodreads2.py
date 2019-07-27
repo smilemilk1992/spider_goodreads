@@ -225,7 +225,7 @@ class GoodReadsSpider(scrapy.Spider):
             for i in moreDetails:
                 dataRow=i.xpath("./div[@class='dataRow']")
                 for data in dataRow:
-                    isbninfo[infoId] = [None, None]
+                    # isbninfo[infoId] = [None, None]
                     dataTitle=data.xpath("./div[@class='dataTitle']/text()")[0].strip()
 
                     if "ISBN13" in dataTitle:
