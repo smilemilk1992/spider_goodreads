@@ -54,4 +54,4 @@ class GoodReadsSpider(scrapy.Spider):
             for o in otherEdition:
                 id=re.search("book/show/(\d+)",o).group(1)
                 otherEditionUrl[id]=o
-        print requests.url,otherEditionUrl
+        print response.url,otherEditionUrl
