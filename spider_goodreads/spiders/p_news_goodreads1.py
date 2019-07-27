@@ -71,8 +71,6 @@ class GoodReadsSpider(scrapy.Spider):
                     ISBN13 = data.xpath(".//div[@class='dataValue']/text()")[0].strip()
                     ISBN=None
                     xx.append([ISBN, ISBN13])
-                else:
-                    xx.append([None, None])
         print response.meta["goodreadsid"],xx
 
 
