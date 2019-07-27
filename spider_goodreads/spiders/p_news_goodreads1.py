@@ -203,10 +203,10 @@ class GoodReadsSpider(scrapy.Spider):
             actionLinkLite="https://www.goodreads.com"+otherEditionsActions[0]
             yield scrapy.Request(actionLinkLite+"?per_page=100", callback=self.otherLink,dont_filter=False,meta={"goodreadsid":response.meta["goodreadsid"],"item":item})
         else:
-            isbninfo = {}
-            isbninfo[response.meta["goodreadsid"]]=[ISBN,ISBN13]
-            item["isbninfo"]=isbninfo
-            print "-----------",response.meta["goodreadsid"]
+            # isbninfo = {}
+            # isbninfo[response.meta["goodreadsid"]]=[ISBN,ISBN13]
+            # item["isbninfo"]=isbninfo
+            # print "-----------",response.meta["goodreadsid"]
 
 
 
