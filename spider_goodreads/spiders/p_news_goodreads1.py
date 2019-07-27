@@ -193,7 +193,8 @@ class GoodReadsSpider(scrapy.Spider):
             pass
             isbninfo = {}
             isbninfo[response.meta["goodreadsid"]]=[ISBN,ISBN13]
-            item["isbninfo"]=isbninfo
+            item["isbninfo"]=str(isbninfo)
+            yield item
             print "-----------",response.meta["goodreadsid"]
 
 
