@@ -221,17 +221,24 @@ class GoodReadsSpider(scrapy.Spider):
             moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']")
             for i in moreDetails:
                 dataRow=i.xpath("./div[@class='dataRow']")
-                isbninfo[infoId] = [None, None]
+                # isbninfo[infoId] = [None, None]
+                ISBN=None
+                ISBN13=None
+                language=None
                 for data in dataRow:
                     dataTitle=data.xpath("./div[@class='dataTitle']/text()")[0].strip()
+                    if "Edition language" in dataTitle:
+                        language = data.xpath("./div[@class='dataValue']/text()")[0].strip()
                     if "ISBN13" in dataTitle:
-                        ISBN13 = data.xpath("./div[@class='dataValue']/text()")[0].strip()
+                        ISBN13 = data.xpath("./div[@class='dataValue']/text()")[0].strip().lstrip("(ISBN13: ").rstrip(")")
                         ISBN=None
-                        isbninfo[infoId]=[ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")]
+                        # isbninfo[infoId]=[ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")]
                     elif "ISBN" in dataTitle:
                         ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
-                        ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
-                        isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
+                        greyText=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
+                        ISBN13 = greyText.lstrip("(ISBN13: ").rstrip(")") if greyText else None
+                        # isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
+            isbninfo[infoId]=[ISBN,ISBN13,language]
 
         item=response.meta["item"]
         item["isbnInfo"]=str(isbninfo)
