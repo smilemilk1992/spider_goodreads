@@ -183,10 +183,10 @@ class GoodReadsSpider(scrapy.Spider):
         item["score"] = score
         item["ratings"] = ratings
         item["reviews"] = reviews
-        item["ISBN"] = ISBN
+        item["ISBN"] = ISBN if ISBN else None
         item["ISBN13"] = ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None
         item["genres"] = str(genres).replace("'", "\'") if genres else None
-        item["bookFormat"] = bookFormat.replace("'", "\'")
+        item["bookFormat"] = bookFormat.replace("'", "\'") if bookFormat else None
         item["publishedTime"] = publishedTime.replace("'", "\'") if publishedTime else None
         item["firstPublishedTime"] = firstPublishedTime.replace("'", "\'") if firstPublishedTime else None
         item["pages"] = pages if pages else None
