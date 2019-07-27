@@ -186,6 +186,8 @@ class GoodReadsSpider(scrapy.Spider):
         item["score"] = score
         item["ratings"] = ratings
         item["reviews"] = reviews
+        item["ISBN"] = ISBN
+        item["ISBN13"] = ISBN13
         item["genres"] = str(genres).replace("'", "\'") if genres else None
         item["bookFormat"] = bookFormat.replace("'", "\'")
         item["publishedTime"] = aa.replace("'", "\'")
@@ -214,6 +216,8 @@ class GoodReadsSpider(scrapy.Spider):
             info =etree.fromstring(info)
             infoUrl=info.xpath(".//a[@class='bookTitle']/@href")[0].strip()
             infoId=re.search("book/show/(\d+)",infoUrl).group(1)
+            if infoId is response.meta["goodreadsId"]:
+                continue
             moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']")
 
             for i in moreDetails:
@@ -252,6 +256,8 @@ class GoodReadsSpider(scrapy.Spider):
         print "   publishedTime    :" + item["publishedTime"]
         print "   firstPublishedTime    :" + item["firstPublishedTime"]
         print "   pages    :" + item["pages"]
+        print "   ISBN    :" + ISBN
+        print "   ISBN13    :" + ISBN13
         print "   originalTitle    :" + item["originalTitle"]
         print "   literaryAwards   :" + item["literaryAwards"]
         print "   editionLanguage    :" + item["editionLanguage"]
