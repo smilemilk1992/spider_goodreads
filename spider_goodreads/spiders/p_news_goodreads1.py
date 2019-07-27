@@ -63,9 +63,10 @@ class GoodReadsSpider(scrapy.Spider):
             moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']")
 
             for i in moreDetails:
-                print "---", i
+
                 dataRow=i.xpath("./div[@class='dataRow']")
                 for data in dataRow:
+                    print "---", data
                     dataTitle=data.xpath("./div[@class='dataTitle']/text()")[0].strip()
                     if "ISBN" == dataTitle:
                         ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
