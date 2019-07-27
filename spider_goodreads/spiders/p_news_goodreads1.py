@@ -70,7 +70,7 @@ class GoodReadsSpider(scrapy.Spider):
                 elif "ISBN13" in dataTitle:
                     ISBN13 = data.xpath(".//div[@class='dataValue']/text()")[0].strip()
                     ISBN=None
-                    xx.append([ISBN, ISBN13])
+                    xx.append([ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")])
         print response.meta["goodreadsid"],xx
 
 
