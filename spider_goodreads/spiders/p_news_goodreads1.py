@@ -60,13 +60,13 @@ class GoodReadsSpider(scrapy.Spider):
         moreDetails=response.xpath("//div[@class='moreDetails hideDetails']").extract()
         for i in moreDetails:
             i=etree.fromstring(i)
-            dataTitle=i.xpath("../div[@class='dataTitle']/text()")[0].strip()
+            dataTitle=i.xpath(".//div[@class='dataTitle']/text()")[0].strip()
             if "ISBN" in dataTitle:
-                ISBN=i.xpath("../div[@class='dataValue']/text()")[0].strip()
-                ISBN13=i.xpath("../div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if i.xpath("../div[@class='dataValue']/span[@class='greyText']/text()") else None
+                ISBN=i.xpath(".//div[@class='dataValue']/text()")[0].strip()
+                ISBN13=i.xpath(".//div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if i.xpath("../div[@class='dataValue']/span[@class='greyText']/text()") else None
                 xx.append([ISBN,ISBN13])
             elif "ISBN13" in dataTitle:
-                ISBN13 = i.xpath("../div[@class='dataValue']/text()")[0].strip()
+                ISBN13 = i.xpath(".//div[@class='dataValue']/text()")[0].strip()
                 ISBN=None
                 xx.append([ISBN, ISBN13])
             else:
