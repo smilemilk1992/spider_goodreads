@@ -204,10 +204,10 @@ class GoodReadsSpider(scrapy.Spider):
             yield scrapy.Request(actionLinkLite+"?per_page=100", callback=self.otherLink,dont_filter=False,meta={"goodreadsid":response.meta["goodreadsid"],"item":item})
         else:
             pass
-            # isbninfo = {}
-            # isbninfo[response.meta["goodreadsid"]]=[ISBN,ISBN13]
-            # item["isbninfo"]=isbninfo
-            # print "-----------",response.meta["goodreadsid"]
+            isbninfo = {}
+            isbninfo[response.meta["goodreadsid"]]=[ISBN,ISBN13]
+            item["isbninfo"]=isbninfo
+            print "-----------",response.meta["goodreadsid"]
 
 
 
@@ -224,6 +224,7 @@ class GoodReadsSpider(scrapy.Spider):
 
             for i in moreDetails:
                 dataRow=i.xpath("./div[@class='dataRow']")
+                isbninfo[infoId] = [None, None]
                 for data in dataRow:
                     # isbninfo[infoId] = [None, None]
                     dataTitle=data.xpath("./div[@class='dataTitle']/text()")[0].strip()
