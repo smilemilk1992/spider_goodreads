@@ -55,6 +55,7 @@ class GoodReadsSpider(scrapy.Spider):
 
     def parse(self, response):
         reqId = re.search("book/show/(\d+)",response.url).group(1)
+        print "-----",str(reqId),str(response.meta["goodreadsid"])
         bookDataBox = response.xpath(XpathRule.bookDataBox).extract()
         infoBoxRowTitle = response.xpath(XpathRule.infoBoxRowTitle).extract()
         if "ISBN" in infoBoxRowTitle:
@@ -88,6 +89,8 @@ class GoodReadsSpider(scrapy.Spider):
 
         if response.meta['flag']:
             print response.meta["goodreadsid"],isbninfo
+
+
 
 
 
