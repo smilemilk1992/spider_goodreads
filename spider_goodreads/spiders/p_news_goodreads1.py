@@ -226,13 +226,15 @@ class GoodReadsSpider(scrapy.Spider):
                 for data in dataRow:
                     isbninfo[infoId] = [None, None]
                     dataTitle=data.xpath("./div[@class='dataTitle']/text()")[0].strip()
-                    print "----",dataTitle,data.xpath("./div[@class='dataValue']/text()")[0].strip()
+
                     if "ISBN13" in dataTitle:
+                        print "----13", dataTitle, data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN13 = data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN=None
                         isbninfo[infoId]=[ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")]
 
                     if "ISBN" in dataTitle:
+                        print "----", dataTitle, data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
                         isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
