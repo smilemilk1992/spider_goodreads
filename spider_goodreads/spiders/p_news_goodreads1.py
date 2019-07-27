@@ -207,31 +207,32 @@ class GoodReadsSpider(scrapy.Spider):
                         ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
                         isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
         item=response.meta["item"]
-        its={}
-        its["isbnInfo"]=isbninfo
-        its["cudosid"] = item["cudosid"]
-        its["goodreadsId"] = item["goodreadsId"]
-        its["goodreadsUrl"] = item["goodreadsUrl"]
-        its["title"] = item["title"]
-        its["authorName"] = item["authorName"]
-        its["authorNameUrl"] = item["authorNameUrl"]
-        its["Illustrator"] = item["Illustrator"]
-        its["IllustratorUrl"] = item["IllustratorUrl"]
-        its["coverPic"] = item["coverPic"]
-        its["ratingDetails"] = item["ratingDetails"]
-        its["score"] = item["score"]
-        its["ratings"] = item["ratings"]
-        its["reviews"] = item["reviews"]
-        its["genres"] = item["genres"]
-        its["bookFormat"] = item["bookFormat"]
-        its["publishedTime"] = item["publishedTime"]
-        its["firstPublishedTime"] = item["firstPublishedTime"]
-        its["pages"] = item["pages"]
-        its["originalTitle"] = item["originalTitle"]
-        its["literaryAwards"] =item["literaryAwards"]
-        its["editionLanguage"] = item["editionLanguage"]
-        its['description'] = item["description"]
-        print its
+        print "\n--------------------图书字段信息-------------------"
+        print "   cudosid  :" + item["cudosid"]
+        print "   goodreadsId  :" + item["goodreadsId"]
+        print "   goodreadsUrl    :" + item["goodreadsUrl"]
+        print "   title    :" + item["title"]
+        print "   authorName    :" + item["authorName"]
+        print "   authorNameUrl    :" + item["authorNameUrl"]
+        print "   Illustrator   :" + item["Illustrator"]
+        print "   IllustratorUrl   :" + item["IllustratorUrl"]
+        print "   coverPic    :" + item["coverPic"]
+        print "   ratingDetails    :" + item["ratingDetails"]
+        print "   score    :" + item["score"]
+        print "   ratings    :" + item["ratings"]
+        print "   reviews    :" + item["reviews"]
+        print "   genres     :" + item["genres"]
+        print "   bookFormat    :" + item["bookFormat"]
+        print "   publishedTime    :" + item["publishedTime"]
+        print "   firstPublishedTime    :" + item["firstPublishedTime"]
+        print "   pages    :" + item["pages"]
+        print "   originalTitle    :" + item["originalTitle"]
+        print "   literaryAwards   :" + item["literaryAwards"]
+        print "   editionLanguage    :" + item["editionLanguage"]
+        print "   description    :" + item["description"]
+        print "   isbnInfo    :" + isbninfo
+        print "--------------------图书字段信息-------------------\n"
+
 
 
 
