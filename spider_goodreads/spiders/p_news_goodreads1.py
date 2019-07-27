@@ -73,14 +73,15 @@ class GoodReadsSpider(scrapy.Spider):
         isbninfo=response.meta["isbninfo"]
         isbninfo[reqId]=[ISBN,ISBN13]
         if str(reqId) == str(response.meta["goodreadsid"]):
-            print "-----", str(reqId), str(response.meta["goodreadsid"])
-            flag=True
+            flag=False
             otherEdition=response.xpath("//div[@class='otherEdition']/a/@href").extract()
             otherEditionUrl ={}
             if otherEdition:
                 for o in otherEdition:
                     id=re.search("book/show/(\d+)",o).group(1)
                     otherEditionUrl[id]=o
+                    if o is otherEdition[-1]:
+                        flag=True
                     yield scrapy.Request(o, callback=self.parse, dont_filter=False, meta={"goodreadsid": response.meta["goodreadsid"],
                                                                                              "cudosid":response.meta["cudosid"],
                                                                                              "title":response.meta["title"],
