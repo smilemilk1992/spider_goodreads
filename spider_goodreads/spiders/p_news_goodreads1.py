@@ -256,8 +256,8 @@ class GoodReadsSpider(scrapy.Spider):
         print "   publishedTime    :" + item["publishedTime"]
         print "   firstPublishedTime    :" + item["firstPublishedTime"]
         print "   pages    :" + item["pages"]
-        print "   ISBN    :" + ISBN
-        print "   ISBN13    :" + ISBN13
+        print "   ISBN    :" + response.meta["ISBN"]
+        print "   ISBN13    :" + response.meta["ISBN13"]
         print "   originalTitle    :" + item["originalTitle"]
         print "   literaryAwards   :" + item["literaryAwards"]
         print "   editionLanguage    :" + item["editionLanguage"]
