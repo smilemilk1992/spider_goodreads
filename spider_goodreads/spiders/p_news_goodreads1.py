@@ -47,18 +47,27 @@ class GoodReadsSpider(scrapy.Spider):
 
     # start_urls = ['https://www.goodreads.com/book/show/1733202']
 
-    def start_requests(self):
-        with open('cudos_goodreads.txt', "r") as f:
-            url = f.readlines()
-            for x in url:
-                datas=x.strip().split("\t")
-                cudosid = int(datas[0])
-                goodreadsid = int(datas[1].replace("https://www.goodreads.com/book/show/", ""))
-                goodreadsReq=datas[1]+"."+"_".join(i for i in datas[2].split(" "))
-                yield scrapy.Request(goodreadsReq, callback=self.parse,
-                                     dont_filter=False,
-                                     meta={"goodreadsid":goodreadsid,"cudosid":cudosid})
+    # def start_requests(self):
+    #     with open('cudos_goodreads.txt', "r") as f:
+    #         url = f.readlines()
+    #         for x in url:
+    #             datas=x.strip().split("\t")
+    #             cudosid = int(datas[0])
+    #             goodreadsid = int(datas[1].replace("https://www.goodreads.com/book/show/", ""))
+    #             goodreadsReq=datas[1]+"."+"_".join(i for i in datas[2].split(" "))
+    #             yield scrapy.Request(goodreadsReq, callback=self.parse,
+    #                                  dont_filter=False,
+    #                                  meta={"goodreadsid":goodreadsid,"cudosid":cudosid})
 
+    def start_requests(self):
+        x="27	https://www.goodreads.com/book/show/21416421	Waiting is Not Easy!	Mo Willems"
+        datas=x.strip().split("\t")
+        cudosid = int(datas[0])
+        goodreadsid = int(datas[1].replace("https://www.goodreads.com/book/show/", ""))
+        goodreadsReq=datas[1]+"."+"_".join(i for i in datas[2].split(" "))
+        yield scrapy.Request(goodreadsReq, callback=self.parse,
+                             dont_filter=False,
+                             meta={"goodreadsid":goodreadsid,"cudosid":cudosid})
 
     def parse(self, response):
         score = response.xpath(XpathRule.score).extract()[0].strip()
@@ -207,7 +216,7 @@ class GoodReadsSpider(scrapy.Spider):
             info =etree.fromstring(info)
             infoUrl=info.xpath(".//a[@class='bookTitle']/@href")[0].strip()
             infoId=re.search("book/show/(\d+)",infoUrl).group(1)
-            if infoId is response.meta["goodreadsid"]:
+            if infoId in response.meta["goodreadsid"]:
                 continue
             moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']")
             for i in moreDetails:
@@ -219,8 +228,7 @@ class GoodReadsSpider(scrapy.Spider):
                         ISBN13 = data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN=None
                         isbninfo[infoId]=[ISBN, ISBN13.lstrip("(ISBN13: ").rstrip(")")]
-
-                    if "ISBN" in dataTitle:
+                    elif "ISBN" in dataTitle:
                         ISBN=data.xpath("./div[@class='dataValue']/text()")[0].strip()
                         ISBN13=data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()")[0].strip() if data.xpath("./div[@class='dataValue']/span[@class='greyText']/text()") else None
                         isbninfo[infoId]=[ISBN,ISBN13.lstrip("(ISBN13: ").rstrip(")") if ISBN13 else None]
