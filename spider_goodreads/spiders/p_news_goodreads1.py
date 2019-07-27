@@ -134,7 +134,7 @@ class GoodReadsSpider(scrapy.Spider):
                 if etree.fromstring(details[0]).xpath(XpathRule.greyText) else publishedTime
         else:
             publishedTime = None
-            bb = None
+            firstPublishedTime = None
         Rating_details = response.xpath(XpathRule.Rating_details).extract()[0].strip()
         renderRatingGraph = re.search("\[(.*?)\]", Rating_details).group(1)
         elementList = response.xpath(XpathRule.elementList).extract()
@@ -179,11 +179,11 @@ class GoodReadsSpider(scrapy.Spider):
         item["bookFormat"] = bookFormat.replace("'", "\'")
         item["publishedTime"] = publishedTime.replace("'", "\'") if publishedTime else None
         item["firstPublishedTime"] = firstPublishedTime.replace("'", "\'") if firstPublishedTime else None
-        item["pages"] = pages
+        item["pages"] = pages if pages else None
         item["originalTitle"] = Original_title.replace("'", "\'") if Original_title else None
         item["literaryAwards"] = Literary_Awards.replace("'", "\'") if Literary_Awards else None
         item["editionLanguage"] = Edition_Language.replace("'", "\'") if Edition_Language else None
-        item['description'] = description.replace("'", "\'")
+        item['description'] = description.replace("'", "\'") if description else None
 
         otherEditionsActions=response.xpath("//div[@class='otherEditionsActions']/a[@class='actionLinkLite']/@href").extract()
         if otherEditionsActions:
