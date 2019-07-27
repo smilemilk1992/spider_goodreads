@@ -216,7 +216,7 @@ class GoodReadsSpider(scrapy.Spider):
             info =etree.fromstring(info)
             infoUrl=info.xpath(".//a[@class='bookTitle']/@href")[0].strip()
             infoId=re.search("book/show/(\d+)",infoUrl).group(1)
-            if infoId is response.meta["goodreadsId"]:
+            if infoId is response.meta["goodreadsid"]:
                 continue
             moreDetails=info.xpath(".//div[@class='moreDetails hideDetails']")
 
