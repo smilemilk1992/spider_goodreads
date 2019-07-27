@@ -3,7 +3,7 @@ import traceback
 import MySQLdb
 
 class SpiderGoodreadsPipeline(object):
-    cc = '''INSERT IGNORE p_news_goodreads(cudosid,goodreadsId,goodreadsUrl,title,authorName,authorNameUrl,
+    cc = '''INSERT IGNORE p_news_goodreads1(cudosid,goodreadsId,goodreadsUrl,title,authorName,authorNameUrl,
     Illustrator,IllustratorUrl,coverPic,ratingDetails,score,ratings,reviews,genres,bookFormat,publishedTime,
     firstPublishedTime,pages,originalTitle,literaryAwards,ISBN,ISBN13,editionLanguage,description,isbnInfo)
     value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
