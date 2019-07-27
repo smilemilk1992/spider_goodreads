@@ -53,7 +53,7 @@ class GoodReadsSpider(scrapy.Spider):
 
     def parse(self, response):
         actionLinkLite="https://www.goodreads.com"+response.xpath("//div[@class='otherEditionsActions']/a[@class='actionLinkLite']/@href").extract()[0]
-        yield scrapy.Request(actionLinkLite+"?per_page=100", callback=self.parse,dont_filter=False,meta={"goodreadsid":response.meta["goodreadsid"]})
+        yield scrapy.Request(actionLinkLite+"?per_page=100", callback=self.otherLink,dont_filter=False,meta={"goodreadsid":response.meta["goodreadsid"]})
 
     def otherLink(self,response):
         xx=[]
