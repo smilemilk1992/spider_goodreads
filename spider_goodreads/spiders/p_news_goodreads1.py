@@ -266,7 +266,7 @@ class GoodReadsSpider(scrapy.Spider):
         print "   literaryAwards   :" + str(item["literaryAwards"])
         print "   editionLanguage    :" + str(item["editionLanguage"])
         print "   description    :" + str(item["description"])
-        print "   isbnInfo    :" + (str(isbninfo) if isbninfo else None)
+        print "   isbnInfo    :" + str(isbninfo)
         print "--------------------图书字段信息-------------------\n"
         yield item
 
