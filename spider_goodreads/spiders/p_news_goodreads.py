@@ -36,7 +36,7 @@ class GoodReadsSpider(scrapy.Spider):
         # 'DOWNLOAD_DELAY':5,   #延时（秒）
         'ITEM_PIPELINES': {
             # "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipeline": 200, #入mysql
-            "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipelineCSV": 200, #入csv
+            "spider_goodreads.pipelines.pipelines_csv.SpiderGoodreadsPipelineCSV": 200, #入csv
         },
         'DOWNLOADER_MIDDLEWARES': {
             'spider_goodreads.middlewares.RandomUserAgent.RandomUserAgent': 300,
