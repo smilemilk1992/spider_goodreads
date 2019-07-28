@@ -192,7 +192,7 @@ class GoodReadsSpider(scrapy.Spider):
         item["originalTitle"] = Original_title.replace("'", "\'") if Original_title else None
         item["literaryAwards"] = Literary_Awards.replace("'", "\'") if Literary_Awards else None
         item["editionLanguage"] = Edition_Language.replace("'", "\'") if Edition_Language else None
-        item['description'] = description.replace("'", "\'") if description else None
+        item['description'] = description.replace("'", "\'").replace("\n","") if description else None
 
         otherEditionsActions=response.xpath("//div[@class='otherEditionsActions']/a[@class='actionLinkLite']/@href").extract()
         if otherEditionsActions:
