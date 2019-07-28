@@ -47,27 +47,27 @@ class GoodReadsSpider(scrapy.Spider):
 
     # start_urls = ['https://www.goodreads.com/book/show/1733202']
 
-    def start_requests(self):
-        with open('cudos_goodreads.txt', "r") as f:
-            url = f.readlines()
-            for x in url:
-                datas=x.strip().split("\t")
-                cudosid = int(datas[0])
-                goodreadsid = int(datas[1].replace("https://www.goodreads.com/book/show/", ""))
-                goodreadsReq=datas[1]+"."+"_".join(i for i in datas[2].split(" "))
-                yield scrapy.Request(goodreadsReq, callback=self.parse,
-                                     dont_filter=False,
-                                     meta={"goodreadsid":goodreadsid,"cudosid":cudosid})
-
     # def start_requests(self):
-    #     x="158	https://www.goodreads.com/book/show/331731	The Church Mouse	Graham Oakley"
-    #     datas=x.strip().split("\t")
-    #     cudosid = int(datas[0])
-    #     goodreadsid = int(datas[1].replace("https://www.goodreads.com/book/show/", ""))
-    #     goodreadsReq=datas[1]+"."+"_".join(i for i in datas[2].split(" "))
-    #     yield scrapy.Request(goodreadsReq, callback=self.parse,
-    #                          dont_filter=False,
-    #                          meta={"goodreadsid":goodreadsid,"cudosid":cudosid})
+    #     with open('cudos_goodreads.txt', "r") as f:
+    #         url = f.readlines()
+    #         for x in url:
+    #             datas=x.strip().split("\t")
+    #             cudosid = int(datas[0])
+    #             goodreadsid = int(datas[1].replace("https://www.goodreads.com/book/show/", ""))
+    #             goodreadsReq=datas[1]+"."+"_".join(i for i in datas[2].split(" "))
+    #             yield scrapy.Request(goodreadsReq, callback=self.parse,
+    #                                  dont_filter=False,
+    #                                  meta={"goodreadsid":goodreadsid,"cudosid":cudosid})
+
+    def start_requests(self):
+        x="3	https://www.goodreads.com/book/show/17401103	Goldilocks and the Three Bears	Sarah Delmege"
+        datas=x.strip().split("\t")
+        cudosid = int(datas[0])
+        goodreadsid = int(datas[1].replace("https://www.goodreads.com/book/show/", ""))
+        goodreadsReq=datas[1]+"."+"_".join(i for i in datas[2].split(" "))
+        yield scrapy.Request(goodreadsReq, callback=self.parse,
+                             dont_filter=False,
+                             meta={"goodreadsid":goodreadsid,"cudosid":cudosid})
 
     def parse(self, response):
         score = response.xpath(XpathRule.score).extract()[0].strip()
