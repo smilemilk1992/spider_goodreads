@@ -203,7 +203,7 @@ class GoodReadsSpider(scrapy.Spider):
             pass
             isbninfo = {}
             isbninfo[response.meta["goodreadsid"]]=[ISBN,ISBN13]
-            item["isbninfo"]=str(isbninfo)
+            item["isbninfo"]=str(isbninfo) if isbninfo else None
             yield item
             print "-----------",response.meta["goodreadsid"]
 
