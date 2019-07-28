@@ -241,7 +241,7 @@ class GoodReadsSpider(scrapy.Spider):
             isbninfo[infoId]=[ISBN,ISBN13,language]
 
         item=response.meta["item"]
-        item["isbnInfo"]=str(isbninfo)
+        item["isbnInfo"]=str(isbninfo) if isbninfo else None
         print "\n--------------------图书字段信息-------------------"
         print "   cudosid  :" + str(item["cudosid"])
         print "   goodreadsId  :" + str(item["goodreadsId"])
