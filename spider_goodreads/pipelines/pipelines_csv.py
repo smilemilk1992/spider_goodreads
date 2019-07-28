@@ -7,7 +7,7 @@ class SpiderGoodreadsPipelineCSV(object):
              "coverPic","ratingDetails","score","ratings","reviews","genres","bookFormat","publishedTime","firstPublishedTime",
              "pages","originalTitle","literaryAwards","ISBN","ISBN13","editionLanguage","description","isbnInfo"]
     file = xlwt.Workbook(encoding='utf-8', style_compression=0)
-    sheet = file.add_sheet("p_news_goodreads", cell_overwrite_ok=True)
+    sheet = file.add_sheet("p_news_goodreads", cell_overwrite_ok=False)
     for i in colum:
         sheet.write(0, colum.index(i), i)
 
