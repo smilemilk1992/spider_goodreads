@@ -39,9 +39,7 @@ class SpiderGoodreadsPipelineCSV(object):
         self.sheet.write(j, 22, item['editionLanguage'])
         self.sheet.write(j, 23, item['description'])
         self.sheet.write(j, 24, item['isbnInfo'])
-        file.save('New_York.xls')
         return item
 
     def close_spider(self, spider):
-        self.cur.close()
-        self.conn.close()
+        self.file.save('p_news_goodreads.xls')
