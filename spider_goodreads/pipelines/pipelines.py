@@ -3,6 +3,9 @@ import traceback
 import MySQLdb
 
 class SpiderGoodreadsPipeline(object):
+    '''
+    保存到mysql
+    '''
     cc = '''INSERT IGNORE p_news_goodreads1(cudosid,goodreadsId,goodreadsUrl,title,authorName,authorNameUrl,
     Illustrator,IllustratorUrl,coverPic,ratingDetails,score,ratings,reviews,genres,bookFormat,publishedTime,
     firstPublishedTime,pages,originalTitle,literaryAwards,ISBN,ISBN13,editionLanguage,description,isbnInfo)

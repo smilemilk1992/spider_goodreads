@@ -6,6 +6,9 @@ from openpyxl import Workbook
 
 
 class SpiderGoodreadsPipelineCSV(object):
+    '''
+    保存到excel
+    '''
 
     def __init__(self):
         colum = ["cudosid", "goodreadsId", "goodreadsUrl", "title", "authorName", "authorNameUrl", "Illustrator",
