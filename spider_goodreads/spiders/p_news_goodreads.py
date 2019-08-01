@@ -35,8 +35,8 @@ class GoodReadsSpider(scrapy.Spider):
         'RETRY_TIMES': 3,  #重试机制
         # 'DOWNLOAD_DELAY':5,   #延时（秒）
         'ITEM_PIPELINES': {
-            # "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipeline": 200, #入mysql
-            "spider_goodreads.pipelines.pipelines_csv.SpiderGoodreadsPipelineCSV": 200, #入csv
+            "spider_goodreads.pipelines.pipelines.SpiderGoodreadsPipeline": 200, #入mysql
+            # "spider_goodreads.pipelines.pipelines_csv.SpiderGoodreadsPipelineCSV": 200, #入csv
         },
         'DOWNLOADER_MIDDLEWARES': {
             'spider_goodreads.middlewares.RandomUserAgent.RandomUserAgent': 300,
@@ -92,7 +92,7 @@ class GoodReadsSpider(scrapy.Spider):
                 authorList.append(authorInfo.xpath("./a[@class='authorName']/span/text()")[0].strip())
 
         coverPic = response.xpath(XpathRule.cover).extract()[0].strip()
-        description = ",".join(x.strip() for x in response.xpath(XpathRule.description).extract()) \
+        description = "".join(x.strip() for x in response.xpath(XpathRule.description).extract()) \
             if response.xpath(XpathRule.description).extract() else None
         bookFormat = response.xpath(XpathRule.bookFormat).extract()[0].strip() \
             if response.xpath(XpathRule.bookFormat).extract() else None

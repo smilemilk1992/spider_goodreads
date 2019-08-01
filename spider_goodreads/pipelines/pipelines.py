@@ -6,7 +6,7 @@ class SpiderGoodreadsPipeline(object):
     '''
     保存到mysql
     '''
-    cc = '''INSERT IGNORE p_news_goodreads1(cudosid,goodreadsId,goodreadsUrl,title,authorName,authorNameUrl,
+    cc = '''INSERT IGNORE p_news_goodreads2(cudosid,goodreadsId,goodreadsUrl,title,authorName,authorNameUrl,
     Illustrator,IllustratorUrl,coverPic,ratingDetails,score,ratings,reviews,genres,bookFormat,publishedTime,
     firstPublishedTime,pages,originalTitle,literaryAwards,ISBN,ISBN13,editionLanguage,description,isbnInfo)
     value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
