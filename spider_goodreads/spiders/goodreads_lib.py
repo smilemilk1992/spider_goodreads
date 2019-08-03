@@ -84,8 +84,20 @@ class LibrarySpider(scrapy.Spider):
         item["worldcatUrl"]=response.url
         item["address"]=address
         item["phone"]=phone
-        print "--------",email,phone,response.url
-        yield item
+        # print "--------",email,phone,response.url
+        print "\n--------------------图书字段信息-------------------"
+        print "   title  :" + title
+        print "   state  :" + response.meta["name"]
+        print "   city    :" + city
+        print "   abbreviation    :" + response.meta["Abbreviation"]
+        print "   zipcode    :" + zipcode
+        print "   email   :" + email
+        print "   website   :" + website
+        print "   worldcatUrl    :" + response.url
+        print "   address    :" + iaddress
+        print "   phone    :" + phone
+        print "--------------------图书字段信息-------------------\n"
+        # yield item
 
 
 
