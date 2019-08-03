@@ -42,7 +42,6 @@ class LibrarySpider(scrapy.Spider):
                 name = datas[0]
                 Abbreviation=datas[1]
                 link=self.flagUrl.format(name)
-
                 print link
                 yield scrapy.Request(link, callback=self.parse,dont_filter=False,meta={"Abbreviation": Abbreviation, "name": name})
 
