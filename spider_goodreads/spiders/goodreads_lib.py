@@ -56,7 +56,7 @@ class LibrarySpider(scrapy.Spider):
         libdata="//div[@id='lib-data']"
         title = response.xpath(libdata + "//h1/text()").extract_first().strip().replace("\n", "").replace("#1", "")
         psdata = response.xpath(libdata + "//p").extract()
-        email = response.xpath(libdata + "//a[contains(@title,'发电子邮件到这图书馆')]/text()").extract()[0] if response.xpath(libdata + "//a[contains(@title,'发电子邮件到这图书馆')]/text()") else ""
+        email = re.search("mailto:(.*?)\"",response.body).group(1) if re.search("mailto:(.*?)\"",response.body) else None
         if response.xpath(libdata+"/p[@class='lib-alias']").extract():
             p = etree.fromstring(psdata[1].replace("<br>", "\t").encode("utf-8"))
         else:
