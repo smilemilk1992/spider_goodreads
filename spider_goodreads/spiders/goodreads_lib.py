@@ -18,9 +18,9 @@ class LibrarySpider(scrapy.Spider):
         'CONCURRENT_REQUESTS': 3,  #允许的线程数
         'RETRY_TIMES': 3,  #重试机制
         # 'DOWNLOAD_DELAY':1,   #延时（秒）
-        # 'ITEM_PIPELINES': {
-        #     "spider_goodreads.pipelines.pipelines_library.SpiderGoodreadsPipeline": 200,
-        # },
+        'ITEM_PIPELINES': {
+            "spider_goodreads.pipelines.pipelines_lib.SpiderGoodreadsPipeline": 200,
+        },
         'DOWNLOADER_MIDDLEWARES': {
             'spider_goodreads.middlewares.RandomUserAgent.RandomUserAgent': 300,
             # 'spider_goodreads.middlewares.random_http_proxy.IpMiddleware': 110, #添加代理ip逻辑
@@ -71,8 +71,10 @@ class LibrarySpider(scrapy.Spider):
         zipcode=infos[3]
         phone = re.search("\(\d+\) \d+-\d+",response.body).group(0) if re.search("\(\d+\) \d+-\d+",response.body) else None
         item={}
+        item["title"]=title
         item["state"]=response.meta["name"]
         item["city"]=city
+        item["Abbreviation"]=response.meta["Abbreviation"]
         item["zipcode"]=zipcode
         item["email"]=email
         item["website"]=website
@@ -80,6 +82,7 @@ class LibrarySpider(scrapy.Spider):
         item["address"]=address
         item["phone"]=phone
         print "--------",email,phone,response.url
+        yield item
 
 
 
