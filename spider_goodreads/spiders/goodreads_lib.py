@@ -46,10 +46,12 @@ class LibrarySpider(scrapy.Spider):
 
 
     def parse(self, response):
-        links = response.xpath("//table[@id='libsresults']//p[@class='lib']/a/@href").extract()
+        links = response.xpath("//table[@id='libsresults']").extract()
         for link in links:
-            url = "https://www.worldcat.org"+link
-            yield scrapy.Request(url, callback=self.getInfo, meta={"Abbreviation": response.meta['Abbreviation'], "name": response.meta['name']})
+            url = "https://www.worldcat.org"+link.xpath(".//p[@class='lib']/a/@href")
+            print url
+
+            # yield scrapy.Request(url, callback=self.getInfo, meta={"Abbreviation": response.meta['Abbreviation'], "name": response.meta['name']})
 
     def getInfo(self,response):
         libdata="//div[@id='lib-data']"
