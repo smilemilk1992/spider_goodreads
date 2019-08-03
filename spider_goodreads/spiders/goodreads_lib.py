@@ -72,7 +72,7 @@ class LibrarySpider(scrapy.Spider):
         city = infos[1]
         state=infos[2]
         zipcode=infos[3]
-        phone = re.search(u"声音：(.*?)<br",response.body).group(1) if re.search(u"声音：(.*?)<br",response.body) else None
+        phone = re.search("\(\d+\) \d+-\d+",response.body).group(0) if re.search("\(\d+\) \d+-\d+",response.body) else None
         item={}
         item["state"]=response.meta["name"]
         item["city"]=city
