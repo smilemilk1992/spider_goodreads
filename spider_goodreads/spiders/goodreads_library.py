@@ -15,7 +15,7 @@ class LibrarySpider(scrapy.Spider):
     '''
     name = "goodreads_library"
     custom_settings = {
-        'CONCURRENT_REQUESTS': 36,  #允许的线程数
+        'CONCURRENT_REQUESTS': 6,  #允许的线程数
         'RETRY_TIMES': 3,  #重试机制
         'DOWNLOAD_DELAY':1,   #延时（秒）
         'ITEM_PIPELINES': {
@@ -37,7 +37,8 @@ class LibrarySpider(scrapy.Spider):
 # https://www.goodreads.com/author/list/93621.Ellen_Jackson   作者书籍清单
     #开始种子URL
     # start_urls = ['https://www.goodreads.com/book/show/16077840-el-creador']
-    # https: // www.worldcat.org / libraries
+    # noSearchResults
+    # https://www.worldcat.org/libraries
     #https://www.worldcat.org/wcpa/servlet/org.oclc.lac.ui.ajax.ServiceServlet?serviceCommand=librarySearch&search=94404&start=1&count=10000&libType=none&dofavlib=false&sort=none
     #https://www.worldcat.org/wcpa/servlet/org.oclc.lac.ui.ajax.ServiceServlet?serviceCommand=librarySearch&search=94404&start=11&count=10&libType=none&dofavlib=false&sort=none
     #https://www.worldcat.org/wcpa/servlet/org.oclc.lac.ui.ajax.ServiceServlet?serviceCommand=librarySearch&search=94404&start=21&count=10&libType=none&dofavlib=false&sort=none
