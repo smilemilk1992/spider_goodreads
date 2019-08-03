@@ -19,7 +19,7 @@ class LibrarySpider(scrapy.Spider):
         'RETRY_TIMES': 3,  #重试机制
         # 'DOWNLOAD_DELAY':1,   #延时（秒）
         'ITEM_PIPELINES': {
-            "spider_goodreads.pipelines.pipelines_lib.SpiderGoodreadsPipeline": 200,
+            "spider_goodreads.pipelines.pipelines_lib.SpiderGoodreadsPipelineCSV": 200,
         },
         'DOWNLOADER_MIDDLEWARES': {
             'spider_goodreads.middlewares.RandomUserAgent.RandomUserAgent': 300,
