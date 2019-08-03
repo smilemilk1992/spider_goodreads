@@ -33,7 +33,6 @@ class LibrarySpider(scrapy.Spider):
     flagUrl="https://www.worldcat.org/wcpa/servlet/org.oclc.lac.ui.ajax.ServiceServlet?serviceCommand=librarySearch&search={}&start=1&count=10000&libType=none&dofavlib=false&sort=none"
 
 
-
     def start_requests(self):
         with open('zipcode.txt', "r") as f:
             url = f.readlines()
