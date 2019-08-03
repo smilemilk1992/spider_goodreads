@@ -41,8 +41,8 @@ class LibrarySpider(scrapy.Spider):
                 datas=x.strip().split("\t")
                 name = datas[0]
                 Abbreviation=datas[1]
-                url=self.flagUrl.format(name)
-                yield scrapy.Request(url, callback=self.parse,meta={"Abbreviation": Abbreviation, "name": name})
+                link=self.flagUrl.format(name)
+                yield scrapy.Request(link, callback=self.parse,meta={"Abbreviation": Abbreviation, "name": name})
 
 
     def parse(self, response):
