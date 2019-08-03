@@ -15,9 +15,9 @@ class LibrarySpider(scrapy.Spider):
     '''
     name = "goodreads_lib"
     custom_settings = {
-        'CONCURRENT_REQUESTS': 6,  #允许的线程数
+        'CONCURRENT_REQUESTS': 16,  #允许的线程数
         'RETRY_TIMES': 3,  #重试机制
-        'DOWNLOAD_DELAY':1,   #延时（秒）
+        # 'DOWNLOAD_DELAY':1,   #延时（秒）
         # 'ITEM_PIPELINES': {
         #     "spider_goodreads.pipelines.pipelines_library.SpiderGoodreadsPipeline": 200,
         # },
