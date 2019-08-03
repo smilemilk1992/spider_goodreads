@@ -2,9 +2,6 @@
 import scrapy
 from lxml import etree
 import re
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 import logging
 class XpathRule(object):
     bookDataBox = "//div[@class='clearFloats']/div[@class='infoBoxRowItem']"
@@ -49,12 +46,11 @@ class LibrarySpider(scrapy.Spider):
 
 
     def parse(self, response):
-        links = response.xpath("//table[@id='libsresults']").extract()
+        links = response.xpath("//table[@id='libsresults']//p[@class='lib']/a/@href").extract()
+        libsearchaddress=response.xpath("//table[@id='libsresults']//p[@class='lib-search-address']//text()").extract()
         for link in links:
-            link = etree.fromstring(link)
-            url = "https://www.worldcat.org"+link.xpath(".//p[@class='lib']/a/@href")
-            print url
-
+            url = "https://www.worldcat.org"+link
+            print libsearchaddress[links.index(link)]
             # yield scrapy.Request(url, callback=self.getInfo, meta={"Abbreviation": response.meta['Abbreviation'], "name": response.meta['name']})
 
     def getInfo(self,response):
