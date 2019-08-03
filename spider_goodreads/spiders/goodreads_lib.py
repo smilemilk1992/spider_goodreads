@@ -73,7 +73,7 @@ class LibrarySpider(scrapy.Spider):
         item["title"]=title
         item["state"]=response.meta["name"]
         item["city"]=city
-        item["Abbreviation"]=response.meta["Abbreviation"]
+        item["abbreviation"]=response.meta["Abbreviation"]
         item["zipcode"]=zipcode
         item["email"]=email
         item["website"]=website
