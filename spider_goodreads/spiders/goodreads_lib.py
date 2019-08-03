@@ -2,6 +2,9 @@
 import scrapy
 from lxml import etree
 import re
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import logging
 class XpathRule(object):
     bookDataBox = "//div[@class='clearFloats']/div[@class='infoBoxRowItem']"
