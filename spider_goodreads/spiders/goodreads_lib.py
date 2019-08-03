@@ -56,6 +56,6 @@ class LibrarySpider(scrapy.Spider):
         title = response.xpath(libdata+"//h1/text()").extract_first().strip().replace("\n","").replace("#1","")
         psdata = response.xpath(libdata+"//p").extract()
         for p in psdata:
-            print p
+            print p.xptah(".//text()")[0]
 
 
