@@ -47,25 +47,15 @@ class LibrarySpider(scrapy.Spider):
 
     def parse(self, response):
         links = response.xpath("//table[@id='libsresults']//p[@class='lib']/a/@href").extract()
-        libsearchaddress=response.xpath("//table[@id='libsresults']//p[@class='lib-search-address']").extract()
         for link in links:
-            libsearch = etree.fromstring(libsearchaddress[links.index(link)].replace("<br>", "\n").encode("utf-8")).xpath(".//text()")
-            if libsearch:
-                infos=re.split("\n|,|\xa0",libsearch[0].strip().replace("\t",""))
-                infos=[x for x in infos if x.strip().replace(" ","")]
-            else:
-                infos="None"
             url = "https://www.worldcat.org"+link
-
-            print infos,url
-            # yield scrapy.Request(url, callback=self.getInfo, meta={"Abbreviation": response.meta['Abbreviation'], "name": response.meta['name']})
+            yield scrapy.Request(url, callback=self.getInfo, meta={"Abbreviation": response.meta['Abbreviation'], "name": response.meta['name']})
 
     def getInfo(self,response):
-        libdata="//div[@id='lib-data']"
         title = response.xpath(libdata+"//h1/text()").extract_first().strip().replace("\n","").replace("#1","")
         psdata = response.xpath(libdata+"//p").extract()
         for p in psdata:
-            p=etree.HTML(p)
-            print p.xptah(".//text()")[0]
+            p=etree.fromstring(p.replace("<br>","\t").encode("utf-8"))
+            print p.xptah(".//text()")[0],response.url
 
 
