@@ -47,11 +47,12 @@ class LibrarySpider(scrapy.Spider):
 
     def parse(self, response):
         links = response.xpath("//table[@id='libsresults']//p[@class='lib']/a/@href").extract()
-        libsearchaddress=response.xpath("//table[@id='libsresults']//p[@class='lib-search-address']/text()").extract()
+        libsearchaddress=response.xpath("//table[@id='libsresults']").extract()
         for link in links:
+            libsearch = etree.fromstring(libsearchaddress[links.index(link)].replace("<br>", "").encode("utf-8")).xpath("/text()")
             url = "https://www.worldcat.org"+link
-            infos = libsearchaddress[links.index(link)].strip().split(",")
-            print infos
+
+            print libsearch
             # yield scrapy.Request(url, callback=self.getInfo, meta={"Abbreviation": response.meta['Abbreviation'], "name": response.meta['name']})
 
     def getInfo(self,response):
