@@ -34,17 +34,21 @@ class LibrarySpider(scrapy.Spider):
 
 
 
-    def start_requests(self):
-        with open('zipcode.txt', "r") as f:
-            url = f.readlines()
-            for x in url:
-                datas=x.strip().split("\t")
-                name = datas[0]
-                Abbreviation=datas[1]
-                link=self.flagUrl.format(name)
-                print link
-                yield scrapy.Request(link, callback=self.parse,dont_filter=False,meta={"Abbreviation": Abbreviation, "name": name})
+    # def start_requests(self):
+    #     with open('zipcode.txt', "r") as f:
+    #         url = f.readlines()
+    #         for x in url:
+    #             datas=x.strip().split("\t")
+    #             name = datas[0]
+    #             Abbreviation=datas[1]
+    #             link=self.flagUrl.format(name)
+    #             print link
+    #             yield scrapy.Request(link, callback=self.parse,dont_filter=False,meta={"Abbreviation": Abbreviation, "name": name})
 
+    def start_requests(self):
+        link="https://www.worldcat.org/libraries/90444?backfrom=libraryProfile&searchTerm=Florida&start=1&count=10000&libTypeNum=0&sortBy=ab"
+        yield scrapy.Request(link, callback=self.getInfo, dont_filter=False,
+                             meta={"Abbreviation": "Florida", "name": "FL"})
 
     def parse(self, response):
         links = response.xpath("//table[@id='libsresults']//p[@class='lib']/a/@href").extract()
