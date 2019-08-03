@@ -58,7 +58,7 @@ class LibrarySpider(scrapy.Spider):
         p = etree.fromstring(psdata[1].replace("<br>", "\t").encode("utf-8"))
         infos = p.xpath(".//text()")[0].replace(u"\xa0",",").replace("\n",",").replace("\s+","").replace("\t","")
         infos=[x.strip() for x in infos.split(",") if x.strip()]
-        print str(infos),"-----",url
+        print str(infos),"-----",response.url
         address = infos[0]
         city = infos[1]
         state=infos[2]
