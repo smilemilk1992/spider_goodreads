@@ -25,7 +25,6 @@ class SpiderGoodreadsPipelineCSV(object):
                 item['title'],
                 item['state'],
                 item['city'],
-                item['title'],
                 item['abbreviation'],
                 item['zipcode'],
                 item['email'],
