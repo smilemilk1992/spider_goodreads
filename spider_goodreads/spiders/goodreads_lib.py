@@ -55,5 +55,5 @@ class LibrarySpider(scrapy.Spider):
         libdata="//div[@id='lib-data']"
 
         title = response.xpath(libdata+"//h1/text()").extract_first()
-        print title
+        print title.strip().replace("\n","")
 
