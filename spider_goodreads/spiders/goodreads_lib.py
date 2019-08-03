@@ -72,7 +72,17 @@ class LibrarySpider(scrapy.Spider):
         city = infos[1]
         state=infos[2]
         zipcode=infos[3]
-        print "----web---",website,response.url
-        print "------",title,address,tell, email,response.url
+        phone = re.search(u"声音：(.*?)<br",response.body).group(1) if re.search(u"声音：(.*?)<br",response.body) else None
+        item={}
+        item["state"]=response.meta["name"]
+        item["city"]=city
+        item["zipcode"]=zipcode
+        item["email"]=email
+        item["website"]=website
+        item["worldcatUrl"]=response.url
+        item["address"]=address
+        item["tell"]=tell
+        print "--------",phone,response.url
+
 
 
