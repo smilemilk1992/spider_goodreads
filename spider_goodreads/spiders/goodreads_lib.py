@@ -47,7 +47,7 @@ class LibrarySpider(scrapy.Spider):
 
     def parse(self, response):
         links = response.xpath("//table[@id='libsresults']//p[@class='lib']/a/@href").extract()
-        libsearchaddress=response.xpath("//table[@id='libsresults']").extract()
+        libsearchaddress=response.xpath("//table[@id='libsresults']//p[@class='lib-search-address']").extract()
         for link in links:
             libsearch = etree.fromstring(libsearchaddress[links.index(link)].replace("<br>", "").encode("utf-8")).xpath("/text()")
             url = "https://www.worldcat.org"+link
