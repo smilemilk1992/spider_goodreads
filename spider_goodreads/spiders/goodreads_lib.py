@@ -61,7 +61,7 @@ class LibrarySpider(scrapy.Spider):
         address = infos[0]
         city = infos[1]
         state=infos[2]
-        zipcode=infos[2]
+        zipcode=infos[3]
         print title,address,city,state,zipcode, response.url
 
 
