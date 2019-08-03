@@ -91,11 +91,11 @@ class LibrarySpider(scrapy.Spider):
         print "   city    :" + city
         print "   abbreviation    :" + response.meta["Abbreviation"]
         print "   zipcode    :" + zipcode
-        print "   email   :" + email
-        print "   website   :" + website
+        print "   email   :" + str(email)
+        print "   website   :" + str(website)
         print "   worldcatUrl    :" + response.url
-        print "   address    :" + iaddress
-        print "   phone    :" + phone
+        print "   address    :" + str(address)
+        print "   phone    :" + str(phone)
         print "--------------------图书字段信息-------------------\n"
         # yield item
 
