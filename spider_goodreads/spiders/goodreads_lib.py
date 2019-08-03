@@ -52,8 +52,8 @@ class LibrarySpider(scrapy.Spider):
             yield scrapy.Request(url, callback=self.getInfo, meta={"Abbreviation": response.meta['Abbreviation'], "name": response.meta['name']})
 
     def getInfo(self,response):
-        datas = response.xpath("//div[@id='lib-data']").extract()
-        # datas =  etree.fromstring(datas[0])
-        # title = datas.xpath(".//h1/text()")[0].strip()
-        print etree.fromstring(datas[0])
+        libdata="//div[@id='lib-data']"
+
+        title = datas.xpath(libdata+"//h1/text()").extract_first()
+        print title
 
