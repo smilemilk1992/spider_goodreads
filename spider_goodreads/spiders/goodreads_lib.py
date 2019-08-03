@@ -57,6 +57,7 @@ class LibrarySpider(scrapy.Spider):
         psdata = response.xpath(libdata + "//p").extract()
         p = etree.fromstring(psdata[1].replace("<br>", "\t").encode("utf-8"))
         infos = p.xpath(".//text()")[0].replace(u"\xa0\n","9527")
+
         print infos, response.url
 
 
