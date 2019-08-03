@@ -52,7 +52,7 @@ class LibrarySpider(scrapy.Spider):
             yield scrapy.Request(url, callback=self.getInfo, meta={"Abbreviation": response.meta['Abbreviation'], "name": response.meta['name']})
 
     def getInfo(self,response):
-        datas = response.xpath("//div[@id='lib-data']")
-        title = datas.xpath(".//h1/text()")[0].strip()
+        datas = response.xpath("//div[@id='lib-data']").extract()
+        title = datas[0].xpath(".//h1/text()")[0].strip()
         print title,response.url
 
