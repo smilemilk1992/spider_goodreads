@@ -52,6 +52,7 @@ class LibrarySpider(scrapy.Spider):
             libsearch = etree.fromstring(libsearchaddress[links.index(link)].replace("<br>", "\n").encode("utf-8")).xpath(".//text()")
             if libsearch:
                 infos=re.split("\n|,|\xa0",libsearch[0].strip().replace("\t",""))
+                infos=[x for x in infos if x.strip().replace(" ","")]
             else:
                 infos="None"
             url = "https://www.worldcat.org"+link
