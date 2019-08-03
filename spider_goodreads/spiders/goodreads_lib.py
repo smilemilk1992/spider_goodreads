@@ -53,6 +53,7 @@ class LibrarySpider(scrapy.Spider):
 
     def getInfo(self,response):
         datas = response.xpath("//div[@id='lib-data']").extract()
-        title = etree.fromstring(datas[0]).xpath(".//h1/text()")[0].strip()
+        datas =  etree.fromstring(datas[0])
+        title = datas.xpath(".//h1/text()")[0].strip()
         print title,response.url
 
