@@ -49,7 +49,7 @@ class LibrarySpider(scrapy.Spider):
         links = response.xpath("//table[@id='libsresults']//p[@class='lib']/a/@href").extract()
         libsearchaddress=response.xpath("//table[@id='libsresults']//p[@class='lib-search-address']").extract()
         for link in links:
-            libsearch = etree.fromstring(libsearchaddress[links.index(link)].replace("<br>", "").encode("utf-8")).xpath("./text()")
+            libsearch = etree.fromstring(libsearchaddress[links.index(link)].replace("<br>", "").encode("utf-8")).xpath(".//text()")
             if libsearch:
                 infos=re.split("\n|,",libsearch[0].replace(u"\xa0","").strip().replace("\t",""))
             else:
