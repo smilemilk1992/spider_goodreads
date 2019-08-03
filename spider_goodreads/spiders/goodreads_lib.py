@@ -50,7 +50,8 @@ class LibrarySpider(scrapy.Spider):
         libsearchaddress=response.xpath("//table[@id='libsresults']//p[@class='lib-search-address']//text()").extract()
         for link in links:
             url = "https://www.worldcat.org"+link
-            print libsearchaddress[links.index(link)]
+            infos = libsearchaddress[links.index(link)].strip().replace("\n","")
+            print infos
             # yield scrapy.Request(url, callback=self.getInfo, meta={"Abbreviation": response.meta['Abbreviation'], "name": response.meta['name']})
 
     def getInfo(self,response):
