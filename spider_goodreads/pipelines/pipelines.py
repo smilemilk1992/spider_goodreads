@@ -11,7 +11,7 @@ class SpiderGoodreadsPipeline(object):
     firstPublishedTime,pages,originalTitle,literaryAwards,ISBN,ISBN13,editionLanguage,description,isbnInfo)
     value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
     conn = MySQLdb.connect(
-        host='120.27.218.142',
+        host='127.0.0.1',
         port=3306,
         user='worker',
         passwd='worker',

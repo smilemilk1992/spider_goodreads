@@ -5,12 +5,12 @@ import xlwt
 from openpyxl import Workbook
 
 
-class SpiderGoodreadsPipelineCSV(object):
+class SpiderGoodreadsPipeline(object):
 
     cc = '''INSERT IGNORE p_news_lib1(title,state,city,abbreviation,zipcode,email,website,worldcatUrl,address,phone)
     value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
     conn = MySQLdb.connect(
-        host='120.27.218.142',
+        host='127.0.0.1',
         port=3306,
         user='worker',
         passwd='worker',
