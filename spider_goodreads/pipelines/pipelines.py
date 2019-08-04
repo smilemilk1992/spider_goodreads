@@ -20,6 +20,7 @@ class SpiderGoodreadsPipeline(object):
     )
     cur = conn.cursor()
 
+
     def process_item(self, item, spider):
         try:
             insertdata = (
